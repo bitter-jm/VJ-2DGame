@@ -3,6 +3,7 @@
 #include <sstream>
 #include <vector>
 #include "TileMap.h"
+#include <msxml.h>
 
 
 using namespace std;
@@ -47,6 +48,11 @@ void TileMap::free()
 
 bool TileMap::loadLevel(const string &levelFile)
 {
+	AllocConsole();
+	freopen("CONOUT$", "w", stdout);
+	freopen("CONOUT$", "w", stderr);
+
+
 	ifstream fin;
 	string line, tilesheetFile;
 	stringstream sstream;
@@ -62,21 +68,22 @@ bool TileMap::loadLevel(const string &levelFile)
 	sstream.str(line);
 	sstream >> mapSize.x >> mapSize.y;
 	getline(fin, line);
-	sstream.str(line);
-	sstream >> tileSize >> blockSize;
+	stringstream ss(line);
+	ss >> tileSize >> blockSize;
 	getline(fin, line);
-	sstream.str(line);
-	sstream >> tilesheetFile;
-	tilesheet.loadFromFile(tilesheetFile, TEXTURE_PIXEL_FORMAT_RGBA);
+	stringstream ss2(line);
+	ss2 >> tilesheetFile;
+	tilesheet.loadFromFile(tilesheetFile, TEXTURE_PIXEL_FORMAT_RGB);
 	tilesheet.setWrapS(GL_CLAMP_TO_EDGE);
 	tilesheet.setWrapT(GL_CLAMP_TO_EDGE);
 	tilesheet.setMinFilter(GL_NEAREST);
 	tilesheet.setMagFilter(GL_NEAREST);
 	getline(fin, line);
-	sstream.str(line);
-	sstream >> tilesheetSize.x >> tilesheetSize.y;
+	stringstream ss3(line);
+	ss3 >> tilesheetSize.x >> tilesheetSize.y;
 	tileTexSize = glm::vec2(1.f / tilesheetSize.x, 1.f / tilesheetSize.y);
 	
+	/*
 	map = new int[mapSize.x * mapSize.y];
 	for(int j=0; j<mapSize.y; j++)
 	{
@@ -89,6 +96,25 @@ bool TileMap::loadLevel(const string &levelFile)
 				map[j*mapSize.x+i] = tile - int('0');
 		}
 		fin.get(tile);
+#ifndef _WIN32
+		fin.get(tile);
+#endif
+	}
+	fin.close();
+	*/
+
+	// Load tileMap 
+	map = new int[mapSize.x * mapSize.y];
+	for (int j = 0; j < mapSize.y; j++)
+	{
+		getline(fin, line);
+		stringstream ss(line);
+		int tileIndex;
+		for (int i = 0; i < mapSize.x; i++)
+		{
+			ss >> tileIndex;
+			map[j * mapSize.x + i] = tileIndex;
+		}
 #ifndef _WIN32
 		fin.get(tile);
 #endif
@@ -109,13 +135,13 @@ void TileMap::prepareArrays(const glm::vec2 &minCoords, ShaderProgram &program)
 	{
 		for(int i=0; i<mapSize.x; i++)
 		{
-			tile = map[j * mapSize.x + i];
+			tile = map[j * mapSize.x + i] + 1;
 			if(tile != 0)
 			{
 				// Non-empty tile
 				nTiles++;
 				posTile = glm::vec2(minCoords.x + i * tileSize, minCoords.y + j * tileSize);
-				texCoordTile[0] = glm::vec2(float((tile-1)%2) / tilesheetSize.x, float((tile-1)/2) / tilesheetSize.y);
+				texCoordTile[0] = glm::vec2(float((tile-1)%tilesheetSize.x) / tilesheetSize.x, float((tile-1)/ tilesheetSize.x) / tilesheetSize.y);
 				texCoordTile[1] = texCoordTile[0] + tileTexSize;
 				//texCoordTile[0] += halfTexel;
 				texCoordTile[1] -= halfTexel;
