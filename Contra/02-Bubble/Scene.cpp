@@ -48,11 +48,12 @@ void Scene::update(int deltaTime)
 void Scene::render()
 {
 	glm::mat4 modelview;
+	float playerX = player->getPosition().x;
+	projection = glm::ortho(playerX - float(SCREEN_WIDTH - 1)/2.0f, playerX + float(SCREEN_WIDTH - 1)/2.0f, float(SCREEN_HEIGHT - 1), 0.f);
 
 	texProgram.use();
 	texProgram.setUniformMatrix4f("projection", projection);
 	texProgram.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
-	modelview = glm::mat4(1.0f);
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 	map->render();
