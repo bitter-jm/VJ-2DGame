@@ -9,6 +9,15 @@
 using namespace std;
 
 
+vector<vector<int>> collisionLR = {
+	{17, 18, 19, 20, 21, 22, 28, 29, 30, 36, 37, 38, 41, 42, 44, 45, 46, 49, 50, 52, 53, 54, 57, 58, 60, 61}
+};
+
+vector<vector<int>> collisionD = {
+	{1, 18, 19, 20, 21, 22, 26, 58}
+};
+
+
 TileMap *TileMap::createTileMap(const string &levelFile, const glm::vec2 &minCoords, ShaderProgram &program)
 {
 	TileMap *map = new TileMap(levelFile, minCoords, program);
@@ -82,26 +91,6 @@ bool TileMap::loadLevel(const string &levelFile)
 	stringstream ss3(line);
 	ss3 >> tilesheetSize.x >> tilesheetSize.y;
 	tileTexSize = glm::vec2(1.f / tilesheetSize.x, 1.f / tilesheetSize.y);
-	
-	/*
-	map = new int[mapSize.x * mapSize.y];
-	for(int j=0; j<mapSize.y; j++)
-	{
-		for(int i=0; i<mapSize.x; i++)
-		{
-			fin.get(tile);
-			if(tile == ' ')
-				map[j*mapSize.x+i] = 0;
-			else
-				map[j*mapSize.x+i] = tile - int('0');
-		}
-		fin.get(tile);
-#ifndef _WIN32
-		fin.get(tile);
-#endif
-	}
-	fin.close();
-	*/
 
 	// Load tileMap 
 	map = new int[mapSize.x * mapSize.y];
@@ -172,6 +161,19 @@ void TileMap::prepareArrays(const glm::vec2 &minCoords, ShaderProgram &program)
 	texCoordLocation = program.bindVertexAttribute("texCoord", 2, 4*sizeof(float), (void *)(2*sizeof(float)));
 }
 
+bool binarySearch(const vector<vector<int>> &v, int l, int r, int level, int x)
+{
+	if (r >= l) {
+		int mid = l + (r - l) / 2;
+		if (v[level-1][mid] == x)
+			return true;
+		if (v[level - 1][mid] > x)
+			return binarySearch(v, l, mid - 1, level, x);
+		return binarySearch(v, mid + 1, r, level, x);
+	}
+	return false;
+}
+
 // Collision tests for axis aligned bounding boxes.
 // Method collisionMoveDown also corrects Y coordinate if the box is
 // already intersecting a tile below.
@@ -185,7 +187,8 @@ bool TileMap::collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) c
 	y1 = (pos.y + size.y - 1) / tileSize;
 	for(int y=y0; y<=y1; y++)
 	{
-		if(map[y*mapSize.x+x] != 0)
+		int tile = map[y * mapSize.x + x];
+		if(binarySearch(collisionLR, 0, collisionLR[level-1].size(), level, tile))
 			return true;
 	}
 	
@@ -201,7 +204,8 @@ bool TileMap::collisionMoveRight(const glm::ivec2 &pos, const glm::ivec2 &size) 
 	y1 = (pos.y + size.y - 1) / tileSize;
 	for(int y=y0; y<=y1; y++)
 	{
-		if(map[y*mapSize.x+x] != 0)
+		int tile = map[y * mapSize.x + x];
+		if (binarySearch(collisionLR, 0, collisionLR[level - 1].size(), level, tile))
 			return true;
 	}
 	
@@ -217,7 +221,8 @@ bool TileMap::collisionMoveDown(const glm::ivec2 &pos, const glm::ivec2 &size, i
 	y = (pos.y + size.y - 1) / tileSize;
 	for(int x=x0; x<=x1; x++)
 	{
-		if(map[y*mapSize.x+x] != 0)
+		int tile = map[y * mapSize.x + x];
+		if (binarySearch(collisionD, 0, collisionD[level - 1].size(), level, tile))
 		{
 			if(*posY - tileSize * y + size.y <= 4)
 			{
@@ -228,6 +233,16 @@ bool TileMap::collisionMoveDown(const glm::ivec2 &pos, const glm::ivec2 &size, i
 	}
 	
 	return false;
+}
+
+int TileMap::getLevel()
+{
+	return level;
+}
+
+void TileMap::setLevel(int level)
+{
+	this->level = level;
 }
 
 
