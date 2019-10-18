@@ -41,12 +41,18 @@ public:
 	
 	bool getKey(int key) const;
 	bool getSpecialKey(int key) const;
+	bool isMousePressed() const;
+	int Game::getPosMouseX() const;
+	int Game::getPosMouseY() const;
 
 private:
 	bool bPlay;                       // Continue to play game?
 	Scene scene;                      // Scene to render
 	bool keys[256], specialKeys[256]; // Store key states so that 
 	                                  // we can have access at any time
+	int posMouseX = 0;
+	int posMouseY = 0;
+	bool mousePressed = false;
 
 };
 

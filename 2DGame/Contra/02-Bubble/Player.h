@@ -29,6 +29,12 @@ private:
 	Texture spritesheet;
 	Sprite *sprite;
 	TileMap *map;
+	int posMouseX = 0;
+	int posMouseY = 0;
+	bool lookingRight = false;
+	int basicAction = 1;
+	bool shooting = false;
+	void changeBasicAction(int basicAnimation);
 
 };
 

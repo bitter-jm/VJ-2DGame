@@ -33,6 +33,7 @@ Sprite::Sprite(const glm::vec2 &quadSize, const glm::vec2 &sizeInSpritesheet, Te
 	shaderProgram = program;
 	currentAnimation = -1;
 	position = glm::vec2(0.f);
+	this->quadSize = quadSize;
 }
 
 void Sprite::update(int deltaTime)
@@ -51,7 +52,14 @@ void Sprite::update(int deltaTime)
 
 void Sprite::render() const
 {
-	glm::mat4 modelview = glm::translate(glm::mat4(1.0f), glm::vec3(position.x, position.y, 0.f));
+	glm::mat4 modelview = glm::mat4();
+	modelview = glm::translate(modelview, glm::vec3(position.x, position.y, 0.f));
+
+	if (quadSize.x == 64 & quadSize.y == 64) {
+		modelview = glm::translate(modelview, glm::vec3(-16.f, -44.f, 0.f)); //ADDED for player
+		modelview = glm::scale(modelview, glm::vec3(1.5f, 1.5f, 0.f)); //ADDED for player
+	}
+
 	shaderProgram->setUniformMatrix4f("modelview", modelview);
 	shaderProgram->setUniform2f("texCoordDispl", texCoordDispl.x, texCoordDispl.y);
 	glEnable(GL_TEXTURE_2D);
@@ -90,7 +98,7 @@ void Sprite::changeAnimation(int animId)
 {
 	if(animId < int(animations.size()))
 	{
-		//std::cout << "animation changed to: " << animId << std::endl;
+		std::cout << "animation changed to: " << animId << std::endl;
 		currentAnimation = animId;
 		currentKeyframe = 0;
 		timeAnimation = 0.f;

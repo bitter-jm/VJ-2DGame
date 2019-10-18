@@ -9,7 +9,7 @@
 #define SCREEN_Y 0
 
 #define INIT_PLAYER_X_TILES 8
-#define INIT_PLAYER_Y_TILES 4
+#define INIT_PLAYER_Y_TILES 3
 
 
 Scene::Scene()
@@ -50,7 +50,7 @@ void Scene::render()
 {
 	glm::mat4 modelview;
 	float playerX = player->getPosition().x;
-	projection = glm::ortho(playerX - float(SCREEN_WIDTH - 1)/2.0f, playerX + float(SCREEN_WIDTH - 1)/2.0f, float(SCREEN_HEIGHT - 1), 0.f);
+	projection = glm::ortho(playerX - float(SCREEN_WIDTH - 1)/2.0f, playerX + float(SCREEN_WIDTH - 1)/2.0f + 64.f, float(SCREEN_HEIGHT - 1), 0.f);
 	texProgram.use();
 	texProgram.setUniformMatrix4f("projection", projection);
 	texProgram.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
@@ -91,6 +91,4 @@ void Scene::initShaders()
 	vShader.free();
 	fShader.free();
 }
-
-
 

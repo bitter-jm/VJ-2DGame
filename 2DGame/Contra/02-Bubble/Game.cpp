@@ -47,14 +47,18 @@ void Game::specialKeyReleased(int key)
 
 void Game::mouseMove(int x, int y)
 {
+	posMouseX = x;
+	posMouseY = y;
 }
 
 void Game::mousePress(int button)
 {
+	mousePressed = true;
 }
 
 void Game::mouseRelease(int button)
 {
+	mousePressed = false;
 }
 
 bool Game::getKey(int key) const
@@ -68,6 +72,18 @@ bool Game::getSpecialKey(int key) const
 }
 
 
+int Game::getPosMouseX() const
+{
+	return posMouseX;
+}
 
+int Game::getPosMouseY() const
+{
+	return posMouseY;
+}
 
+bool Game::isMousePressed() const
+{
+	return mousePressed;
+}
 
