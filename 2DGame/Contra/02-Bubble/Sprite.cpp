@@ -90,7 +90,7 @@ void Sprite::changeAnimation(int animId)
 {
 	if(animId < int(animations.size()))
 	{
-		std::cout << "animation changed to: " << animId << std::endl;
+		//std::cout << "animation changed to: " << animId << std::endl;
 		currentAnimation = animId;
 		currentKeyframe = 0;
 		timeAnimation = 0.f;
