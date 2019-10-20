@@ -21,6 +21,7 @@ public:
 	void setTileMap(TileMap *tileMap);
 	void setPosition(const glm::vec2 &pos);
 	glm::vec2 getPosition();
+	void kill();
 	
 private:
 	bool bJumping;
@@ -33,8 +34,13 @@ private:
 	int posMouseY = 0;
 	bool lookingRight = false;
 	int basicAction = 1;
+	void changeBasicAction(int basicAnimation, int deltaTime);
 	bool shooting = false;
-	void changeBasicAction(int basicAnimation);
+	int lastShot = 0;
+	void shoot(double angulo, int x, int y);
+	int currentGun = 1;
+	bool dead = false;
+	int deathTime;
 
 };
 

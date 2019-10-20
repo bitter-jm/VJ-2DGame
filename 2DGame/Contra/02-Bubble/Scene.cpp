@@ -38,12 +38,17 @@ void Scene::init()
 	player->setTileMap(map);
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
+	entityManager = new EntityManager();
+	entityManager->init(player);
 }
 
 void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
+
 	player->update(deltaTime);
+	entityManager->update(deltaTime);
+	
 }
 
 void Scene::render()
@@ -60,6 +65,7 @@ void Scene::render()
 	modelview = glm::scale(modelview, glm::vec3(4.f, 4.f, 0.f));
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	player->render();
+	entityManager->render();
 }
 
 void Scene::initShaders()
