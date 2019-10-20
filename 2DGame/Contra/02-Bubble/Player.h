@@ -22,6 +22,7 @@ public:
 	void setPosition(const glm::vec2 &pos);
 	glm::vec2 getPosition();
 	void kill();
+	bool isDead();
 	
 private:
 	bool bJumping;

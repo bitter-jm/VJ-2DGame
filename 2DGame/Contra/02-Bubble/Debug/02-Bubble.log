@@ -1,7 +1,36 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (02-Bubble.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   EntityManager.cpp
-SOIL.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_DXT.obj)' o en 'C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-SOIL.lib(image_helper.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_helper.obj)' o en 'C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-SOIL.lib(SOIL.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(SOIL.obj)' o en 'C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-SOIL.lib(stb_image_aug.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(stb_image_aug.obj)' o en 'C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-  02-Bubble.vcxproj -> C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\Debug\Contra.exe
+  Game.cpp
+C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Projectile.h(11,95): error C2061: error de sintaxis: identificador 'EntityManager'
+  main.cpp
+C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Projectile.h(11,95): error C2061: error de sintaxis: identificador 'EntityManager'
+C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Projectile.h(11,95): error C2061: error de sintaxis: identificador 'EntityManager'
+  Player.cpp
+C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\02-Bubble\main.cpp(90,21): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+  Projectile.cpp
+C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Projectile.h(11,95): error C2061: error de sintaxis: identificador 'EntityManager'
+C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Projectile.cpp(74,5): error C3867: 'Sprite::animation': sintaxis no estándar; utilice '&' para crear un puntero al miembro
+C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Projectile.cpp(74,5): error C2678: '==' binario: no se encontró un operador que adopte un operando en la parte izquierda de tipo 'overloaded-function' (o bien no existe una conversión aceptable)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\guiddef.h(192,15): message : puede ser 'bool operator ==(const GUID &,const GUID &)'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\system_error(232,24): message : o       'bool std::operator ==(const std::error_condition &,const std::error_condition &) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\system_error(227,24): message : o       'bool std::operator ==(const std::error_condition &,const std::error_code &) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\system_error(222,24): message : o       'bool std::operator ==(const std::error_code &,const std::error_condition &) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\system_error(217,24): message : o       'bool std::operator ==(const std::error_code &,const std::error_code &) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\exception(290,24): message : o       'bool std::operator ==(const std::exception_ptr &,std::nullptr_t) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\exception(286,24): message : o       'bool std::operator ==(std::nullptr_t,const std::exception_ptr &) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\exception(282,24): message : o       'bool std::operator ==(const std::exception_ptr &,const std::exception_ptr &) noexcept'
+C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Projectile.cpp(74,5): message : al hacer coincidir la lista de argumentos '(overloaded-function, ProjectileAnims)'
+C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Projectile.cpp(80,33): error C3867: 'Sprite::animation': sintaxis no estándar; utilice '&' para crear un puntero al miembro
+C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Projectile.cpp(80,33): error C2678: '==' binario: no se encontró un operador que adopte un operando en la parte izquierda de tipo 'overloaded-function' (o bien no existe una conversión aceptable)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\guiddef.h(192,15): message : puede ser 'bool operator ==(const GUID &,const GUID &)'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\system_error(232,24): message : o       'bool std::operator ==(const std::error_condition &,const std::error_condition &) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\system_error(227,24): message : o       'bool std::operator ==(const std::error_condition &,const std::error_code &) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\system_error(222,24): message : o       'bool std::operator ==(const std::error_code &,const std::error_condition &) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\system_error(217,24): message : o       'bool std::operator ==(const std::error_code &,const std::error_code &) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\exception(290,24): message : o       'bool std::operator ==(const std::exception_ptr &,std::nullptr_t) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\exception(286,24): message : o       'bool std::operator ==(std::nullptr_t,const std::exception_ptr &) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\exception(282,24): message : o       'bool std::operator ==(const std::exception_ptr &,const std::exception_ptr &) noexcept'
+  Scene.cpp
+C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Projectile.cpp(80,33): message : al hacer coincidir la lista de argumentos '(overloaded-function, ProjectileAnims)'
+  Generando código...
+C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Projectile.h(11,95): error C2061: error de sintaxis: identificador 'EntityManager'

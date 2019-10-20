@@ -249,7 +249,6 @@ void Player::changeBasicAction(int basicAnimation, int deltaTime)
 			else if (((angulo <= 90 && angulo > 0) || (angulo <= 0 && angulo >= -90)) && sprite->animation() != STAND_LEFT_POINT_LEFT) sprite->changeAnimation(STAND_LEFT_POINT_LEFT);
 		}
 		else {
-			cout << "entra" << endl;
 			if (angulo > 90 && angulo < 157 ) sprite->changeAnimation(STAND_LEFT_POINT_UP_SHOOT);
 			else if ((angulo >= 157 || angulo <= -157) ) sprite->changeAnimation(STAND_LEFT_POINT_LEFT_SHOOT);
 			else if (angulo < -90 && angulo > -157 ) sprite->changeAnimation(STAND_LEFT_POINT_DOWN_SHOOT);
@@ -303,8 +302,6 @@ void Player::changeBasicAction(int basicAnimation, int deltaTime)
 
 void Player::update(int deltaTime)
 {
-
-
 	if (dead && deathTime + 500 >= glutGet(GLUT_ELAPSED_TIME)) {
 		if (basicAction == STAND_LEFT || basicAction == MOVE_LEFT || sprite->animation() == JUMP_LEFT || sprite->animation() == DYING_LEFT) {
 			if (sprite->animation() != DYING_LEFT) {
@@ -452,3 +449,6 @@ void Player::kill() {
 	dead = true;
 }
 
+bool Player::isDead() {
+	return dead;
+}

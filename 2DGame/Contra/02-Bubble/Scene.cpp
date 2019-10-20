@@ -62,7 +62,7 @@ void Scene::render()
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 	map->render();
-	modelview = glm::scale(modelview, glm::vec3(4.f, 4.f, 0.f));
+	//modelview = glm::scale(modelview, glm::vec3(4.f, 4.f, 0.f));
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	player->render();
 	entityManager->render();
