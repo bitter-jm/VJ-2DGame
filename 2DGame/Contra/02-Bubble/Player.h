@@ -23,6 +23,13 @@ public:
 	glm::vec2 getPosition();
 	void kill();
 	bool isDead();
+
+	// Projectile gets
+	bool hasShootedProjectile();
+	glm::ivec2 getProjectileCoords();
+	int getProjectileAngle();
+	int getProjectileVelocity();
+	int getProjectileType();
 	
 private:
 	bool bJumping;
@@ -42,6 +49,12 @@ private:
 	int currentGun = 1;
 	bool dead = false;
 	int deathTime;
+
+	//Creating projectiles
+	bool shootedProjectile = false;
+	glm::ivec2 projectileCoords;
+	int projectileAngle, projectileVelocity, projectileType;
+
 
 };
 

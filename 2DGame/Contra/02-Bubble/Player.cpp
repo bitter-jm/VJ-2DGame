@@ -11,6 +11,7 @@
 #define JUMP_HEIGHT 96
 #define FALL_STEP 4
 #define RUN_VELOCITY 3
+#define SHOT_VELOCITY 8
 
 enum PlayerAnims
 {
@@ -442,6 +443,22 @@ glm::vec2 Player::getPosition()
 void Player::shoot(double angulo, int x, int y) 
 {
 	cout << "SHOT FIRED: Angle=" << angulo << " X=" << x << " Y=" << y << " Type=" << currentGun << endl;
+	shootedProjectile = true;
+	projectileCoords.x = x+22;
+	projectileCoords.y = y;
+	projectileType = currentGun;
+	projectileVelocity = SHOT_VELOCITY;
+	//projectileAngle = angulo;
+	if ((basicAction == STAND_LEFT || basicAction == MOVE_LEFT) && angulo < 90 && angulo > -90) projectileAngle = 180;
+	else if ((basicAction == STAND_RIGHT || basicAction == MOVE_RIGHT) && (angulo > 90 || angulo < -90)) projectileAngle = 0;
+	else if (angulo > -22 && angulo < 22) projectileAngle = 0;
+	else if (angulo >= 22 && angulo <= 90) projectileAngle = 45;
+	else if (angulo >= -90 && angulo <= -22) projectileAngle = -45;
+	else if (angulo >= 90 && angulo <= 157) projectileAngle = 135;
+	else if (angulo >= -157 && angulo <= -90) projectileAngle = -135;
+	else if (angulo >= 157 || angulo <= -157) projectileAngle = 180;
+	cout << "Final angle: " << projectileAngle << endl;
+
 }
 
 void Player::kill() {
@@ -451,4 +468,25 @@ void Player::kill() {
 
 bool Player::isDead() {
 	return dead;
+}
+
+
+bool Player::hasShootedProjectile() {
+	if (shootedProjectile) {
+		shootedProjectile = false;
+		return true;
+	}
+	else return false;
+}
+glm::ivec2 Player::getProjectileCoords() {
+	return projectileCoords;
+}
+int Player::getProjectileAngle() {
+	return projectileAngle;
+}
+int Player::getProjectileVelocity() {
+	return projectileVelocity;
+}
+int Player::getProjectileType() {
+	return projectileType;
 }

@@ -39,7 +39,7 @@ void Scene::init()
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
 	entityManager = new EntityManager();
-	entityManager->init(player);
+	entityManager->init(player, &texProgram);
 }
 
 void Scene::update(int deltaTime)
