@@ -7,7 +7,8 @@
 #include "TileMap.h"
 #include "Player.h"
 #include "EntityManager.h"
-
+#include "NPC.h"
+#include "Turret.h"
 
 // Scene contains all the entities of our game.
 // It is responsible for updating and render them.
@@ -26,6 +27,7 @@ public:
 
 private:
 	void initShaders();
+	void spawnTurrets();
 
 private:
 	TileMap *map;
@@ -34,6 +36,7 @@ private:
 	float currentTime;
 	glm::mat4 projection;
 	EntityManager *entityManager;
+	vector<Turret*> turrets;
 
 };
 

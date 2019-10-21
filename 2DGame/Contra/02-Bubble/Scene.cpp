@@ -27,6 +27,14 @@ Scene::~Scene()
 }
 
 
+void Scene::spawnTurrets() {
+	Turret* t = new Turret();
+	t->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	t->setPosition(glm::vec2(11 * map->getTileSize(), 3 * map->getTileSize()));
+	t->setTileMap(map);
+	turrets.push_back(t);
+}
+
 void Scene::init()
 {
 	initShaders();
@@ -40,6 +48,8 @@ void Scene::init()
 	currentTime = 0.0f;
 	entityManager = new EntityManager();
 	entityManager->init(player, &texProgram);
+
+	spawnTurrets();
 }
 
 void Scene::update(int deltaTime)
@@ -48,6 +58,10 @@ void Scene::update(int deltaTime)
 
 	player->update(deltaTime);
 	entityManager->update(deltaTime);
+	
+	for (int i = 0; i < turrets.size(); i++) {
+		turrets[i]->update(deltaTime);
+	}
 	
 }
 
@@ -66,6 +80,10 @@ void Scene::render()
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	player->render();
 	entityManager->render();
+	
+	for (int i = 0; i < turrets.size(); i++) {
+		turrets[i]->render();
+	}
 }
 
 void Scene::initShaders()
