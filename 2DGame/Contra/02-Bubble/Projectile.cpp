@@ -24,7 +24,7 @@ void Projectile::init(int ID, int x, int y, int a, int v, int t, bool e, ShaderP
 	type = t;
 	enemy = e;
 	id = ID;
-	spritesheet.loadFromFile("images/projectiles.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	spritesheet.loadFromFile("images/proyectiles.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sprite = Sprite::createSprite(glm::ivec2(16, 16), glm::vec2(0.1, 0.1), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(2);
 
@@ -35,7 +35,7 @@ void Projectile::init(int ID, int x, int y, int a, int v, int t, bool e, ShaderP
 		sprite->addKeyframe(FLYING, glm::vec2(0.2f, 0.f));
 		sprite->addKeyframe(FLYING, glm::vec2(0.3f, 0.f));
 	} 
-	else if (enemy) {
+	else {
 		sprite->setAnimationSpeed(FLYING, 8);
 		sprite->addKeyframe(FLYING, glm::vec2(0.0f, 0.2f));
 		sprite->addKeyframe(FLYING, glm::vec2(0.1f, 0.2f));

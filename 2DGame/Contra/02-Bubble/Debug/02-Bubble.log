@@ -1,5 +1,7 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (02-Bubble.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  SpreadGun.cpp
+  Projectile.cpp
+  Texture.cpp
+  Generando código...
 SOIL.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_DXT.obj)' o en 'C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 SOIL.lib(image_helper.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_helper.obj)' o en 'C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 SOIL.lib(SOIL.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(SOIL.obj)' o en 'C:\Users\joanp\Desktop\Clean VJ\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
