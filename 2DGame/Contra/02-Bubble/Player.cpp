@@ -12,6 +12,7 @@
 #define FALL_STEP 4
 #define RUN_VELOCITY 3
 #define SHOT_VELOCITY 8
+#define UPGRADE_WEAPON_X 2610
 
 enum PlayerAnims
 {
@@ -303,6 +304,7 @@ void Player::changeBasicAction(int basicAnimation, int deltaTime)
 
 void Player::update(int deltaTime)
 {
+	if (currentGun == 1 && posPlayer.x > UPGRADE_WEAPON_X) currentGun = 2;
 	if (dead && deathTime + 500 >= glutGet(GLUT_ELAPSED_TIME)) {
 		if (basicAction == STAND_LEFT || basicAction == MOVE_LEFT || sprite->animation() == JUMP_LEFT || sprite->animation() == DYING_LEFT) {
 			if (sprite->animation() != DYING_LEFT) {
@@ -446,6 +448,8 @@ void Player::shoot(double angulo, int x, int y)
 	shootedProjectile = true;
 	projectileCoords.x = x+22;
 	projectileCoords.y = y;
+	if (basicAction == STAND_LEFT || basicAction == MOVE_LEFT) projectileCoords.x -= 20;
+	else projectileCoords.x += 20;
 	projectileType = currentGun;
 	projectileVelocity = SHOT_VELOCITY;
 	//projectileAngle = angulo;
@@ -457,8 +461,9 @@ void Player::shoot(double angulo, int x, int y)
 	else if (angulo >= 90 && angulo <= 157) projectileAngle = 135;
 	else if (angulo >= -157 && angulo <= -90) projectileAngle = -135;
 	else if (angulo >= 157 || angulo <= -157) projectileAngle = 180;
-	cout << "Final angle: " << projectileAngle << endl;
 
+	if (projectileAngle > 0 && projectileAngle != 180)  projectileCoords.y -= 20;
+	else if (projectileAngle < 0 && projectileAngle != -180)  projectileCoords.y += 20;
 }
 
 void Player::kill() {

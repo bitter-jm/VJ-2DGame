@@ -28,14 +28,14 @@ void Projectile::init(int ID, int x, int y, int a, int v, int t, bool e, ShaderP
 	sprite = Sprite::createSprite(glm::ivec2(16, 16), glm::vec2(0.1, 0.1), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(2);
 
-	if (type == 1) {
+	if (!enemy) {
 		sprite->setAnimationSpeed(FLYING, 8);
 		sprite->addKeyframe(FLYING, glm::vec2(0.0f, 0.f));
 		sprite->addKeyframe(FLYING, glm::vec2(0.1f, 0.f));
 		sprite->addKeyframe(FLYING, glm::vec2(0.2f, 0.f));
 		sprite->addKeyframe(FLYING, glm::vec2(0.3f, 0.f));
 	} 
-	else if (type == 2) {
+	else if (enemy) {
 		sprite->setAnimationSpeed(FLYING, 8);
 		sprite->addKeyframe(FLYING, glm::vec2(0.0f, 0.2f));
 		sprite->addKeyframe(FLYING, glm::vec2(0.1f, 0.2f));
@@ -81,15 +81,23 @@ void Projectile::update(int deltaTime)
 		else if (angle == 180 || angle == -180) posProjectile.x -= velocity;
 		else if (angle == 270 || angle == -90) posProjectile.y += velocity;
 		else {
-			int inc = (int)(sin(M_PI/4) * (double)velocity);
-			if (angle == 45) { posProjectile.x += inc; posProjectile.y -= inc; }
-			else if (angle == 135) { posProjectile.x -= inc; posProjectile.y -= inc; }
-			else if (angle == 225 || angle == -135) { posProjectile.x -= inc; posProjectile.y += inc; }
-			else if (angle == 315 || angle == -45) { posProjectile.x += inc; posProjectile.y += inc; }
+			int inc45 = (int)(sin(M_PI/4) * (double)velocity);
+			int inc22s = 2;//(int)(sin(M_PI / 8) * (double)velocity); // Pequeno
+			int inc22c = 7;// (int)(sin(M_PI / 8) * (double)velocity); // Grande
+			if (angle == 45) { posProjectile.x += inc45; posProjectile.y -= inc45; }
+			else if (angle == 135) { posProjectile.x -= inc45; posProjectile.y -= inc45; }
+			else if (angle == 225 || angle == -135) { posProjectile.x -= inc45; posProjectile.y += inc45; }
+			else if (angle == 315 || angle == -45) { posProjectile.x += inc45; posProjectile.y += inc45; }
+			else if (angle == 22) { posProjectile.x += inc22c; posProjectile.y -= inc22s; }
+			else if (angle == 67) { posProjectile.x += inc22s; posProjectile.y -= inc22c; }
+			else if (angle == 112) { posProjectile.x -= inc22s; posProjectile.y -= inc22c; }
+			else if (angle == 157) { posProjectile.x -= inc22c; posProjectile.y -= inc22s; }
+			else if (angle == -157 || angle == 360 - 157) { posProjectile.x -= inc22c; posProjectile.y += inc22s; }
+			else if (angle == -112 || angle == 360 - 112) { posProjectile.x -= inc22s; posProjectile.y += inc22c; }
+			else if (angle == -67 || angle == 360 - 67) { posProjectile.x += inc22s; posProjectile.y += inc22c; }
+			else if (angle == -22 || angle == 360-22) { posProjectile.x += inc22c; posProjectile.y += inc22s; }
 		}
 	}
-
-	cout << "Projectile coords: " << posProjectile.x << " " << posProjectile.y << endl;
 
 	sprite->setPosition(glm::vec2(float(posProjectile.x), float(posProjectile.y)));
 }

@@ -78,12 +78,11 @@ void Scene::render()
 	map->render();
 	//modelview = glm::scale(modelview, glm::vec3(4.f, 4.f, 0.f));
 	texProgram.setUniformMatrix4f("modelview", modelview);
-	player->render();
-	entityManager->render();
-	
 	for (int i = 0; i < turrets.size(); i++) {
 		turrets[i]->render();
 	}
+	player->render();
+	entityManager->render();
 }
 
 void Scene::initShaders()
