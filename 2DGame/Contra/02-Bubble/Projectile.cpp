@@ -82,7 +82,7 @@ void Projectile::update(int deltaTime)
 		else if (angle == 270 || angle == -90) posProjectile.y += velocity;
 		else {
 			int inc45 = (int)(sin(M_PI/4) * (double)velocity);
-			int inc22s = 2;//(int)(sin(M_PI / 8) * (double)velocity); // Pequeno
+			int inc22s = 2;//(int)(sin(M_PI / 8) * (double)velocity); // Pequeno (La velocidad es tan pequeña que al pasarlo an int se lo carga a 0...)
 			int inc22c = 7;// (int)(sin(M_PI / 8) * (double)velocity); // Grande
 			if (angle == 45) { posProjectile.x += inc45; posProjectile.y -= inc45; }
 			else if (angle == 135) { posProjectile.x -= inc45; posProjectile.y -= inc45; }

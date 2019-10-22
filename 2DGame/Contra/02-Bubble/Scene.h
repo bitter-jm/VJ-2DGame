@@ -9,6 +9,7 @@
 #include "EntityManager.h"
 #include "NPC.h"
 #include "Turret.h"
+#include "SpreadGun.h"
 
 // Scene contains all the entities of our game.
 // It is responsible for updating and render them.
@@ -32,11 +33,13 @@ private:
 private:
 	TileMap *map;
 	Player *player;
+	SpreadGun *spreadgun;
 	ShaderProgram texProgram;
 	float currentTime;
 	glm::mat4 projection;
 	EntityManager *entityManager;
 	vector<Turret*> turrets;
+	bool spreadgunHidden = false;
 
 };
 

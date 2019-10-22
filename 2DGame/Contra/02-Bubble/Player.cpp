@@ -12,7 +12,7 @@
 #define FALL_STEP 4
 #define RUN_VELOCITY 3
 #define SHOT_VELOCITY 8
-#define UPGRADE_WEAPON_X 2610
+#define UPGRADE_WEAPON_X 2600
 
 enum PlayerAnims
 {

@@ -11,6 +11,8 @@
 #define INIT_PLAYER_X_TILES 8
 #define INIT_PLAYER_Y_TILES 3
 
+#define WEAPON_X 2600
+
 
 Scene::Scene()
 {
@@ -44,6 +46,8 @@ void Scene::init()
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
+	spreadgun = new SpreadGun();
+	spreadgun->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
 	entityManager = new EntityManager();
@@ -58,6 +62,8 @@ void Scene::update(int deltaTime)
 
 	player->update(deltaTime);
 	entityManager->update(deltaTime);
+	if (!spreadgunHidden && player->getPosition().x > WEAPON_X) spreadgunHidden = true;
+	else spreadgun->update(deltaTime);
 	
 	for (int i = 0; i < turrets.size(); i++) {
 		turrets[i]->update(deltaTime);
@@ -76,6 +82,7 @@ void Scene::render()
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 	map->render();
+	if (!spreadgunHidden) spreadgun->render();
 	//modelview = glm::scale(modelview, glm::vec3(4.f, 4.f, 0.f));
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	for (int i = 0; i < turrets.size(); i++) {
