@@ -32,7 +32,6 @@ Scene::~Scene()
 
 void Scene::spawnTurrets() {
 	enum Position {LEFT, RIGHT, UP, DOWN};
-
 	// generar torretas
 	Turret* t = new Turret();
 	t->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, LEFT);
@@ -40,6 +39,17 @@ void Scene::spawnTurrets() {
 	t->setTileMap(map);
 	t->setPlayer(player);
 	turrets.push_back(t);
+}
+
+void Scene::spawnSoldierAs() {
+	enum Position { STAND_LEFT, STAND_LEFT_DIAG_UP, STAND_LEFT_DAIG_DOWN, EXPLODE };
+	// generar torretas
+	SoldierA* s = new SoldierA();
+	s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT);
+	s->setPosition(glm::vec2(10 * map->getTileSize(), 3 * map->getTileSize()+5));
+	s->setTileMap(map);
+	s->setPlayer(player);
+	soldierAs.push_back(s);
 }
 
 void Scene::init()
@@ -63,6 +73,7 @@ void Scene::init()
 	entityManager->init(player, &texProgram);
 
 	spawnTurrets();
+	spawnSoldierAs();
 }
 
 void Scene::update(int deltaTime)
@@ -76,6 +87,9 @@ void Scene::update(int deltaTime)
 	
 	for (int i = 0; i < turrets.size(); i++) {
 		turrets[i]->update(deltaTime);
+	}
+	for (int i = 0; i < soldierAs.size(); i++) {
+		soldierAs[i]->update(deltaTime);
 	}
 }
 
@@ -100,9 +114,11 @@ void Scene::render()
 
 	map->render();
 	if (!spreadgunHidden) spreadgun->render();
-	//texProgram.setUniformMatrix4f("modelview", modelview);
 	for (int i = 0; i < turrets.size(); i++) {
 		turrets[i]->render();
+	}
+	for (int i = 0; i < soldierAs.size(); i++) {
+		soldierAs[i]->render();
 	}
 	player->render();
 	entityManager->render();

@@ -9,6 +9,7 @@
 #include "EntityManager.h"
 #include "NPC.h"
 #include "Turret.h"
+#include "SoldierA.h"
 #include "SpreadGun.h"
 
 // Scene contains all the entities of our game.
@@ -29,6 +30,7 @@ public:
 private:
 	void initShaders();
 	void spawnTurrets();
+	void spawnSoldierAs();
 
 private:
 	TileMap *map;
@@ -39,6 +41,7 @@ private:
 	glm::mat4 projection;
 	EntityManager *entityManager;
 	vector<Turret*> turrets;
+	vector<SoldierA*> soldierAs;
 	bool spreadgunHidden = false;
 
 };

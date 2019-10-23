@@ -5,23 +5,24 @@
 #include<iostream>
 
 enum TurretAnim {
-	STAND_LEFT, STAND_RIGHT, STAND_UP, STAND_DOWN, EXPLODE
+	LEFT, RIGHT, UP, DOWN, EXPLODE
 };
 
 bool Turret::playerInRange() {
+	// Distance in Tiles
 	int distY = (player->getPosition().y - position.y) / map->getTileSize();
 	int distX = (player->getPosition().x - position.x) / map->getTileSize();
 	switch (stanceID) {
-		case (STAND_LEFT):
+		case (LEFT):
 			if (distY == 0 && distX >= -range && distX <= 0) return true;
 			break;
-		case (STAND_RIGHT):
+		case (RIGHT):
 			if (distY == 0 && distX <= range && distX <= 0) return true;
 			break;
-		case (STAND_UP):
+		case (UP):
 			if (distX == 0 && distY >= -range && distY <= 0) return true;
 			break;
-		case (STAND_DOWN):
+		case (DOWN):
 			if (distX == 0 && distY <= range && distY >= 0) return true;
 			break;	
 	}
@@ -43,24 +44,24 @@ void Turret::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, in
 	sprite->setNumberAnimations(5);
 
 	if (pID == 0){ // left
-		sprite->setAnimationSpeed(STAND_LEFT, 2);
-		sprite->addKeyframe(STAND_LEFT, glm::vec2(0.0*spriteSheetX, 6 * spriteSheetY));
-		sprite->changeAnimation(STAND_LEFT);
+		sprite->setAnimationSpeed(LEFT, 2);
+		sprite->addKeyframe(LEFT, glm::vec2(0.0*spriteSheetX, 6 * spriteSheetY));
+		sprite->changeAnimation(LEFT);
 	}
 	else if (pID == 1) {
-		sprite->setAnimationSpeed(STAND_RIGHT, 2);
-		sprite->addKeyframe(STAND_RIGHT, glm::vec2(0.0 * spriteSheetX, 4 * spriteSheetY));
-		sprite->changeAnimation(STAND_RIGHT);
+		sprite->setAnimationSpeed(RIGHT, 2);
+		sprite->addKeyframe(RIGHT, glm::vec2(0.0 * spriteSheetX, 4 * spriteSheetY));
+		sprite->changeAnimation(RIGHT);
 	}
 	else if (pID == 2) {
-		sprite->setAnimationSpeed(STAND_UP, 2);
-		sprite->addKeyframe(STAND_UP, glm::vec2(0.0 * spriteSheetX, 5 * spriteSheetY));
-		sprite->changeAnimation(STAND_UP);
+		sprite->setAnimationSpeed(UP, 2);
+		sprite->addKeyframe(UP, glm::vec2(0.0 * spriteSheetX, 5 * spriteSheetY));
+		sprite->changeAnimation(UP);
 	}
 	else if (pID == 3) {
-		sprite->setAnimationSpeed(STAND_DOWN, 2);
-		sprite->addKeyframe(STAND_DOWN, glm::vec2(0.0 * spriteSheetX, 7 * spriteSheetY));
-		sprite->changeAnimation(STAND_DOWN);
+		sprite->setAnimationSpeed(DOWN, 2);
+		sprite->addKeyframe(DOWN, glm::vec2(0.0 * spriteSheetX, 7 * spriteSheetY));
+		sprite->changeAnimation(DOWN);
 	}
 
 	sprite->setAnimationSpeed(EXPLODE, 3);
