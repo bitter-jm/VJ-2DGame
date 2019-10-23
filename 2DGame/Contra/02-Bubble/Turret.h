@@ -1,8 +1,14 @@
 #pragma once
 #include "NPC.h"
+
 class Turret : public NPC
 {
-public:
-	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram);
+	public:
+		bool playerInRange();
+		void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, int pID);
+		void update(int deltaTime);
+
+	private:
+
 };
 

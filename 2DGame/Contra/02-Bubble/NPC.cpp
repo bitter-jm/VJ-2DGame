@@ -27,3 +27,7 @@ glm::vec2 NPC::getPosition()
 {
 	return position;
 }
+
+void NPC::setPlayer(Player* p) {
+	player = p;
+}

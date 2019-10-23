@@ -245,6 +245,10 @@ void TileMap::setLevel(int level)
 	this->level = level;
 }
 
+glm::vec2 TileMap::getMapSize() {
+	return mapSize;
+}
+
 
 
 

@@ -34,6 +34,8 @@ public:
 
 	int getLevel();
 	void setLevel(int level);
+
+	glm::vec2 getMapSize();
 	
 private:
 	bool loadLevel(const string &levelFile);

@@ -3,6 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Scene.h"
 #include "Game.h"
+#include <servprov.h>
 
 // Desplazamiento de pantalla
 #define SCREEN_X 0
@@ -30,15 +31,23 @@ Scene::~Scene()
 
 
 void Scene::spawnTurrets() {
+	enum Position {LEFT, RIGHT, UP, DOWN};
+
+	// generar torretas
 	Turret* t = new Turret();
-	t->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	t->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, LEFT);
 	t->setPosition(glm::vec2(11 * map->getTileSize(), 3 * map->getTileSize()));
 	t->setTileMap(map);
+	t->setPlayer(player);
 	turrets.push_back(t);
 }
 
 void Scene::init()
 {
+	AllocConsole();
+	freopen("CONOUT$", "w", stdout);
+	freopen("CONOUT$", "w", stderr);
+
 	initShaders();
 	map = TileMap::createTileMap("levels/level1.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 	map->setLevel(1);
@@ -68,23 +77,30 @@ void Scene::update(int deltaTime)
 	for (int i = 0; i < turrets.size(); i++) {
 		turrets[i]->update(deltaTime);
 	}
-	
 }
 
 void Scene::render()
 {
 	glm::mat4 modelview;
 	float playerX = player->getPosition().x;
-	projection = glm::ortho(playerX - float(SCREEN_WIDTH - 1)/2.0f, playerX + float(SCREEN_WIDTH - 1)/2.0f + 64.f, float(SCREEN_HEIGHT - 1), 0.f);
+	// Limitar camara por izquierda
+	if (playerX <= float(SCREEN_WIDTH - 1) / 2.0f) 
+		projection = glm::ortho(0.0f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
+	// Limitar por derecha
+	else if (playerX >= map->getMapSize().x * map->getTileSize() - float(SCREEN_WIDTH - 1) / 2.0f) 
+		projection = glm::ortho(map->getMapSize().x * map->getTileSize() - float(SCREEN_WIDTH - 1), 
+			map->getMapSize().x * map->getTileSize(), float(SCREEN_HEIGHT - 1), 0.f);
+	// Seguir al personaje
+	else projection = glm::ortho(playerX - float(SCREEN_WIDTH - 1) / 2.0f, playerX + float(SCREEN_WIDTH - 1) / 2.0f, float(SCREEN_HEIGHT - 1), 0.f);
 	texProgram.use();
 	texProgram.setUniformMatrix4f("projection", projection);
 	texProgram.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
+
 	map->render();
 	if (!spreadgunHidden) spreadgun->render();
-	//modelview = glm::scale(modelview, glm::vec3(4.f, 4.f, 0.f));
-	texProgram.setUniformMatrix4f("modelview", modelview);
+	//texProgram.setUniformMatrix4f("modelview", modelview);
 	for (int i = 0; i < turrets.size(); i++) {
 		turrets[i]->render();
 	}
