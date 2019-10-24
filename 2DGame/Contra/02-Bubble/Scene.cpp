@@ -47,11 +47,22 @@ void Scene::spawnSoldierAs() {
 	enum Position { STAND_LEFT, STAND_LEFT_DIAG_UP, STAND_LEFT_DAIG_DOWN, EXPLODE };
 	// generar torretas
 	SoldierA* s = new SoldierA();
-	s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT);
-	s->setPosition(glm::vec2(10 * map->getTileSize(), 3 * map->getTileSize()+5));
+	s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT_DIAG_UP);
+	s->setPosition(glm::vec2(12 * map->getTileSize(), 3 * map->getTileSize()+12));
 	s->setTileMap(map);
 	s->setPlayer(player);
 	soldierAs.push_back(s);
+}
+
+void Scene::spawnSoldierBs() {
+	enum Position { STAND_LEFT, EXPLODE };
+	// generar torretas
+	SoldierB* s = new SoldierB();
+	s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT);
+	s->setPosition(glm::vec2(10 * map->getTileSize(), 3 * map->getTileSize() + 12));
+	s->setTileMap(map);
+	s->setPlayer(player);
+	soldierBs.push_back(s);
 }
 
 void Scene::init()
@@ -83,6 +94,7 @@ void Scene::init()
 
 	spawnTurrets();
 	spawnSoldierAs();
+	spawnSoldierBs();
 }
 
 void Scene::update(int deltaTime)
@@ -100,9 +112,11 @@ void Scene::update(int deltaTime)
 	for (int i = 0; i < soldierAs.size(); i++) {
 		soldierAs[i]->update(deltaTime);
 	}
-	if (deadPlayer) {
-		gameOver->update();
+	for (int i = 0; i < soldierBs.size(); i++) {
+		soldierBs[i]->update(deltaTime);
 	}
+	
+	if (deadPlayer) gameOver->update();
 }
 
 void Scene::render()
@@ -126,6 +140,10 @@ void Scene::render()
 
 	map->render();
 	if (!spreadgunHidden) spreadgun->render();
+	player->render();
+	entityManager->render();
+
+
 	for (int i = 0; i < turrets.size(); i++) {
 		turrets[i]->render();
 	}
@@ -135,6 +153,10 @@ void Scene::render()
 	player->render();
 	entityManager->render();
 
+	for (int i = 0; i < soldierBs.size(); i++) {
+		soldierBs[i]->render();
+	}
+	
 	// Death screen
 	if (player->isDead()) {
 		if (!deadPlayer) {

@@ -70,6 +70,7 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Tutorial.h">
+    <ClInclude Include="SoldierB.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
@@ -119,6 +120,7 @@
     <ClCompile Include="SoldierA.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="GameOver.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
@@ -129,6 +131,9 @@
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="Tutorial.cpp">
+=======
+    <ClCompile Include="SoldierB.cpp">
+>>>>>>> 80ec46980b11036d5c64451c2d3d57eb4d17ee39
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>

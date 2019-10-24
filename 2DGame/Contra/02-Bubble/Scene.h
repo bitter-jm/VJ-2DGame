@@ -11,6 +11,7 @@
 #include "NPC.h"
 #include "Turret.h"
 #include "SoldierA.h"
+#include "SoldierB.h"
 #include "SpreadGun.h"
 
 // Scene contains all the entities of our game.
@@ -32,6 +33,7 @@ private:
 	void initShaders();
 	void spawnTurrets();
 	void spawnSoldierAs();
+	void spawnSoldierBs();
 
 private:
 	TileMap *map;
@@ -44,9 +46,11 @@ private:
 	EntityManager *entityManager;
 	vector<Turret*> turrets;
 	vector<SoldierA*> soldierAs;
+	vector<SoldierB*> soldierBs;
 	bool spreadgunHidden;
 	int deathTime;
 	bool deadPlayer;
+	bool spreadgunHidden = false;
 
 };
 
