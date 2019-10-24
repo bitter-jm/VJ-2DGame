@@ -45,7 +45,7 @@ void Scene::spawnSoldierAs() {
 	enum Position { STAND_LEFT, STAND_LEFT_DIAG_UP, STAND_LEFT_DAIG_DOWN, EXPLODE };
 	// generar torretas
 	SoldierA* s = new SoldierA();
-	s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT);
+	s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT_DIAG_UP);
 	s->setPosition(glm::vec2(10 * map->getTileSize(), 3 * map->getTileSize()+5));
 	s->setTileMap(map);
 	s->setPlayer(player);

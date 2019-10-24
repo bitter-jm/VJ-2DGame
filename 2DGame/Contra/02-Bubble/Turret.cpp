@@ -12,6 +12,7 @@ bool Turret::playerInRange() {
 	// Distance in Tiles
 	int distY = (player->getPosition().y - position.y) / map->getTileSize();
 	int distX = (player->getPosition().x - position.x) / map->getTileSize();
+	if (distY == 0 && distX == 0) return true;
 	switch (stanceID) {
 		case (LEFT):
 			if (distY == 0 && distX >= -range && distX <= 0) return true;
@@ -43,30 +44,24 @@ void Turret::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, in
 	sprite = Sprite::createSprite(glm::ivec2(48, 48), glm::vec2(0.1, 0.05), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(5);
 
-	if (pID == 0){ // left
-		sprite->setAnimationSpeed(LEFT, 2);
-		sprite->addKeyframe(LEFT, glm::vec2(0.0*spriteSheetX, 6 * spriteSheetY));
-		sprite->changeAnimation(LEFT);
-	}
-	else if (pID == 1) {
-		sprite->setAnimationSpeed(RIGHT, 2);
-		sprite->addKeyframe(RIGHT, glm::vec2(0.0 * spriteSheetX, 4 * spriteSheetY));
-		sprite->changeAnimation(RIGHT);
-	}
-	else if (pID == 2) {
-		sprite->setAnimationSpeed(UP, 2);
-		sprite->addKeyframe(UP, glm::vec2(0.0 * spriteSheetX, 5 * spriteSheetY));
-		sprite->changeAnimation(UP);
-	}
-	else if (pID == 3) {
-		sprite->setAnimationSpeed(DOWN, 2);
-		sprite->addKeyframe(DOWN, glm::vec2(0.0 * spriteSheetX, 7 * spriteSheetY));
-		sprite->changeAnimation(DOWN);
-	}
+	sprite->setAnimationSpeed(LEFT, 2);
+	sprite->addKeyframe(LEFT, glm::vec2(0.0*spriteSheetX, 6 * spriteSheetY));
+
+	sprite->setAnimationSpeed(RIGHT, 2);
+	sprite->addKeyframe(RIGHT, glm::vec2(0.0 * spriteSheetX, 4 * spriteSheetY));
+
+	sprite->setAnimationSpeed(UP, 2);
+	sprite->addKeyframe(UP, glm::vec2(0.0 * spriteSheetX, 5 * spriteSheetY));
+
+	sprite->setAnimationSpeed(DOWN, 2);
+	sprite->addKeyframe(DOWN, glm::vec2(0.0 * spriteSheetX, 7 * spriteSheetY));
+	
 
 	sprite->setAnimationSpeed(EXPLODE, 3);
 	sprite->addKeyframe(EXPLODE, glm::vec2(7.5 * spriteSheetX, 17 * spriteSheetY));
 	sprite->addKeyframe(EXPLODE, glm::vec2(9 * spriteSheetX, 17 * spriteSheetY));
+
+	sprite->changeAnimation(pID);
 
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + position.x), float(tileMapDispl.y + position.y)));
 }
