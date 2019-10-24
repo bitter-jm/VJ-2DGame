@@ -7,6 +7,7 @@
 #include "TileMap.h"
 #include "Player.h"
 #include "EntityManager.h"
+#include "GameOver.h"
 #include "NPC.h"
 #include "Turret.h"
 #include "SoldierA.h"
@@ -36,13 +37,16 @@ private:
 	TileMap *map;
 	Player *player;
 	SpreadGun *spreadgun;
+	GameOver* gameOver;
 	ShaderProgram texProgram;
 	float currentTime;
 	glm::mat4 projection;
 	EntityManager *entityManager;
 	vector<Turret*> turrets;
 	vector<SoldierA*> soldierAs;
-	bool spreadgunHidden = false;
+	bool spreadgunHidden;
+	int deathTime;
+	bool deadPlayer;
 
 };
 

@@ -2,17 +2,24 @@
 #include <GL/glut.h>
 #include "Game.h"
 
+enum State
+{
+	MENU, LEVEL1, LEVEL2, LEVEL3, CREDITS
+};
 
 void Game::init()
 {
 	bPlay = true;
 	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+	state = MENU;
 	scene.init();
+	menu.init();
 }
 
 bool Game::update(int deltaTime)
 {
-	scene.update(deltaTime);
+	if (state == MENU) menu.update(deltaTime);
+	else if (state == LEVEL1) scene.update(deltaTime);
 	
 	return bPlay;
 }
@@ -20,7 +27,44 @@ bool Game::update(int deltaTime)
 void Game::render()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	scene.render();
+
+	if (state == MENU) menu.render();
+	else if (state == LEVEL1) scene.render();
+}
+
+void Game::restartLevel()
+{
+	if (state == LEVEL1) scene.init();
+}
+
+void Game::returnToMenu()
+{
+	state = MENU;
+	tutorialToMenu();
+}
+
+void Game::menuToTutorial()
+{
+	menu.toTutorial();
+}
+
+void Game::tutorialToMenu()
+{
+	menu.toMenu();
+}
+
+void Game::showCredits()
+{
+	state = CREDITS;
+}
+
+void Game::changeLevel(int lvl)
+{
+	if (lvl == 1) state = LEVEL1;
+	else if (lvl == 2) state = LEVEL2;
+	else if (lvl == 3) state = LEVEL3;
+	restartLevel();
+	
 }
 
 void Game::keyPressed(int key)

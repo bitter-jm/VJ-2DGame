@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cmath>
 #include <glm/gtc/matrix_transform.hpp>
+#include <GL/glew.h>
+#include <GL/glut.h>
 #include "Scene.h"
 #include "Game.h"
 #include <servprov.h>
@@ -12,7 +14,7 @@
 #define INIT_PLAYER_X_TILES 8
 #define INIT_PLAYER_Y_TILES 3
 
-#define WEAPON_X 2600
+#define SPREADGUN_X 2600
 
 
 Scene::Scene()
@@ -58,6 +60,13 @@ void Scene::init()
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
 
+	// For restart level correctly
+	if (turrets.size() != 0) turrets.clear();
+	if (soldierAs.size() != 0) soldierAs.clear();
+
+	spreadgunHidden = false;
+	deadPlayer = false;
+
 	initShaders();
 	map = TileMap::createTileMap("levels/level1.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 	map->setLevel(1);
@@ -82,7 +91,7 @@ void Scene::update(int deltaTime)
 
 	player->update(deltaTime);
 	entityManager->update(deltaTime);
-	if (!spreadgunHidden && player->getPosition().x > WEAPON_X) spreadgunHidden = true;
+	if (!spreadgunHidden && player->getPosition().x > SPREADGUN_X) spreadgunHidden = true;
 	else spreadgun->update(deltaTime);
 	
 	for (int i = 0; i < turrets.size(); i++) {
@@ -90,6 +99,9 @@ void Scene::update(int deltaTime)
 	}
 	for (int i = 0; i < soldierAs.size(); i++) {
 		soldierAs[i]->update(deltaTime);
+	}
+	if (deadPlayer) {
+		gameOver->update();
 	}
 }
 
@@ -122,6 +134,25 @@ void Scene::render()
 	}
 	player->render();
 	entityManager->render();
+
+	// Death screen
+	if (player->isDead()) {
+		if (!deadPlayer) {
+			deadPlayer = true;
+			deathTime = glutGet(GLUT_ELAPSED_TIME);
+			gameOver = new GameOver();
+			gameOver->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, player->getPosition());
+			cout << "Inicializado correctamente GameOver" << endl;
+		}
+		if (deathTime + 1000 < glutGet(GLUT_ELAPSED_TIME)) {
+			gameOver->render();
+
+		}
+		else {
+			//blackb->render(1);
+		}
+	}
+
 }
 
 void Scene::initShaders()

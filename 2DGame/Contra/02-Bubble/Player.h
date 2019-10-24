@@ -49,6 +49,7 @@ private:
 	int currentGun = 1;
 	bool dead = false;
 	int deathTime;
+	bool deathFinished = false;
 
 	//Creating projectiles
 	bool shootedProjectile = false;

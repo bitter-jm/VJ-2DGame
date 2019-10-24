@@ -3,6 +3,7 @@
 
 
 #include "Scene.h"
+#include "MenuScene.h"
 
 
 #define SCREEN_WIDTH 512*1.5
@@ -29,6 +30,13 @@ public:
 	void init();
 	bool update(int deltaTime);
 	void render();
+
+	void restartLevel();
+	void returnToMenu();
+	void showCredits();
+	void changeLevel(int lvl);
+	void menuToTutorial();
+	void tutorialToMenu();
 	
 	// Input callback methods
 	void keyPressed(int key);
@@ -47,12 +55,15 @@ public:
 
 private:
 	bool bPlay;                       // Continue to play game?
-	Scene scene;                      // Scene to render
+	MenuScene menu;
+	Scene scene;                      // Scene level 1
 	bool keys[256], specialKeys[256]; // Store key states so that 
 	                                  // we can have access at any time
 	int posMouseX = 0;
 	int posMouseY = 0;
 	bool mousePressed = false;
+
+	int state;
 
 };
 

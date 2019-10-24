@@ -205,8 +205,9 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 
 void Player::changeBasicAction(int basicAnimation, int deltaTime)
 {
-
 	if (dead) return;
+
+	//cout << glutGet(GLUT_WINDOW_WIDTH) << " / " << glutGet(GLUT_WINDOW_HEIGHT) << endl;
 
 	posMouseX = Game::instance().getPosMouseX();
 	posMouseY = Game::instance().getPosMouseY();
@@ -319,9 +320,15 @@ void Player::update(int deltaTime)
 	}
 	else if (dead) {
 		if (sprite->animation() == DYING_LEFT)
+		{
 			sprite->changeAnimation(DEAD_LEFT);
+			deathFinished = true;
+		}
 		else if (sprite->animation() == DYING_RIGHT)
+		{
 			sprite->changeAnimation(DEAD_RIGHT);
+			deathFinished = true;
+		}
 	}
 	   
 	changeBasicAction(basicAction, deltaTime);
@@ -472,9 +479,8 @@ void Player::kill() {
 }
 
 bool Player::isDead() {
-	return dead;
+	return deathFinished;
 }
-
 
 bool Player::hasShootedProjectile() {
 	if (shootedProjectile) {
