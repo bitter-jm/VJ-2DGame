@@ -44,7 +44,7 @@ void SoldierA::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, 
 	float spriteSheetY = 1/18.0;
 	tileMapDispl = tileMapPos;
 	spritesheet.loadFromFile("images/enemies.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sprite = Sprite::createSprite(glm::ivec2(62, 62), glm::vec2(0.065, 0.060), &spritesheet, &shaderProgram);
+	sprite = Sprite::createSprite(glm::ivec2(55, 55), glm::vec2(0.065, 0.060), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(4);
 
 	sprite->setAnimationSpeed(STAND_LEFT, 3);
