@@ -40,3 +40,4 @@ void SpreadGun::render()
 	sprite->render();
 }
 
+ 

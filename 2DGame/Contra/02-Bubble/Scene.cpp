@@ -11,7 +11,7 @@
 #define SCREEN_X 0
 #define SCREEN_Y 0
 
-#define INIT_PLAYER_X_TILES 8
+#define INIT_PLAYER_X_TILES 4
 #define INIT_PLAYER_Y_TILES 3
 
 #define SPREADGUN_X 2600
@@ -60,11 +60,11 @@ void Scene::spawnSoldierAs() {
 		s->setEntityManager(entityManager);
 		soldierAs.push_back(s);
 	}
-}
+} 
 
 void Scene::spawnSoldierBs() {
 	enum Position { STAND_LEFT, EXPLODE };
-	vector<glm::ivec2> posSoldierBs = { glm::ivec2(13,1), glm::ivec2(19,4), glm::ivec2(20,3), glm::ivec2(35,2), glm::ivec2(52,1), glm::ivec2(78,0) };
+	vector<glm::ivec2> posSoldierBs = { glm::ivec2(13,1), glm::ivec2(20,3), glm::ivec2(35,2), glm::ivec2(52,1), glm::ivec2(78,0) };
 	// generar torretas
 	for (int i = 0; i < posSoldierBs.size(); ++i) {
 		SoldierB* s = new SoldierB();

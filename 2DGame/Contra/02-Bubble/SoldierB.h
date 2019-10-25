@@ -12,3 +12,4 @@ class SoldierB : public NPC
 
 };
 
+ 

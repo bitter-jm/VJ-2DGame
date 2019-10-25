@@ -87,32 +87,34 @@ void Turret::update(int deltaTime)
 		dead = true;
 		return;
 	}
-	if (playerInRange()) {
-		if (stanceID == LEFT) {
-			if (time - lastShoot >= secondsToAttack * 1000) {
-				em->createProjectile(glm::vec2(position.x, position.y + 15), 180, projectileSpeed, 1, range);
-				lastShoot = time;
+	if (!dying) {
+		if (playerInRange()) {
+			if (stanceID == LEFT) {
+				if (time - lastShoot >= secondsToAttack * 1000) {
+					em->createProjectile(glm::vec2(position.x, position.y + 15), 180, projectileSpeed, 1, range);
+					lastShoot = time;
+				}
+			}
+			else if (stanceID == RIGHT) {
+				if (time - lastShoot >= secondsToAttack * 1000) {
+					em->createProjectile(glm::vec2(position.x, position.y + 15), 0, projectileSpeed, 1, range);
+					lastShoot = time;
+				}
+			}
+			else if (stanceID == UP) {
+				if (time - lastShoot >= secondsToAttack * 1000) {
+					em->createProjectile(glm::vec2(position.x + 15, position.y), 90, projectileSpeed, 1, range);
+					lastShoot = time;
+				}
+			}
+			else if (stanceID == DOWN) {
+				if (time - lastShoot >= secondsToAttack * 1000) {
+					em->createProjectile(glm::vec2(position.x + 15, position.y), -90, projectileSpeed, 1, range);
+					lastShoot = time;
+				}
 			}
 		}
-		else if (stanceID == RIGHT) {
-			if (time - lastShoot >= secondsToAttack * 1000) {
-				em->createProjectile(glm::vec2(position.x, position.y + 15), 0, projectileSpeed, 1, range);
-				lastShoot = time;
-			}
-		}
-		else if (stanceID == UP) {
-			if (time - lastShoot >= secondsToAttack * 1000) {
-				em->createProjectile(glm::vec2(position.x, position.y + 15), 90, projectileSpeed, 1, range);
-				lastShoot = time;
-			}
-		}
-		else if (stanceID == DOWN) {
-			if (time - lastShoot >= secondsToAttack * 1000) {
-				em->createProjectile(glm::vec2(position.x, position.y + 15), -90, projectileSpeed, 1, range);
-				lastShoot = time;
-			}
-		}
-		
+
 	}
 
 }
