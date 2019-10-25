@@ -34,7 +34,12 @@ void Turret::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, in
 {
 	range = 5;
 	hp = 5;
-	dmg = 1;
+	dmg = 2;
+	secondsToAttack = 1;
+	projectileSpeed = 3;
+	dead = false;
+	dying = false;
+	dyingTime = 600; //ms 
 	stanceID = pID;
 
 	float spriteSheetX = 0.1;
@@ -70,15 +75,47 @@ void Turret::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, in
 void Turret::update(int deltaTime)
 {
 	sprite->update(deltaTime);
+	int time = glutGet(GLUT_ELAPSED_TIME);
 
 	if (Game::instance().getSpecialKey(GLUT_KEY_F1)) {	//die
 		sprite->changeAnimation(EXPLODE);
+		dying = true;
+		dyingStartTime = time;
+		return;
 	}
-	else {
-		if (playerInRange()) {
-			//shoot (in the turret direction)
+	if (dying && time - dyingStartTime >= dyingTime) {
+		dead = true;
+		return;
+	}
+	if (playerInRange()) {
+		if (stanceID == LEFT) {
+			if (time - lastShoot >= secondsToAttack * 1000) {
+				em->createProjectile(glm::vec2(position.x, position.y + 15), 180, projectileSpeed, 1, range);
+				lastShoot = time;
+			}
 		}
+		else if (stanceID == RIGHT) {
+			if (time - lastShoot >= secondsToAttack * 1000) {
+				em->createProjectile(glm::vec2(position.x, position.y + 15), 0, projectileSpeed, 1, range);
+				lastShoot = time;
+			}
+		}
+		else if (stanceID == UP) {
+			if (time - lastShoot >= secondsToAttack * 1000) {
+				em->createProjectile(glm::vec2(position.x, position.y + 15), 90, projectileSpeed, 1, range);
+				lastShoot = time;
+			}
+		}
+		else if (stanceID == DOWN) {
+			if (time - lastShoot >= secondsToAttack * 1000) {
+				em->createProjectile(glm::vec2(position.x, position.y + 15), -90, projectileSpeed, 1, range);
+				lastShoot = time;
+			}
+		}
+		
 	}
+
 }
+
 
 

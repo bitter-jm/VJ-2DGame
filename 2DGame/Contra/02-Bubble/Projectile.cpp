@@ -5,15 +5,15 @@
 #include "Projectile.h"
 
 # define M_PI 3.14159265358979323846  /* pi */
-#define MAX_DISTANCE 750
 #define EXPLODING_TIME 1000
+#define TILESIZE 64
 
 enum ProjectileAnims
 {
 	FLYING, EXPLODING
 };
 
-void Projectile::init(int ID, int x, int y, int a, int v, int t, bool e, ShaderProgram& shaderProgram)
+void Projectile::init(int ID, int x, int y, int a, int v, int t, float range, bool e, ShaderProgram& shaderProgram)
 {
 	posProjectile.x = x;
 	posProjectile.y = y;
@@ -24,6 +24,8 @@ void Projectile::init(int ID, int x, int y, int a, int v, int t, bool e, ShaderP
 	type = t;
 	enemy = e;
 	id = ID;
+	this->range = range;
+
 	spritesheet.loadFromFile("images/proyectiles.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sprite = Sprite::createSprite(glm::ivec2(16, 16), glm::vec2(0.1, 0.1), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(2);
@@ -57,13 +59,14 @@ void Projectile::init(int ID, int x, int y, int a, int v, int t, bool e, ShaderP
 
 void Projectile::update(int deltaTime)
 {
+
 	// Check max distance
 	if (posProjectile.y <= velocity || posProjectile.y >= 490) {
 		cout << "Projectile deleted (1)" << endl;
 		deleteProjectile = true;
 	}
 	if (sqrt(((float)initialX - (float)posProjectile.x) * ((float)initialX - (float)posProjectile.x) + 
-			((float)initialY - (float)posProjectile.y) * ((float)initialY - (float)posProjectile.y)) > MAX_DISTANCE) {
+			((float)initialY - (float)posProjectile.y) * ((float)initialY - (float)posProjectile.y)) > range*TILESIZE) {
 		cout << "Projectile deleted (2)" << endl;
 		deleteProjectile = true;
 	}

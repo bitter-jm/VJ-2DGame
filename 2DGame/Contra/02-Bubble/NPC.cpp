@@ -31,3 +31,12 @@ glm::vec2 NPC::getPosition()
 void NPC::setPlayer(Player* p) {
 	player = p;
 }
+
+void NPC::setEntityManager(EntityManager* em) {
+	this->em = em;
+}
+
+bool NPC::is_dead() {
+	return dead;
+}
+

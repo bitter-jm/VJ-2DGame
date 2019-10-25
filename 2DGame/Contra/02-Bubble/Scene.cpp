@@ -40,6 +40,7 @@ void Scene::spawnTurrets() {
 	t->setPosition(glm::vec2(11 * map->getTileSize(), 3 * map->getTileSize()));
 	t->setTileMap(map);
 	t->setPlayer(player);
+	t->setEntityManager(entityManager);
 	turrets.push_back(t);
 }
 
@@ -51,6 +52,7 @@ void Scene::spawnSoldierAs() {
 	s->setPosition(glm::vec2(12 * map->getTileSize(), 3 * map->getTileSize()+12));
 	s->setTileMap(map);
 	s->setPlayer(player);
+	s->setEntityManager(entityManager);
 	soldierAs.push_back(s);
 }
 
@@ -62,6 +64,7 @@ void Scene::spawnSoldierBs() {
 	s->setPosition(glm::vec2(10 * map->getTileSize(), 3 * map->getTileSize() + 12));
 	s->setTileMap(map);
 	s->setPlayer(player);
+	s->setEntityManager(entityManager);
 	soldierBs.push_back(s);
 }
 
@@ -107,13 +110,13 @@ void Scene::update(int deltaTime)
 	else spreadgun->update(deltaTime);
 	
 	for (int i = 0; i < turrets.size(); i++) {
-		turrets[i]->update(deltaTime);
+		if (!turrets[i]->is_dead()) turrets[i]->update(deltaTime);
 	}
 	for (int i = 0; i < soldierAs.size(); i++) {
-		soldierAs[i]->update(deltaTime);
+		if (!soldierAs[i]->is_dead()) soldierAs[i]->update(deltaTime);
 	}
 	for (int i = 0; i < soldierBs.size(); i++) {
-		soldierBs[i]->update(deltaTime);
+		if (!soldierBs[i]->is_dead()) soldierBs[i]->update(deltaTime);
 	}
 	
 	if (deadPlayer) gameOver->update();
@@ -143,19 +146,19 @@ void Scene::render()
 	player->render();
 	entityManager->render();
 
-
 	for (int i = 0; i < turrets.size(); i++) {
-		turrets[i]->render();
+		if (!turrets[i]->is_dead()) turrets[i]->render();
 	}
 	for (int i = 0; i < soldierAs.size(); i++) {
-		soldierAs[i]->render();
+		if (!soldierAs[i]->is_dead()) soldierAs[i]->render();
 	}
+	for (int i = 0; i < soldierBs.size(); i++) {
+		if (!soldierBs[i]->is_dead()) soldierBs[i]->render();
+	}
+
 	player->render();
 	entityManager->render();
 
-	for (int i = 0; i < soldierBs.size(); i++) {
-		soldierBs[i]->render();
-	}
 	
 	// Death screen
 	if (player->isDead()) {

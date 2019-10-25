@@ -15,7 +15,7 @@ public:
 	void init(Player *p, ShaderProgram *shaderProgram);
 	void update(int deltaTime); 
 	void render(); 
-	void createProjectile(); 
+	void createProjectile(glm::vec2 initPos, int angle, int vel, int type, int range);
 	void destroyProjectile(int id);
 
 private:

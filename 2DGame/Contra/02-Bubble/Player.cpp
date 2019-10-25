@@ -38,7 +38,7 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	spritesheet.loadFromFile("images/player.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sprite = Sprite::createSprite(glm::ivec2(64, 64), glm::vec2(0.1, 0.1), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(32);
-	
+
 		sprite->setAnimationSpeed(STAND_LEFT_POINT_LEFT, 3);
 		sprite->addKeyframe(STAND_LEFT_POINT_LEFT, glm::vec2(0.7f, 0.f));
 		sprite->addKeyframe(STAND_LEFT_POINT_LEFT, glm::vec2(0.6f, 0.f));

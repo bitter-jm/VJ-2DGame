@@ -38,6 +38,8 @@ void SoldierA::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, 
 	range = 5;
 	hp = 5;
 	dmg = 1;
+	secondsToAttack = 1;
+	projectileSpeed = 4;
 	stanceID = pID;
 
 	float spriteSheetX = 0.08;
