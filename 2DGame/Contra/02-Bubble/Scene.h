@@ -50,8 +50,6 @@ private:
 	bool spreadgunHidden;
 	int deathTime;
 	bool deadPlayer;
-	bool spreadgunHidden = false;
-
 };
 
 
