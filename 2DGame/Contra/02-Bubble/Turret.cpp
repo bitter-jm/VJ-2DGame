@@ -46,7 +46,7 @@ void Turret::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, in
 	float spriteSheetY = 1.0 / 18.0;
 	tileMapDispl = tileMapPos;
 	spritesheet.loadFromFile("images/enemies.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sprite = Sprite::createSprite(glm::ivec2(48, 48), glm::vec2(0.1, 0.05), &spritesheet, &shaderProgram);
+	sprite = Sprite::createSprite(glm::ivec2(48, 48), glm::vec2(0.1, 0.045), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(5);
 
 	sprite->setAnimationSpeed(LEFT, 2);
@@ -55,11 +55,11 @@ void Turret::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, in
 	sprite->setAnimationSpeed(RIGHT, 2);
 	sprite->addKeyframe(RIGHT, glm::vec2(0.0 * spriteSheetX, 4 * spriteSheetY));
 
-	sprite->setAnimationSpeed(UP, 2);
-	sprite->addKeyframe(UP, glm::vec2(0.0 * spriteSheetX, 5 * spriteSheetY));
-
 	sprite->setAnimationSpeed(DOWN, 2);
-	sprite->addKeyframe(DOWN, glm::vec2(0.0 * spriteSheetX, 7 * spriteSheetY));
+	sprite->addKeyframe(DOWN, glm::vec2(0.0 * spriteSheetX, 5 * spriteSheetY));
+
+	sprite->setAnimationSpeed(UP, 2);
+	sprite->addKeyframe(UP, glm::vec2(0.0 * spriteSheetX, 7 * spriteSheetY));
 	
 
 	sprite->setAnimationSpeed(EXPLODE, 3);

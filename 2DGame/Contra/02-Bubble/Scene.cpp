@@ -33,39 +33,48 @@ Scene::~Scene()
 
 
 void Scene::spawnTurrets() {
-	enum Position {LEFT, RIGHT, UP, DOWN};
-	// generar torretas
-	Turret* t = new Turret();
-	t->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, LEFT);
-	t->setPosition(glm::vec2(11 * map->getTileSize(), 3 * map->getTileSize()));
-	t->setTileMap(map);
-	t->setPlayer(player);
-	t->setEntityManager(entityManager);
-	turrets.push_back(t);
+	enum Position { LEFT, RIGHT, UP, DOWN };
+	vector<glm::ivec3> posTurrets = {glm::ivec3(14,3,LEFT), glm::ivec3(25,2,LEFT), glm::ivec3(35,3,LEFT), glm::ivec3(74,3,LEFT), glm::ivec3(84,5,UP), glm::ivec3(51,5,UP), glm::ivec3(41,5,UP)};
+	for (int i = 0; i < posTurrets.size(); ++i) {
+		// generar torreta
+		Turret* t = new Turret();
+		t->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, posTurrets[i].z);
+		t->setPosition(glm::vec2(posTurrets[i].x * map->getTileSize(), posTurrets[i].y * map->getTileSize()));
+		t->setTileMap(map);
+		t->setPlayer(player);
+		t->setEntityManager(entityManager);
+		turrets.push_back(t);
+	}
 }
 
 void Scene::spawnSoldierAs() {
 	enum Position { STAND_LEFT, STAND_LEFT_DIAG_UP, STAND_LEFT_DAIG_DOWN, EXPLODE };
+	vector<glm::ivec3> posSoldierAs = { glm::ivec3(11,6,STAND_LEFT_DIAG_UP), glm::ivec3(21,0,STAND_LEFT_DAIG_DOWN), glm::ivec3(20,5,STAND_LEFT_DIAG_UP), glm::ivec3(44,3,STAND_LEFT), glm::ivec3(60,3,STAND_LEFT), glm::ivec3(67,1,STAND_LEFT_DAIG_DOWN), glm::ivec3(75,5,STAND_LEFT), glm::ivec3(81,1,STAND_LEFT), glm::ivec3(87,3,STAND_LEFT), glm::ivec3(93,6,STAND_LEFT) };
 	// generar torretas
-	SoldierA* s = new SoldierA();
-	s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT_DIAG_UP);
-	s->setPosition(glm::vec2(12 * map->getTileSize(), 3 * map->getTileSize()+12));
-	s->setTileMap(map);
-	s->setPlayer(player);
-	s->setEntityManager(entityManager);
-	soldierAs.push_back(s);
+	for (int i = 0; i < posSoldierAs.size(); ++i) {
+		SoldierA* s = new SoldierA();
+		s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, posSoldierAs[i].z);
+		s->setPosition(glm::vec2(posSoldierAs[i].x * map->getTileSize(), posSoldierAs[i].y * map->getTileSize() + 12));
+		s->setTileMap(map);
+		s->setPlayer(player);
+		s->setEntityManager(entityManager);
+		soldierAs.push_back(s);
+	}
 }
 
 void Scene::spawnSoldierBs() {
 	enum Position { STAND_LEFT, EXPLODE };
+	vector<glm::ivec2> posSoldierBs = { glm::ivec2(13,1), glm::ivec2(19,4), glm::ivec2(20,3), glm::ivec2(35,2), glm::ivec2(52,1), glm::ivec2(78,0) };
 	// generar torretas
-	SoldierB* s = new SoldierB();
-	s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT);
-	s->setPosition(glm::vec2(10 * map->getTileSize(), 3 * map->getTileSize() + 12));
-	s->setTileMap(map);
-	s->setPlayer(player);
-	s->setEntityManager(entityManager);
-	soldierBs.push_back(s);
+	for (int i = 0; i < posSoldierBs.size(); ++i) {
+		SoldierB* s = new SoldierB();
+		s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT);
+		s->setPosition(glm::vec2(posSoldierBs[i].x * map->getTileSize(), posSoldierBs[i].y* map->getTileSize() + 12));
+		s->setTileMap(map);
+		s->setPlayer(player);
+		s->setEntityManager(entityManager);
+		soldierBs.push_back(s);
+	}
 }
 
 void Scene::init()
