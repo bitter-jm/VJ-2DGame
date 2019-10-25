@@ -36,10 +36,13 @@ bool SoldierA::playerInRange() {
 void SoldierA::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, int pID)
 {
 	range = 5;
-	hp = 5;
+	hp = 1;
 	dmg = 1;
-	secondsToAttack = 1;
+	secondsToAttack = 0.75;
 	projectileSpeed = 4;
+	dead = false;
+	dying = false;
+	dyingTime = 600; //ms 
 	stanceID = pID;
 
 	float spriteSheetX = 0.08;
@@ -74,13 +77,56 @@ void SoldierA::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, 
 void SoldierA::update(int deltaTime)
 {
 	sprite->update(deltaTime);
+	int time = glutGet(GLUT_ELAPSED_TIME);
 
 	if (Game::instance().getSpecialKey(GLUT_KEY_F1)) {	//die
 		sprite->changeAnimation(EXPLODE);
+		dying = true;
+		dyingStartTime = time;
+		return;
 	}
-	else {
+	if (dying && time - dyingStartTime >= dyingTime) {
+		dead = true;
+		return;
+	}
+
+	else if (!dying) {
+		int distY = (position.y - player->getPosition().y) / map->getTileSize();
+		int distX = (player->getPosition().x - position.x) / map->getTileSize();
+		int radAngle = atan2(distY, distX);
+
+		 if (radAngle == int(M_PI)) {
+			sprite->changeAnimation(STAND_LEFT);
+			stanceID = STAND_LEFT;
+		}
+		else if (radAngle >= 3 * M_PI / 4 - tol && radAngle <= 3 * M_PI / 4 + tol) {
+			sprite->changeAnimation(STAND_LEFT_DIAG_UP);
+			stanceID = STAND_LEFT_DIAG_UP;
+		}
+		else if (radAngle >= -3 * M_PI / 4 - tol && radAngle <= -3 * M_PI / 4 + tol) {
+			 sprite->changeAnimation(STAND_LEFT_DAIG_DOWN);
+			 stanceID = STAND_LEFT_DAIG_DOWN;
+		 }
+
 		if (playerInRange()) {
-			//shoot
+			if (stanceID == STAND_LEFT) {
+				if (time - lastShoot >= secondsToAttack * 1000) {
+					em->createProjectile(glm::vec2(position.x, position.y + 15), 180, projectileSpeed, 1, range);
+					lastShoot = time;
+				}
+			}
+			else if (stanceID == STAND_LEFT_DIAG_UP) {
+				if (time - lastShoot >= secondsToAttack * 1000) {
+					em->createProjectile(glm::vec2(position.x + 15, position.y), 135, projectileSpeed, 1, range);
+					lastShoot = time;
+				}
+			}
+			else if (stanceID == STAND_LEFT_DAIG_DOWN) {
+				if (time - lastShoot >= secondsToAttack * 1000) {
+					em->createProjectile(glm::vec2(position.x + 15, position.y), -135, projectileSpeed, 1, range);
+					lastShoot = time;
+				}
+			}
 		}
 	}
 }

@@ -18,9 +18,14 @@ bool SoldierB::playerInRange() {
 
 void SoldierB::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, int pID)
 {
-	range = 5;
-	hp = 5;
-	dmg = 2;
+	range = 8;
+	hp = 3;
+	dmg = 3;
+	secondsToAttack = 1.5;
+	projectileSpeed = 5;
+	dead = false;
+	dying = false;
+	dyingTime = 600; //ms 
 	stanceID = pID;
 
 	float spriteSheetX = 0.1;
@@ -47,13 +52,23 @@ void SoldierB::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, 
 void SoldierB::update(int deltaTime)
 {
 	sprite->update(deltaTime);
+	int time = glutGet(GLUT_ELAPSED_TIME);
 
 	if (Game::instance().getSpecialKey(GLUT_KEY_F1)) {	//die
 		sprite->changeAnimation(EXPLODE);
+		dying = true;
+		dyingStartTime = time;
+		return;
 	}
-	else {
-		if (playerInRange()) {
-			//shoot (in the turret direction)
+	if (dying && time - dyingStartTime >= dyingTime) {
+		dead = true;
+		return;
+	}
+
+	else if(!dying) {
+		if (playerInRange() && time - lastShoot >= secondsToAttack * 1000) {
+			em->createProjectile(glm::vec2(position.x, position.y + 7), 180, projectileSpeed, 1, range);
+			lastShoot = time;
 		}
 	}
 }
