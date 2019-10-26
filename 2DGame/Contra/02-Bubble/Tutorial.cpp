@@ -38,17 +38,23 @@ void Tutorial::render()
 
 void Tutorial::update()
 {
+	int posMouseX = Game::instance().getPosMouseX();
+	int posMouseY = Game::instance().getPosMouseY();
+	int windowSizeX = glutGet(GLUT_WINDOW_WIDTH);
+	int windowSizeY = glutGet(GLUT_WINDOW_HEIGHT);
+
+	int absMX = (int)((double)posMouseX * ((double)768 / (double)windowSizeX));
+	int absMY = (int)((double)posMouseY * ((double)512 / (double)windowSizeY));
+
+	if (absMX > 24 && absMX < 180 && absMY > 450 && absMY < 502) {
+		if (!buttonSound) {
+			SoundManager::getInstance()->playSound("sounds/button.ogg", false);
+			buttonSound = true;
+		}
+	}
+	else buttonSound = false;
+
 	if (Game::instance().isMousePressed()) {
-		int posMouseX = Game::instance().getPosMouseX();
-		int posMouseY = Game::instance().getPosMouseY();
-		int windowSizeX = glutGet(GLUT_WINDOW_WIDTH);
-		int windowSizeY = glutGet(GLUT_WINDOW_HEIGHT);
-
-		int absMX = (int)((double)posMouseX * ((double)768 / (double)windowSizeX));
-		int absMY = (int)((double)posMouseY * ((double)512 / (double)windowSizeY));
-
-		cout << absMX << " . " << absMY << endl;
-
 		if (absMX > 24 && absMX < 180) {
 			if (absMY > 450 && absMY < 502) {
 				Game::instance().tutorialToMenu();

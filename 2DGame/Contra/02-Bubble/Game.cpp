@@ -10,8 +10,10 @@ enum State
 
 void Game::init()
 {
-	SoundManager::getInstance()->init();
-	SoundManager::getInstance()->playMenuSound();
+	AllocConsole();
+	freopen("CONOUT$", "w", stdout);
+	freopen("CONOUT$", "w", stderr);
+	SoundManager::getInstance()->playSound("sounds/mainMenu.ogg", false);
 	bPlay = true;
 	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 	state = MENU;

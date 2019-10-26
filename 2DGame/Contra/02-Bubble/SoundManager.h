@@ -23,14 +23,17 @@ class SoundManager
 {
 	public:
 		static SoundManager* getInstance();
-		void init();
 		void playMenuSound();
+		void playSound(string source, bool repeat);
+		void removeAllSound();
 		void removeSound(string source);
+		void init();
 
 	private:
 		static SoundManager* instance;
 		SoundManager() {};
 		ISoundEngine* engine;
+
 
 };
 

@@ -80,15 +80,9 @@ void Scene::spawnSoldierBs() {
 
 void Scene::init()
 {
-	AllocConsole();
-	freopen("CONOUT$", "w", stdout);
-	freopen("CONOUT$", "w", stderr);
-
 	// For restart level correctly
 	if (turrets.size() != 0) turrets.clear();
 	if (soldierAs.size() != 0) soldierAs.clear();
-
-	SoundManager::getInstance()->init();
 
 	spreadgunHidden = false;
 	deadPlayer = false;
