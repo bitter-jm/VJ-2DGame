@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "SoundManager.h"
 
-enum State
+enum State 
 {
 	MENU, LEVEL1, LEVEL2, LEVEL3, CREDITS
 };

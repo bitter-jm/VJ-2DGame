@@ -5,7 +5,7 @@
 #include "GameOver.h"
 #include "Game.h"
 
-
+ 
 void GameOver::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, glm::ivec2 pp)
 {
 	cout << "Empezando init GameOver" << endl;
