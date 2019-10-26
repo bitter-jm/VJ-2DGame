@@ -15,6 +15,9 @@
 
 void Menu::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 {
+	buttonSound1 = false;
+	buttonSound2 = false;
+
 	spritesheet.loadFromFile("images/menu.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sprite = Sprite::createSprite(glm::ivec2(768, 512), glm::vec2(0.5, 0.5), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(3);
@@ -41,20 +44,41 @@ void Menu::render()
 
 void Menu::update()
 {
+	int posMouseX = Game::instance().getPosMouseX();
+	int posMouseY = Game::instance().getPosMouseY();
+	int windowSizeX = glutGet(GLUT_WINDOW_WIDTH);
+	int windowSizeY = glutGet(GLUT_WINDOW_HEIGHT);
+
+	int absMX = (int)((double)posMouseX * ((double)768 / (double)windowSizeX));
+	int absMY = (int)((double)posMouseY * ((double)512 / (double)windowSizeY));
+
+	//cout << absMX << " . " << absMY << endl;
+
+		if (absMX > 191 && absMX < 389 && absMY > 347 && absMY < 380) {
+			if (!buttonSound1) {
+				SoundManager::getInstance()->playSound("sounds/button.ogg", false);
+				buttonSound1 = true;
+			}
+			buttonSound2 = false;
+		}
+		else if (absMX > 191 && absMX < 389 && absMY > 347 && absMY < 416) {
+			if (!buttonSound2) {
+				SoundManager::getInstance()->playSound("sounds/button.ogg", false);
+				buttonSound2 = true;
+			}
+			buttonSound1 = false;
+		}
+		else {
+			buttonSound1 = false;
+			buttonSound2 = false;
+		}
+
+
 	if (Game::instance().isMousePressed()) {
-		int posMouseX = Game::instance().getPosMouseX();
-		int posMouseY = Game::instance().getPosMouseY();
-		int windowSizeX = glutGet(GLUT_WINDOW_WIDTH);
-		int windowSizeY = glutGet(GLUT_WINDOW_HEIGHT);
-
-		int absMX = (int)((double)posMouseX * ((double)768 / (double)windowSizeX));
-		int absMY = (int)((double)posMouseY * ((double)512 / (double)windowSizeY));
-
-		//cout << absMX << " . " << absMY << endl;
-
 		if (absMX > 191 && absMX < 389) {
 			if (absMY > 347 && absMY < 416) {
 				if (absMY < 380) {
+					SoundManager::getInstance()->removeSound("sounds/mainMenu.ogg");
 					Game::instance().changeLevel(1);
 				}
 				else {

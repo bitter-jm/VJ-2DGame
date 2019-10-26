@@ -13,6 +13,7 @@
 #include "SoldierA.h"
 #include "SoldierB.h"
 #include "SpreadGun.h"
+#include "SoundManager.h"
 
 // Scene contains all the entities of our game.
 // It is responsible for updating and render them.

@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include <GL/glut.h>
 #include "Game.h"
+#include "SoundManager.h"
 
 enum State
 {
@@ -9,6 +10,10 @@ enum State
 
 void Game::init()
 {
+	AllocConsole();
+	freopen("CONOUT$", "w", stdout);
+	freopen("CONOUT$", "w", stderr);
+	SoundManager::getInstance()->playSound("sounds/mainMenu.ogg", false);
 	bPlay = true;
 	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 	state = MENU;

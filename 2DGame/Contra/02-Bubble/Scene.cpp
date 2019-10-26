@@ -6,6 +6,7 @@
 #include "Scene.h"
 #include "Game.h"
 #include <servprov.h>
+#include "SoundManager.h"
 
 // Desplazamiento de pantalla
 #define SCREEN_X 0
@@ -79,10 +80,6 @@ void Scene::spawnSoldierBs() {
 
 void Scene::init()
 {
-	AllocConsole();
-	freopen("CONOUT$", "w", stdout);
-	freopen("CONOUT$", "w", stderr);
-
 	// For restart level correctly
 	if (turrets.size() != 0) turrets.clear();
 	if (soldierAs.size() != 0) soldierAs.clear();
@@ -150,7 +147,7 @@ void Scene::update(int deltaTime)
 }
 
 void Scene::render()
-{
+{ 
 	glm::mat4 modelview;
 	float playerX = player->getPosition().x;
 	// Limitar camara por izquierda

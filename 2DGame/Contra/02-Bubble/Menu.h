@@ -21,6 +21,8 @@ private:
 	glm::ivec2 tileMapDispl;
 	Texture spritesheet;
 	Sprite* sprite;
+	bool buttonSound1;
+	bool buttonSound2;
 };
 
 

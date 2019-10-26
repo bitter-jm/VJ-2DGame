@@ -26,9 +26,6 @@ MenuScene::~MenuScene()
 
 void MenuScene::init()
 {
-	AllocConsole();
-	freopen("CONOUT$", "w", stdout);
-	freopen("CONOUT$", "w", stderr);
 
 	initShaders();
 
