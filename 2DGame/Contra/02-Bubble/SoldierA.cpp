@@ -79,7 +79,7 @@ void SoldierA::update(int deltaTime)
 	sprite->update(deltaTime);
 	int time = glutGet(GLUT_ELAPSED_TIME);
 
-	if (Game::instance().getSpecialKey(GLUT_KEY_F1)) {	//die
+	if ((hp <= 0 && !dying && !dead )|| Game::instance().getSpecialKey(GLUT_KEY_F1)) {	//die
 		sprite->changeAnimation(EXPLODE);
 		dying = true;
 		dyingStartTime = time;

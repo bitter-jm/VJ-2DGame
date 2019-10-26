@@ -5,7 +5,7 @@
 #include "Projectile.h"
 
 # define M_PI 3.14159265358979323846  /* pi */
-#define EXPLODING_TIME 1000
+#define EXPLODING_TIME 300
 #define TILESIZE 64
 
 enum ProjectileAnims
@@ -45,7 +45,7 @@ void Projectile::init(int ID, int x, int y, int a, int v, int t, float range, bo
 		sprite->addKeyframe(FLYING, glm::vec2(0.3f, 0.2f));
 	}
 
-	sprite->setAnimationSpeed(EXPLODING, 8);
+	sprite->setAnimationSpeed(EXPLODING, 20);
 	sprite->addKeyframe(EXPLODING, glm::vec2(0.0f, 0.1f));
 	sprite->addKeyframe(EXPLODING, glm::vec2(0.1f, 0.1f));
 	sprite->addKeyframe(EXPLODING, glm::vec2(0.2f, 0.1f));
@@ -62,17 +62,17 @@ void Projectile::update(int deltaTime)
 
 	// Check max distance
 	if (posProjectile.y <= velocity || posProjectile.y >= 490) {
-		cout << "Projectile deleted (1)" << endl;
+		//cout << "Projectile deleted (1)" << endl;
 		deleteProjectile = true;
 	}
 	if (sqrt(((float)initialX - (float)posProjectile.x) * ((float)initialX - (float)posProjectile.x) + 
 			((float)initialY - (float)posProjectile.y) * ((float)initialY - (float)posProjectile.y)) > range*TILESIZE) {
-		cout << "Projectile deleted (2)" << endl;
+		//cout << "Projectile deleted (2)" << endl;
 		deleteProjectile = true;
 	}
 
 	// If explotion time passed, delete projectile
-	if (sprite->animation() == EXPLODING && collisionTime > glutGet(GLUT_ELAPSED_TIME) - EXPLODING_TIME) {
+	if (sprite->animation() == EXPLODING && collisionTime + EXPLODING_TIME < glutGet(GLUT_ELAPSED_TIME)) {
 		cout << "Projectile deleted (3)" << endl;
 		deleteProjectile = true;
 	}
@@ -103,6 +103,7 @@ void Projectile::update(int deltaTime)
 	}
 
 	sprite->setPosition(glm::vec2(float(posProjectile.x), float(posProjectile.y)));
+	sprite->update(deltaTime);
 }
 
 void Projectile::render()
@@ -117,11 +118,21 @@ glm::vec2 Projectile::getPosition()
 
 void Projectile::collisioned()
 {
-	sprite->changeAnimation(1);
-	collisionTime = glutGet(GLUT_ELAPSED_TIME);
+	if (!isExploding()) {
+		cout << "projectile Collisioned" << endl;
+		sprite->changeAnimation(EXPLODING);
+		collisionTime = glutGet(GLUT_ELAPSED_TIME);
+	}
 }
 
 bool Projectile::needToDelete() {
 	return deleteProjectile;
 }
 
+bool Projectile::isEnemyProjectile() {
+	return enemy;
+}
+
+bool Projectile::isExploding() {
+	return (sprite->animation() == EXPLODING);
+}

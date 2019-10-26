@@ -64,7 +64,7 @@ void Scene::spawnSoldierAs() {
 
 void Scene::spawnSoldierBs() {
 	enum Position { STAND_LEFT, EXPLODE };
-	vector<glm::ivec2> posSoldierBs = { glm::ivec2(13,1), glm::ivec2(20,3), glm::ivec2(35,2), glm::ivec2(52,1), glm::ivec2(78,0) };
+	vector<glm::ivec2> posSoldierBs = { glm::ivec2(13,1), glm::ivec2(20,3), glm::ivec2(34,2), glm::ivec2(52,1), glm::ivec2(78,0) };
 	// generar torretas
 	for (int i = 0; i < posSoldierBs.size(); ++i) {
 		SoldierB* s = new SoldierB();
@@ -119,15 +119,33 @@ void Scene::update(int deltaTime)
 	else spreadgun->update(deltaTime);
 	
 	for (int i = 0; i < turrets.size(); i++) {
-		if (!turrets[i]->is_dead()) turrets[i]->update(deltaTime);
+		if (!turrets[i]->is_dead()) { 
+			turrets[i]->update(deltaTime); 
+			if (entityManager->checkCollisionEnemy(glm::vec2(turrets[i]->getPosition().x, turrets[i]->getPosition().y+8), 48, 40)) {
+				turrets[i]->reduceHP();
+				cout << "A turret got hurted" << endl;
+			}
+		}
 	}
 	for (int i = 0; i < soldierAs.size(); i++) {
-		if (!soldierAs[i]->is_dead()) soldierAs[i]->update(deltaTime);
+		if (!soldierAs[i]->is_dead()) { 
+			soldierAs[i]->update(deltaTime); 
+			if (entityManager->checkCollisionEnemy(glm::vec2(soldierAs[i]->getPosition().x+16, soldierAs[i]->getPosition().y+16), 32, 32)) {
+				soldierAs[i]->reduceHP();
+				cout << "An enemyA got hurted" << endl;
+			}
+		}
 	}
 	for (int i = 0; i < soldierBs.size(); i++) {
-		if (!soldierBs[i]->is_dead()) soldierBs[i]->update(deltaTime);
+		if (!soldierBs[i]->is_dead()) { 
+			soldierBs[i]->update(deltaTime); 
+			if (entityManager->checkCollisionEnemy(soldierBs[i]->getPosition(), 64, 64)) {
+				soldierBs[i]->reduceHP();
+				cout << "An enemyB got hurted" << endl;
+			}
+		}
 	}
-	
+
 	if (deadPlayer) gameOver->update();
 }
 
@@ -218,4 +236,3 @@ void Scene::initShaders()
 	vShader.free();
 	fShader.free();
 }
-

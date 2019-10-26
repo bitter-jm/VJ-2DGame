@@ -6,7 +6,7 @@
 
 class Projectile
 {
-
+	
 public:
 	void init(int ID, int x, int y, int a, int v, int t, float range, bool e, ShaderProgram& shaderProgram);
 	void update(int deltaTime);
@@ -15,6 +15,8 @@ public:
 	glm::vec2 getPosition();
 	void collisioned();
 	bool needToDelete();
+	bool isEnemyProjectile();
+	bool isExploding();
 
 private:
 	Texture spritesheet;

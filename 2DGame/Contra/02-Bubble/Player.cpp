@@ -474,8 +474,10 @@ void Player::shoot(double angulo, int x, int y)
 }
 
 void Player::kill() {
-	deathTime = glutGet(GLUT_ELAPSED_TIME);
-	dead = true;
+	if (!dead) {
+		deathTime = glutGet(GLUT_ELAPSED_TIME);
+		dead = true;
+	}
 }
 
 bool Player::isDead() {
@@ -501,3 +503,4 @@ int Player::getProjectileVelocity() {
 int Player::getProjectileType() {
 	return projectileType;
 }
+

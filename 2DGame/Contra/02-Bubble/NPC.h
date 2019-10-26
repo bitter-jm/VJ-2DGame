@@ -15,6 +15,7 @@ public:
 	bool is_dead();
 	glm::vec2 getPosition();
 	void setPlayer(Player* p);
+	void reduceHP();
 
 
 protected:
