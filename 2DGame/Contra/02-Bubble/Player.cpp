@@ -451,7 +451,8 @@ glm::vec2 Player::getPosition()
 
 void Player::shoot(double angulo, int x, int y) 
 {
-	cout << "SHOT FIRED: Angle=" << angulo << " X=" << x << " Y=" << y << " Type=" << currentGun << endl;
+	if (currentGun == 1) SoundManager::getInstance()->playSound("sounds/defaultGun.ogg", false);
+	else if(currentGun == 2) SoundManager::getInstance()->playSound("sounds/shotGun.ogg", false);
 	shootedProjectile = true;
 	projectileCoords.x = x+22;
 	projectileCoords.y = y;

@@ -19,7 +19,7 @@ bool SoldierB::playerInRange() {
 void SoldierB::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, int pID)
 {
 	range = 8;
-	hp = 1; // 3;
+	hp = 3; 
 	dmg = 3;
 	secondsToAttack = 1.5;
 	projectileSpeed = 5;
@@ -55,6 +55,7 @@ void SoldierB::update(int deltaTime)
 	int time = glutGet(GLUT_ELAPSED_TIME);
 
 	if ((hp <= 0 && !dying && !dead) || Game::instance().getSpecialKey(GLUT_KEY_F1)) {	//die
+		SoundManager::getInstance()->playSound("sounds/explode.ogg", false);
 		sprite->changeAnimation(EXPLODE);
 		dying = true;
 		dyingStartTime = time;
@@ -65,7 +66,7 @@ void SoldierB::update(int deltaTime)
 		return;
 	}
 
-	else if(!dying) {
+	else if (!dying && !dead) {
 		if (playerInRange() && time - lastShoot >= secondsToAttack * 1000) {
 			em->createProjectile(glm::vec2(position.x, position.y + 7), 180, projectileSpeed, 1, range);
 			lastShoot = time;

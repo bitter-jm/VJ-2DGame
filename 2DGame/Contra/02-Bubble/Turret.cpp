@@ -78,6 +78,7 @@ void Turret::update(int deltaTime)
 	int time = glutGet(GLUT_ELAPSED_TIME);
 
 	if ((hp <= 0 && !dying && !dead) || Game::instance().getSpecialKey(GLUT_KEY_F1)) {	//die
+		SoundManager::getInstance()->playSound("sounds/explode.ogg", false);
 		sprite->changeAnimation(EXPLODE);
 		dying = true;
 		dyingStartTime = time;

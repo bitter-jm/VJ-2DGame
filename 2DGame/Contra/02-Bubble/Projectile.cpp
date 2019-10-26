@@ -119,7 +119,6 @@ glm::vec2 Projectile::getPosition()
 void Projectile::collisioned()
 {
 	if (!isExploding()) {
-		cout << "projectile Collisioned" << endl;
 		sprite->changeAnimation(EXPLODING);
 		collisionTime = glutGet(GLUT_ELAPSED_TIME);
 	}

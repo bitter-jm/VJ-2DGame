@@ -23,8 +23,8 @@ class SoundManager
 {
 	public:
 		static SoundManager* getInstance();
-		void playMenuSound();
 		void playSound(string source, bool repeat);
+		void playSound(string source, bool repeat, float volume);
 		void removeAllSound();
 		void removeSound(string source);
 		void init();

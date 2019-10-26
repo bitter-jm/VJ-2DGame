@@ -13,7 +13,10 @@
 #define SCREEN_Y 0
 
 #define INIT_PLAYER_X_TILES 4
-#define INIT_PLAYER_Y_TILES 3
+#define INIT_PLAYER_Y_TILES 0
+
+#define LEVEL_COMPLETE_X 95
+#define LEVEL_COMPLETE_Y 6
 
 #define SPREADGUN_X 2600
 
@@ -37,7 +40,6 @@ void Scene::spawnTurrets() {
 	enum Position { LEFT, RIGHT, UP, DOWN };
 	vector<glm::ivec3> posTurrets = {glm::ivec3(14,3,LEFT), glm::ivec3(25,2,LEFT), glm::ivec3(35,3,LEFT), glm::ivec3(74,3,LEFT), glm::ivec3(84,5,UP), glm::ivec3(51,5,UP), glm::ivec3(41,5,UP)};
 	for (int i = 0; i < posTurrets.size(); ++i) {
-		// generar torreta
 		Turret* t = new Turret();
 		t->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, posTurrets[i].z);
 		t->setPosition(glm::vec2(posTurrets[i].x * map->getTileSize(), posTurrets[i].y * map->getTileSize()));
@@ -51,7 +53,6 @@ void Scene::spawnTurrets() {
 void Scene::spawnSoldierAs() {
 	enum Position { STAND_LEFT, STAND_LEFT_DIAG_UP, STAND_LEFT_DAIG_DOWN, EXPLODE };
 	vector<glm::ivec3> posSoldierAs = { glm::ivec3(11,6,STAND_LEFT_DIAG_UP), glm::ivec3(21,0,STAND_LEFT_DAIG_DOWN), glm::ivec3(20,5,STAND_LEFT_DIAG_UP), glm::ivec3(44,3,STAND_LEFT), glm::ivec3(60,3,STAND_LEFT), glm::ivec3(67,1,STAND_LEFT_DAIG_DOWN), glm::ivec3(75,5,STAND_LEFT), glm::ivec3(81,1,STAND_LEFT), glm::ivec3(87,3,STAND_LEFT), glm::ivec3(93,6,STAND_LEFT) };
-	// generar torretas
 	for (int i = 0; i < posSoldierAs.size(); ++i) {
 		SoldierA* s = new SoldierA();
 		s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, posSoldierAs[i].z);
@@ -66,7 +67,6 @@ void Scene::spawnSoldierAs() {
 void Scene::spawnSoldierBs() {
 	enum Position { STAND_LEFT, EXPLODE };
 	vector<glm::ivec2> posSoldierBs = { glm::ivec2(13,1), glm::ivec2(20,3), glm::ivec2(34,2), glm::ivec2(52,1), glm::ivec2(78,0) };
-	// generar torretas
 	for (int i = 0; i < posSoldierBs.size(); ++i) {
 		SoldierB* s = new SoldierB();
 		s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT);
@@ -120,7 +120,6 @@ void Scene::update(int deltaTime)
 			turrets[i]->update(deltaTime); 
 			if (entityManager->checkCollisionEnemy(glm::vec2(turrets[i]->getPosition().x, turrets[i]->getPosition().y+8), 48, 40)) {
 				turrets[i]->reduceHP();
-				cout << "A turret got hurted" << endl;
 			}
 		}
 	}
@@ -129,18 +128,22 @@ void Scene::update(int deltaTime)
 			soldierAs[i]->update(deltaTime); 
 			if (entityManager->checkCollisionEnemy(glm::vec2(soldierAs[i]->getPosition().x+16, soldierAs[i]->getPosition().y+16), 32, 32)) {
 				soldierAs[i]->reduceHP();
-				cout << "An enemyA got hurted" << endl;
 			}
 		}
 	}
 	for (int i = 0; i < soldierBs.size(); i++) {
-		if (!soldierBs[i]->is_dead()) { 
-			soldierBs[i]->update(deltaTime); 
+		if (!soldierBs[i]->is_dead()) {
+			soldierBs[i]->update(deltaTime);
 			if (entityManager->checkCollisionEnemy(soldierBs[i]->getPosition(), 64, 64)) {
 				soldierBs[i]->reduceHP();
-				cout << "An enemyB got hurted" << endl;
 			}
 		}
+	}
+
+	//level completed
+	if (int(player->getPosition().x / map->getTileSize()) >= LEVEL_COMPLETE_X && int(player->getPosition().y / map->getTileSize()) == LEVEL_COMPLETE_Y) {
+		SoundManager::getInstance()->removeAllSound();
+		SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
 	}
 
 	if (deadPlayer) gameOver->update();
@@ -187,6 +190,8 @@ void Scene::render()
 	// Death screen
 	if (player->isDead()) {
 		if (!deadPlayer) {
+			SoundManager::getInstance()->removeAllSound();
+			SoundManager::getInstance()->playSound("sounds/gameOver.ogg", false);
 			deadPlayer = true;
 			deathTime = glutGet(GLUT_ELAPSED_TIME);
 			gameOver = new GameOver();

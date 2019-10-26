@@ -17,13 +17,15 @@ void SoundManager::init() {
 	engine = createIrrKlangDevice();
 }
 
-void SoundManager::playMenuSound() {
-	engine->play2D("sounds/mainMenu.ogg", true);
-}
-
 
 void SoundManager::playSound(string source, bool repeat) {
 	engine->play2D(source.c_str(), repeat);
+}
+
+void SoundManager::playSound(string source, bool repeat, float volume) {
+	ISound* music = engine->play2D(source.c_str(), repeat, false, true);
+	if (music != NULL) music->setVolume(volume);
+
 }
 
 void SoundManager::removeAllSound() {
