@@ -339,33 +339,33 @@ void Player::update(int deltaTime)
 	
 	sprite->update(deltaTime);
 
-	if (ableToMove) {
-		if (Game::instance().getSpecialKey(GLUT_KEY_DOWN) && bJumping == false && !dead) {
-			posPlayer.y += 2;
-		}
-		if (Game::instance().getSpecialKey(GLUT_KEY_LEFT) && !dead)
+	
+	if (Game::instance().getSpecialKey(GLUT_KEY_DOWN) && bJumping == false && !dead) {
+		posPlayer.y += 2;
+	}
+	if (Game::instance().getSpecialKey(GLUT_KEY_LEFT) && !dead)
+	{
+		if (basicAction != MOVE_LEFT && bJumping == false)
+			changeBasicAction(MOVE_LEFT, deltaTime);
+		posPlayer.x -= RUN_VELOCITY;
+		if (map->collisionMoveLeft(posPlayer, glm::ivec2(48, 48)))
 		{
-			if (basicAction != MOVE_LEFT && bJumping == false)
-				changeBasicAction(MOVE_LEFT, deltaTime);
-			posPlayer.x -= RUN_VELOCITY;
-			if (map->collisionMoveLeft(posPlayer, glm::ivec2(48, 48)))
-			{
-				posPlayer.x += RUN_VELOCITY;
-				changeBasicAction(STAND_LEFT, deltaTime);
-			}
-		}
-		else if (Game::instance().getSpecialKey(GLUT_KEY_RIGHT) && !dead)
-		{
-			if (basicAction != MOVE_RIGHT && bJumping == false)
-				changeBasicAction(MOVE_RIGHT, deltaTime);
 			posPlayer.x += RUN_VELOCITY;
-			if (map->collisionMoveRight(posPlayer, glm::ivec2(48, 48)))
-			{
-				posPlayer.x -= RUN_VELOCITY;
-				changeBasicAction(STAND_RIGHT, deltaTime);
-			}
+			changeBasicAction(STAND_LEFT, deltaTime);
 		}
 	}
+	else if (Game::instance().getSpecialKey(GLUT_KEY_RIGHT) && !dead)
+	{
+		if (basicAction != MOVE_RIGHT && bJumping == false)
+			changeBasicAction(MOVE_RIGHT, deltaTime);
+		posPlayer.x += RUN_VELOCITY;
+		if (map->collisionMoveRight(posPlayer, glm::ivec2(48, 48)))
+		{
+			posPlayer.x -= RUN_VELOCITY;
+			changeBasicAction(STAND_RIGHT, deltaTime);
+		}
+	}
+	
 	else if (!dead)
 	{
 		if(basicAction == MOVE_LEFT)
@@ -516,6 +516,4 @@ void Player::upgradeSpreadGun() {
 	this->render();
 }
 
-void Player::setAbleToMove(bool b) {
-	ableToMove = b;
-}
+

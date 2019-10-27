@@ -31,7 +31,6 @@ public:
 	int getProjectileVelocity();
 	int getProjectileType();
 	void upgradeSpreadGun();
-	void setAbleToMove(bool b);
 	
 private:
 	bool bJumping;

@@ -17,8 +17,8 @@
 #define LEVEL_COMPLETE_X 95
 #define LEVEL_COMPLETE_Y 6
 
-#define SPREADGUN_X 8*64
-#define SPREADGUN_Y 3.25*64
+#define SPREADGUN_X 1*64
+#define SPREADGUN_Y 5.25*64
 
 
 BossScene::BossScene()
@@ -45,7 +45,7 @@ void BossScene::init()
 
 	initShaders();
 	map = TileMap::createTileMap("levels/bossLevel.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
-	map->setLevel(1);
+	map->setLevel(2);
 	player = new Player();
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
@@ -62,7 +62,7 @@ void BossScene::update(int deltaTime)
 {
 	currentTime += deltaTime;
 
-	player->update(deltaTime);
+	if (!levelComplete) player->update(deltaTime);
 	entityManager->update(deltaTime);
 	int tSize = map->getTileSize();
 	if (!spreadgunHidden && int((player->getPosition().x-SPREADGUN_X)/tSize) == 0 && int((player->getPosition().y - SPREADGUN_Y)/ tSize) == 0) {
@@ -76,7 +76,6 @@ void BossScene::update(int deltaTime)
 		if (!levelComplete) {
 			SoundManager::getInstance()->removeAllSound();
 			SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
-			player->setAbleToMove(false);
 			levelComplete = true;
 		}
 	}

@@ -112,7 +112,7 @@ void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
 
-	player->update(deltaTime);
+	if (!levelComplete) player->update(deltaTime);
 	entityManager->update(deltaTime);
 	int tSize = map->getTileSize();
 	if (!spreadgunHidden && int((player->getPosition().x - SPREADGUN_X) / tSize) == 0 && int((player->getPosition().y - SPREADGUN_Y) / tSize) == 0) {
@@ -151,7 +151,7 @@ void Scene::update(int deltaTime)
 		if (!levelComplete) {
 			SoundManager::getInstance()->removeAllSound();
 			SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
-			player->setAbleToMove(false);
+			levelComplete = true;
 		}
 	}
 
