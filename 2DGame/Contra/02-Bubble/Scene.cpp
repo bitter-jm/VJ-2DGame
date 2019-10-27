@@ -18,7 +18,8 @@
 #define LEVEL_COMPLETE_X 95
 #define LEVEL_COMPLETE_Y 6
 
-#define SPREADGUN_X 2600
+#define SPREADGUN_X 41*64
+#define SPREADGUN_Y 3.25*64
 
 
 Scene::Scene()
@@ -83,6 +84,7 @@ void Scene::init()
 	// For restart level correctly
 	if (turrets.size() != 0) turrets.clear();
 	if (soldierAs.size() != 0) soldierAs.clear();
+	if (soldierBs.size() != 0) soldierBs.clear();
 
 	spreadgunHidden = false;
 	deadPlayer = false;
@@ -95,7 +97,7 @@ void Scene::init()
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
 	spreadgun = new SpreadGun();
-	spreadgun->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	spreadgun->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(SPREADGUN_X, SPREADGUN_Y));
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
 	entityManager = new EntityManager();
@@ -112,7 +114,11 @@ void Scene::update(int deltaTime)
 
 	player->update(deltaTime);
 	entityManager->update(deltaTime);
-	if (!spreadgunHidden && player->getPosition().x > SPREADGUN_X) spreadgunHidden = true;
+	int tSize = map->getTileSize();
+	if (!spreadgunHidden && int((player->getPosition().x - SPREADGUN_X) / tSize) == 0 && int((player->getPosition().y - SPREADGUN_Y) / tSize) == 0) {
+		spreadgunHidden = true;
+		player->upgradeSpreadGun();
+	}
 	else spreadgun->update(deltaTime);
 	
 	for (int i = 0; i < turrets.size(); i++) {
@@ -141,9 +147,12 @@ void Scene::update(int deltaTime)
 	}
 
 	//level completed
-	if (int(player->getPosition().x / map->getTileSize()) >= LEVEL_COMPLETE_X && int(player->getPosition().y / map->getTileSize()) == LEVEL_COMPLETE_Y) {
-		SoundManager::getInstance()->removeAllSound();
-		SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
+	if (int(player->getPosition().x / map->getTileSize()) >= LEVEL_COMPLETE_X) {
+		if (!levelComplete) {
+			SoundManager::getInstance()->removeAllSound();
+			SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
+			player->setAbleToMove(false);
+		}
 	}
 
 	if (deadPlayer) gameOver->update();
@@ -182,10 +191,6 @@ void Scene::render()
 	for (int i = 0; i < soldierBs.size(); i++) {
 		if (!soldierBs[i]->is_dead()) soldierBs[i]->render();
 	}
-
-	player->render();
-	entityManager->render();
-
 	
 	// Death screen
 	if (player->isDead()) {

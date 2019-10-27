@@ -34,6 +34,7 @@ enum BasicAnimations
 
 void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
+	ableToMove = true;
 	bJumping = false;
 	spritesheet.loadFromFile("images/player.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sprite = Sprite::createSprite(glm::ivec2(64, 64), glm::vec2(0.1, 0.1), &spritesheet, &shaderProgram);
@@ -305,7 +306,10 @@ void Player::changeBasicAction(int basicAnimation, int deltaTime)
 
 void Player::update(int deltaTime)
 {
-	if (currentGun == 1 && posPlayer.x > UPGRADE_WEAPON_X) currentGun = 2;
+	if (currentGun == 1 && spreadGun) {
+		SoundManager::getInstance()->playSound("sounds/pickShotgun.ogg", false);
+		currentGun = 2;
+	}
 	if (dead && deathTime + 500 >= glutGet(GLUT_ELAPSED_TIME)) {
 		if (basicAction == STAND_LEFT || basicAction == MOVE_LEFT || sprite->animation() == JUMP_LEFT || sprite->animation() == DYING_LEFT) {
 			if (sprite->animation() != DYING_LEFT) {
@@ -335,29 +339,31 @@ void Player::update(int deltaTime)
 	
 	sprite->update(deltaTime);
 
-	if (Game::instance().getSpecialKey(GLUT_KEY_DOWN) && bJumping == false && !dead) {
-		posPlayer.y += 2;
-	}
-	if(Game::instance().getSpecialKey(GLUT_KEY_LEFT) && !dead)
-	{
-		if(basicAction != MOVE_LEFT && bJumping == false)
-			changeBasicAction(MOVE_LEFT, deltaTime);
-		posPlayer.x -= RUN_VELOCITY;
-		if(map->collisionMoveLeft(posPlayer, glm::ivec2(48, 48)))
-		{
-			posPlayer.x += RUN_VELOCITY;
-			changeBasicAction(STAND_LEFT, deltaTime);
+	if (ableToMove) {
+		if (Game::instance().getSpecialKey(GLUT_KEY_DOWN) && bJumping == false && !dead) {
+			posPlayer.y += 2;
 		}
-	}
-	else if(Game::instance().getSpecialKey(GLUT_KEY_RIGHT) && !dead)
-	{
-		if(basicAction != MOVE_RIGHT && bJumping == false)
-			changeBasicAction(MOVE_RIGHT, deltaTime);
-		posPlayer.x += RUN_VELOCITY;
-		if(map->collisionMoveRight(posPlayer, glm::ivec2(48, 48)))
+		if (Game::instance().getSpecialKey(GLUT_KEY_LEFT) && !dead)
 		{
+			if (basicAction != MOVE_LEFT && bJumping == false)
+				changeBasicAction(MOVE_LEFT, deltaTime);
 			posPlayer.x -= RUN_VELOCITY;
-			changeBasicAction(STAND_RIGHT, deltaTime);
+			if (map->collisionMoveLeft(posPlayer, glm::ivec2(48, 48)))
+			{
+				posPlayer.x += RUN_VELOCITY;
+				changeBasicAction(STAND_LEFT, deltaTime);
+			}
+		}
+		else if (Game::instance().getSpecialKey(GLUT_KEY_RIGHT) && !dead)
+		{
+			if (basicAction != MOVE_RIGHT && bJumping == false)
+				changeBasicAction(MOVE_RIGHT, deltaTime);
+			posPlayer.x += RUN_VELOCITY;
+			if (map->collisionMoveRight(posPlayer, glm::ivec2(48, 48)))
+			{
+				posPlayer.x -= RUN_VELOCITY;
+				changeBasicAction(STAND_RIGHT, deltaTime);
+			}
 		}
 	}
 	else if (!dead)
@@ -505,3 +511,11 @@ int Player::getProjectileType() {
 	return projectileType;
 }
 
+void Player::upgradeSpreadGun() {
+	this->spreadGun = true;
+	this->render();
+}
+
+void Player::setAbleToMove(bool b) {
+	ableToMove = b;
+}

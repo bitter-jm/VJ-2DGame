@@ -14,12 +14,14 @@ class SpreadGun
 {
 
 public:
-	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram);
-	void update(int deltaTime); 
+	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, glm::vec2 pos);
+	void update(int deltaTime);
 	void render();
 
+	void setPos(glm::vec2 pos);
+
 private:
-	glm::ivec2 tileMapDispl;
+	glm::ivec2 tileMapDispl, pos;
 	Texture spritesheet;
 	Sprite* sprite;
 	TileMap* map;

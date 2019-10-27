@@ -54,24 +54,24 @@ void Menu::update()
 
 	//cout << absMX << " . " << absMY << endl;
 
-		if (absMX > 191 && absMX < 389 && absMY > 347 && absMY < 380) {
-			if (!buttonSound1) {
-				SoundManager::getInstance()->playSound("sounds/button.ogg", false);
-				buttonSound1 = true;
-			}
-			buttonSound2 = false;
+	if (absMX > 191 && absMX < 389 && absMY > 347 && absMY < 380) {
+		if (!buttonSound1) {
+			SoundManager::getInstance()->playSound("sounds/button.ogg", false);
+			buttonSound1 = true;
 		}
-		else if (absMX > 191 && absMX < 389 && absMY > 347 && absMY < 416) {
-			if (!buttonSound2) {
-				SoundManager::getInstance()->playSound("sounds/button.ogg", false);
-				buttonSound2 = true;
-			}
-			buttonSound1 = false;
+		buttonSound2 = false;
+	}
+	else if (absMX > 191 && absMX < 389 && absMY > 347 && absMY < 416) {
+		if (!buttonSound2) {
+			SoundManager::getInstance()->playSound("sounds/button.ogg", false);
+			buttonSound2 = true;
 		}
-		else {
-			buttonSound1 = false;
-			buttonSound2 = false;
-		}
+		buttonSound1 = false;
+	}
+	else {
+		buttonSound1 = false;
+		buttonSound2 = false;
+	}
 
 
 	if (Game::instance().isMousePressed()) {
@@ -79,7 +79,7 @@ void Menu::update()
 			if (absMY > 347 && absMY < 416) {
 				if (absMY < 380) {
 					SoundManager::getInstance()->removeSound("sounds/mainMenu.ogg");
-					Game::instance().changeLevel(1);
+					Game::instance().changeLevel(2);
 					SoundManager::getInstance()->playSound("sounds/level1.ogg", true, 0.5f);
 				}
 				else {

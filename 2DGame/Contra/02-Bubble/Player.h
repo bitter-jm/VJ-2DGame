@@ -30,6 +30,8 @@ public:
 	int getProjectileAngle();
 	int getProjectileVelocity();
 	int getProjectileType();
+	void upgradeSpreadGun();
+	void setAbleToMove(bool b);
 	
 private:
 	bool bJumping;
@@ -53,6 +55,8 @@ private:
 
 	//Creating projectiles
 	bool shootedProjectile = false;
+	bool spreadGun = false;
+	bool ableToMove;
 	glm::ivec2 projectileCoords;
 	int projectileAngle, projectileVelocity, projectileType;
 

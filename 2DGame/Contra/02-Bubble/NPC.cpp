@@ -41,6 +41,5 @@ bool NPC::is_dead() {
 }
 
 void NPC::reduceHP() {
-	cout << "now: " << hp << ", then: " << hp - 1 << endl;
 	if (hp > 0) hp--;
 }

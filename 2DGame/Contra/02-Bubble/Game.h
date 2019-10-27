@@ -3,6 +3,7 @@
 
 
 #include "Scene.h"
+#include "BossScene.h"
 #include "MenuScene.h"
 
 
@@ -57,6 +58,7 @@ private:
 	bool bPlay;                       // Continue to play game?
 	MenuScene menu;
 	Scene scene;                      // Scene level 1
+	BossScene bossScene;                      // Scene level 1
 	bool keys[256], specialKeys[256]; // Store key states so that 
 	                                  // we can have access at any time
 	int posMouseX = 0;

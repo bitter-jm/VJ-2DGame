@@ -25,6 +25,7 @@ bool Game::update(int deltaTime)
 {
 	if (state == MENU) menu.update(deltaTime);
 	else if (state == LEVEL1) scene.update(deltaTime);
+	else if (state == LEVEL2) bossScene.update(deltaTime);
 	
 	return bPlay;
 }
@@ -35,11 +36,13 @@ void Game::render()
 
 	if (state == MENU) menu.render();
 	else if (state == LEVEL1) scene.render();
+	else if (state == LEVEL2) bossScene.render();
 }
 
 void Game::restartLevel()
 {
 	if (state == LEVEL1) scene.init();
+	if (state == LEVEL2) bossScene.init();
 }
 
 void Game::returnToMenu()

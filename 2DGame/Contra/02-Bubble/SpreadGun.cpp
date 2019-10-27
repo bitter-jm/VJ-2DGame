@@ -10,11 +10,10 @@
 #define JUMP_HEIGHT 96
 #define FALL_STEP 4
 
-#define POSX 2634
-#define POSY	 208
 
-void SpreadGun::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
+void SpreadGun::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, glm::vec2 pos)
 {
+	this->pos = pos;
 	spritesheet.loadFromFile("images/spreadgun.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sprite = Sprite::createSprite(glm::ivec2(48, 48), glm::vec2(1, 1), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(1);
@@ -24,7 +23,7 @@ void SpreadGun::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 
 	sprite->changeAnimation(0);
 	tileMapDispl = tileMapPos;
-	sprite->setPosition(glm::vec2(float(tileMapDispl.x + POSX), float(tileMapDispl.y + POSY)));
+	sprite->setPosition(glm::vec2(float(tileMapDispl.x + pos.x), float(tileMapDispl.y + pos.y)));
 
 }
 
@@ -32,7 +31,7 @@ void SpreadGun::update(int deltaTime)
 {
 	sprite->update(deltaTime);
 
-	sprite->setPosition(glm::vec2(float(tileMapDispl.x + POSX), float(tileMapDispl.y + POSY)));
+	sprite->setPosition(glm::vec2(float(tileMapDispl.x + pos.x), float(tileMapDispl.y + pos.y)));
 }
 
 void SpreadGun::render()

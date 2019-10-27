@@ -50,7 +50,7 @@ private:
 	vector<SoldierB*> soldierBs;
 	bool spreadgunHidden;
 	int deathTime;
-	bool deadPlayer;
+	bool deadPlayer, levelComplete;
 };
 
 

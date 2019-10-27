@@ -8,6 +8,9 @@
  
 void GameOver::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, glm::ivec2 pp)
 {
+	buttonSound1 = false;
+	buttonSound1 = true;
+
 	cout << "Empezando init GameOver" << endl;
 	//spritesheet.loadFromFile("images/GameOverScreen.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	spritesheet.loadFromFile("images/gameover.png", TEXTURE_PIXEL_FORMAT_RGBA);
@@ -47,15 +50,35 @@ void GameOver::render()
 
 void GameOver::update()
 {
-	if (Game::instance().isMousePressed()) {
-		int posMouseX = Game::instance().getPosMouseX();
-		int posMouseY = Game::instance().getPosMouseY();
-		int windowSizeX = glutGet(GLUT_WINDOW_WIDTH);
-		int windowSizeY = glutGet(GLUT_WINDOW_HEIGHT);
+	int posMouseX = Game::instance().getPosMouseX();
+	int posMouseY = Game::instance().getPosMouseY();
+	int windowSizeX = glutGet(GLUT_WINDOW_WIDTH);
+	int windowSizeY = glutGet(GLUT_WINDOW_HEIGHT);
 		
-		int absMX = (int)((double)posMouseX * ((double)768 / (double)windowSizeX));
-		int absMY = (int)((double)posMouseY * ((double)512 / (double)windowSizeY));
-		//cout << "Mouse: (" << absoluteMouseX << ", " << absoluteMouseY << ") ScreenSize: (" << windowSizeX << ", " << windowSizeY << ")" << endl;
+	int absMX = (int)((double)posMouseX * ((double)768 / (double)windowSizeX));
+	int absMY = (int)((double)posMouseY * ((double)512 / (double)windowSizeY));
+	//cout << "Mouse: (" << absoluteMouseX << ", " << absoluteMouseY << ") ScreenSize: (" << windowSizeX << ", " << windowSizeY << ")" << endl;
+
+	if (absMX > 240 && absMX < 561 && absMY > 256 && absMY < 315) {
+		if (!buttonSound1) {
+			SoundManager::getInstance()->playSound("sounds/button.ogg", false);
+			buttonSound1 = true;
+		}
+		buttonSound2 = false;
+	}
+	else if (absMX > 240 && absMX < 561 && absMY > 256 && absMY < 369) {
+		if (!buttonSound2) {
+			SoundManager::getInstance()->playSound("sounds/button.ogg", false);
+			buttonSound2 = true;
+		}
+		buttonSound1 = false;
+	}
+	else {
+		buttonSound1 = false;
+		buttonSound2 = false;
+	}
+
+	if (Game::instance().isMousePressed()) {
 
 		if (absMX > 240 && absMX < 561) {
 			if (absMY > 256 && absMY < 369) {
@@ -72,6 +95,7 @@ void GameOver::update()
 				}
 			}
 		}
+		
 	}
 
 	if (action > 0 && timeAction + 300 < glutGet(GLUT_ELAPSED_TIME)) {

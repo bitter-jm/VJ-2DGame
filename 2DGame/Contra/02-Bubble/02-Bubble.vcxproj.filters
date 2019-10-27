@@ -22,6 +22,7 @@
     <ClCompile Include="Turret.cpp" />
     <ClCompile Include="Tutorial.cpp" />
     <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="BossScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
@@ -45,5 +46,6 @@
     <ClInclude Include="Turret.h" />
     <ClInclude Include="Tutorial.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="BossScene.h" />
   </ItemGroup>
 </Project>

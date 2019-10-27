@@ -23,6 +23,9 @@ private:
 	int timeAction;
 	int action = 0;
 
+	bool buttonSound1;
+	bool buttonSound2;
+
 };
 
 
