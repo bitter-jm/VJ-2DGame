@@ -13,11 +13,9 @@ void Game::init()
 	AllocConsole();
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
-	SoundManager::getInstance()->playSound("sounds/mainMenu.ogg", false);
 	bPlay = true;
 	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 	state = MENU;
-	scene.init();
 	menu.init();
 }
 

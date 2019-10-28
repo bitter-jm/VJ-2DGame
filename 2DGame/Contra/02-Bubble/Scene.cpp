@@ -81,6 +81,8 @@ void Scene::spawnSoldierBs() {
 
 void Scene::init()
 {
+	SoundManager::getInstance()->removeAllSound();
+	SoundManager::getInstance()->playSound("sounds/level1.ogg", true, 0.5f);
 	// For restart level correctly
 	if (turrets.size() != 0) turrets.clear();
 	if (soldierAs.size() != 0) soldierAs.clear();

@@ -11,11 +11,8 @@
 #define SCREEN_X 0
 #define SCREEN_Y 0
 
-#define INIT_PLAYER_X_TILES 4
-#define INIT_PLAYER_Y_TILES 0
-
-#define LEVEL_COMPLETE_X 95
-#define LEVEL_COMPLETE_Y 6
+#define INIT_PLAYER_X_TILES 6
+#define INIT_PLAYER_Y_TILES 5
 
 #define SPREADGUN_X 1*64
 #define SPREADGUN_Y 5.25*64
@@ -39,6 +36,8 @@ BossScene::~BossScene()
 
 void BossScene::init()
 {
+	SoundManager::getInstance()->removeAllSound();
+	SoundManager::getInstance()->playSound("sounds/bossLevel.ogg", true, 0.8f);
 
 	spreadgunHidden = false;
 	deadPlayer = false;
@@ -56,12 +55,35 @@ void BossScene::init()
 	currentTime = 0.0f;
 	entityManager = new EntityManager();
 	entityManager->init(player, &texProgram);
+
+	boss = new Boss();
+	boss->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, 1, map, glm::vec2(4 * map->getTileSize(), 0 * map->getTileSize()));
+	boss->setPlayer(player);
+	boss->setEntityManager(entityManager);
+
 }
 
 void BossScene::update(int deltaTime)
 {
 	currentTime += deltaTime;
-
+	if (!boss->is_dead()) {
+		glm::vec2 bodyPos = glm::vec2(boss->getPosition().x + 3* map->getTileSize(), boss->getPosition().y);
+		// body triangular region
+		if (entityManager->checkCollisionEnemy(bodyPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceHP();
+		else if (entityManager->checkCollisionEnemy(glm::vec2(bodyPos.x-0.5* map->getTileSize(), bodyPos.y),
+			0.5 * map->getTileSize(), 2 * map->getTileSize())) boss->reduceHP();
+		else if (entityManager->checkCollisionEnemy(glm::vec2(bodyPos.x + 2* map->getTileSize(), bodyPos.y), 
+			0.5 * map->getTileSize(), 2 * map->getTileSize())) boss->reduceHP();
+	}
+	if (!boss->is_left_dead()) {
+		glm::vec2 leftPos = glm::vec2(boss->getPosition().x, boss->getPosition().y);
+		if (entityManager->checkCollisionEnemy(leftPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceLeftHp(1);
+	}
+	if (!boss->is_right_dead()) {
+		glm::vec2 rightPos = glm::vec2(boss->getPosition().x + 6 * map->getTileSize(), boss->getPosition().y);
+		if (entityManager->checkCollisionEnemy(rightPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceRightHp(1);
+	}
+	
 	if (!levelComplete) player->update(deltaTime);
 	entityManager->update(deltaTime);
 	int tSize = map->getTileSize();
@@ -72,7 +94,7 @@ void BossScene::update(int deltaTime)
 	else spreadgun->update(deltaTime);
 
 	//level completed
-	if (int(player->getPosition().x / map->getTileSize()) >= LEVEL_COMPLETE_X) {
+	if (boss->is_dead()) {
 		if (!levelComplete) {
 			SoundManager::getInstance()->removeAllSound();
 			SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
@@ -81,6 +103,7 @@ void BossScene::update(int deltaTime)
 	}
 
 	if (deadPlayer) gameOver->update();
+	if (!boss->is_dead()) boss->update(deltaTime);
 }
 
 void BossScene::render()
@@ -106,7 +129,7 @@ void BossScene::render()
 	if (!spreadgunHidden) spreadgun->render();
 	player->render();
 	entityManager->render();
-
+	if (!boss->is_dead()) boss->render();
 
 	// Death screen
 	if (player->isDead()) {

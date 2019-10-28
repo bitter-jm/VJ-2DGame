@@ -3,6 +3,7 @@
 #include "TileMap.h"
 #include "Player.h"
 #include "EntityManager.h"
+#include <math.h>     
 
 class NPC
 {

@@ -9,6 +9,7 @@
 #include "NPC.h"
 #include "SpreadGun.h"
 #include "SoundManager.h"
+#include "Boss.h"
 
 class BossScene
 {
@@ -35,5 +36,6 @@ private:
 	bool spreadgunHidden;
 	int deathTime;
 	bool deadPlayer, levelComplete;
+	Boss* boss;
 };
 
