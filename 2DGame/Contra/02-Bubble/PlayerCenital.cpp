@@ -449,14 +449,14 @@ void PlayerCenital::update(int deltaTime)
 	if (Game::instance().getSpecialKey(GLUT_KEY_LEFT) && !dead)
 	{
 		posPlayerCenital.x -= RUN_VELOCITY;
-		if (map->collisionMoveLeft(glm::vec2(posPlayerCenital.x + 32, posPlayerCenital.y-32), glm::ivec2(48, 48)))
+		if (map->collisionMoveLeft(glm::vec2(posPlayerCenital.x + 32, posPlayerCenital.y+32), glm::ivec2(48, 48)))
 			posPlayerCenital.x += RUN_VELOCITY;
 		else moving = true;
 	}
 	if (Game::instance().getSpecialKey(GLUT_KEY_RIGHT) && !dead)
 	{
 		posPlayerCenital.x += RUN_VELOCITY;
-		if (map->collisionMoveRight(glm::vec2(posPlayerCenital.x + 32, posPlayerCenital.y-32), glm::ivec2(48, 48)))
+		if (map->collisionMoveRight(glm::vec2(posPlayerCenital.x + 32, posPlayerCenital.y+32), glm::ivec2(48, 48)))
 			posPlayerCenital.x -= RUN_VELOCITY;
 		else moving = true;
 	} 
@@ -470,7 +470,7 @@ void PlayerCenital::update(int deltaTime)
 	if (Game::instance().getSpecialKey(GLUT_KEY_DOWN) && !dead)
 	{
 		posPlayerCenital.y += RUN_VELOCITY;
-		if (map->collisionMoveDown(glm::vec2(posPlayerCenital.x+32, posPlayerCenital.y), glm::ivec2(48, 48), &posPlayerCenital.y))
+		if (map->collisionMoveDown(glm::vec2(posPlayerCenital.x+32, posPlayerCenital.y), glm::ivec2(48, 84), &posPlayerCenital.y))
 			posPlayerCenital.y -= RUN_VELOCITY;
 		else moving = true;
 	}
@@ -503,27 +503,20 @@ glm::vec2 PlayerCenital::getPosition()
 void PlayerCenital::shoot(double angulo, int x, int y)
 {
 	cout << "shooted" << endl;
-	//if (currentGun == 1) SoundManager::getInstance()->playSound("sounds/defaultGun.ogg", false);
-	//else if (currentGun == 2) SoundManager::getInstance()->playSound("sounds/shotGun.ogg", false);
-	//shootedProjectile = true;
-	//projectileCoords.x = x + 22;
-	//projectileCoords.y = y;
-	//if (basicAction == STAND_LEFT || basicAction == MOVE_LEFT) projectileCoords.x -= 20;
-	//else projectileCoords.x += 20;
-	//projectileType = currentGun;
-	//projectileVelocity = SHOT_VELOCITY;
-	////projectileAngle = angulo;
-	//if ((basicAction == STAND_LEFT || basicAction == MOVE_LEFT) && angulo < 90 && angulo > -90) projectileAngle = 180;
-	//else if ((basicAction == STAND_RIGHT || basicAction == MOVE_RIGHT) && (angulo > 90 || angulo < -90)) projectileAngle = 0;
-	//else if (angulo > -22 && angulo < 22) projectileAngle = 0;
-	//else if (angulo >= 22 && angulo <= 90) projectileAngle = 45;
-	//else if (angulo >= -90 && angulo <= -22) projectileAngle = -45;
-	//else if (angulo >= 90 && angulo <= 157) projectileAngle = 135;
-	//else if (angulo >= -157 && angulo <= -90) projectileAngle = -135;
-	//else if (angulo >= 157 || angulo <= -157) projectileAngle = 180;
+	if (currentGun == 1) SoundManager::getInstance()->playSound("sounds/defaultGun.ogg", false);
+	else if (currentGun == 2) SoundManager::getInstance()->playSound("sounds/shotGun.ogg", false);
+	shootedProjectile = true;
+	projectileCoords.x = x;
+	projectileCoords.y = y;
+	projectileType = currentGun;
+	projectileVelocity = SHOT_VELOCITY;
+	projectileAngle = angle;
 
-	//if (projectileAngle > 0 && projectileAngle != 180)  projectileCoords.y -= 20;
-	//else if (projectileAngle < 0 && projectileAngle != -180)  projectileCoords.y += 20;
+
+	/*if (basicAction == STAND_LEFT || basicAction == MOVE_LEFT) projectileCoords.x -= 20;
+	else projectileCoords.x += 20;*/
+	/*if (projectileAngle > 0 && projectileAngle != 180)  projectileCoords.y -= 20;
+	else if (projectileAngle < 0 && projectileAngle != -180)  projectileCoords.y += 20;*/
 }
 
 void PlayerCenital::kill() {

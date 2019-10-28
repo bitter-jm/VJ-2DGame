@@ -35,8 +35,6 @@ BossScene::~BossScene()
 		delete player;
 }
 
-
-
 void BossScene::init()
 {
 
@@ -159,4 +157,6 @@ void BossScene::initShaders()
 	vShader.free();
 	fShader.free();
 }
+
+
 

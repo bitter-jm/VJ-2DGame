@@ -61,10 +61,8 @@ private:
 	glm::ivec2 projectileCoords;
 	int projectileAngle, projectileVelocity, projectileType;
 
-
 };
 
 
 #endif // _PLAYERCENITAL_INCLUDE
-
 

@@ -32,6 +32,7 @@ private:
 	bool enemy;
 	bool deleteProjectile = false;
 	float range;
+	int timesUpdated;
 };
 
 

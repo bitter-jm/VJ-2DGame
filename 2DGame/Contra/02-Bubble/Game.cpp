@@ -144,3 +144,8 @@ bool Game::isMousePressed() const
 	return mousePressed;
 }
 
+int Game::getCurrentLevel() {
+	if (state == LEVEL1) return 1;
+	else if (state == LEVEL2) return 2;
+	else if (state == LEVEL3) return 3;
+}

@@ -40,6 +40,8 @@ public:
 	void changeLevel(int lvl);
 	void menuToTutorial();
 	void tutorialToMenu();
+
+	int getCurrentLevel();
 	
 	// Input callback methods
 	void keyPressed(int key);
