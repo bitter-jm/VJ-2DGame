@@ -16,8 +16,10 @@ void Game::init()
 	SoundManager::getInstance()->playSound("sounds/mainMenu.ogg", false);
 	bPlay = true;
 	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-	state = MENU;
+	state = LEVEL1;
 	scene.init();
+	scene2.init();
+	bossScene.init();
 	menu.init();
 }
 
@@ -25,7 +27,8 @@ bool Game::update(int deltaTime)
 {
 	if (state == MENU) menu.update(deltaTime);
 	else if (state == LEVEL1) scene.update(deltaTime);
-	else if (state == LEVEL2) bossScene.update(deltaTime);
+	else if (state == LEVEL2) scene2.update(deltaTime);
+	else if (state == LEVEL3) bossScene.update(deltaTime);
 	
 	return bPlay;
 }
@@ -36,13 +39,15 @@ void Game::render()
 
 	if (state == MENU) menu.render();
 	else if (state == LEVEL1) scene.render();
-	else if (state == LEVEL2) bossScene.render();
+	else if (state == LEVEL2) scene2.render();
+	else if (state == LEVEL3) bossScene.render();
 }
 
 void Game::restartLevel()
 {
 	if (state == LEVEL1) scene.init();
-	if (state == LEVEL2) bossScene.init();
+	if (state == LEVEL2) scene2.init();
+	if (state == LEVEL3) bossScene.init();
 }
 
 void Game::returnToMenu()

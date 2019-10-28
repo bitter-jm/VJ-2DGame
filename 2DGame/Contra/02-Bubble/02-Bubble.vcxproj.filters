@@ -23,6 +23,8 @@
     <ClCompile Include="Tutorial.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="BossScene.cpp" />
+    <ClCompile Include="SceneLvl2.cpp" />
+    <ClCompile Include="PlayerCenital.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
@@ -47,5 +49,7 @@
     <ClInclude Include="Tutorial.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="BossScene.h" />
+    <ClInclude Include="SceneLvl2.h" />
+    <ClInclude Include="PlayerCenital.h" />
   </ItemGroup>
 </Project>

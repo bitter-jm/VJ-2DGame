@@ -153,6 +153,9 @@ void Scene::update(int deltaTime)
 			SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
 			levelComplete = true;
 		}
+		else {
+			Game::instance().changeLevel(2);
+		}
 	}
 
 	if (deadPlayer) gameOver->update();

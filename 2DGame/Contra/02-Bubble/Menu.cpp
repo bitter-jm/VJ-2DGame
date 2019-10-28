@@ -79,7 +79,7 @@ void Menu::update()
 			if (absMY > 347 && absMY < 416) {
 				if (absMY < 380) {
 					SoundManager::getInstance()->removeSound("sounds/mainMenu.ogg");
-					Game::instance().changeLevel(2);
+					Game::instance().changeLevel(1);
 					SoundManager::getInstance()->playSound("sounds/level1.ogg", true, 0.5f);
 				}
 				else {
