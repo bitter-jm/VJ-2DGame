@@ -6,7 +6,6 @@
 #include "Game.h"
 #include <servprov.h>
 
-
 // Desplazamiento de pantalla
 #define SCREEN_X 0
 #define SCREEN_Y 0

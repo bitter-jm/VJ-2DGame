@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
     <ClInclude Include="BossScene.h" />
+    <ClInclude Include="EntityManagerCenital.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="GameOver.h" />
@@ -39,6 +40,7 @@
   <ItemGroup>
     <ClCompile Include="BossScene.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="EntityManagerCenital.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="main.cpp" />

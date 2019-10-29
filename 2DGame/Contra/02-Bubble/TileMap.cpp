@@ -198,6 +198,29 @@ bool TileMap::collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) c
 	return false;
 }
 
+bool TileMap::collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size) const
+{
+	/*int x, y0, y1;
+
+	x = pos.x / tileSize;
+	y0 = pos.y / tileSize;
+	y1 = (pos.y + size.y - 1) / tileSize;*/
+
+	int y, x0, x1;
+	y = pos.y / tileSize;
+	x0 = pos.x / tileSize;
+	x1 = (pos.x + size.x-1) / tileSize;
+
+	for (int x = x0; x <= x1; x++)
+	{
+		int tile = map[y * mapSize.x + x];
+		if (binarySearch(collisionLR, 0, collisionLR[level - 1].size(), level, tile))
+			return true;
+	}
+
+	return false;
+}
+
 bool TileMap::collisionMoveRight(const glm::ivec2 &pos, const glm::ivec2 &size) const
 {
 	int x, y0, y1;

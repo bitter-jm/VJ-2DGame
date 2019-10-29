@@ -38,7 +38,7 @@ void EntityManager::update(int deltaTime)
 		projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, angleproj, velocityproj, typeproj, playerRange, false, *shaderProgram);
 		nextProjectileID++;
 
-		if (Game::instance().getCurrentLevel() == 1 || Game::instance().getCurrentLevel() == 2) {
+		if (Game::instance().getCurrentLevel() == 1 || Game::instance().getCurrentLevel() == 3) {
 			if (typeproj == 2) {
 				Projectile p2, p3;
 				if (angleproj == 0) {
@@ -99,15 +99,6 @@ void EntityManager::update(int deltaTime)
 	for (auto& x : toErase) {
 		projectiles.erase(x);
 	}
-
-
-
-	//Find collisions between player and enemy projectiles
-	//	Kill player
-	//Find collisions between player projectiles and enemies
-	//	Reduce lifes enemy
-	//Find collisions between player and enemies
-	//	Kill player
 }
 
 void EntityManager::render()

@@ -51,8 +51,8 @@ void SceneLvl2::init()
 	player->setTileMap(map);
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
-	//entityManager = new EntityManager();
-	//entityManager->init(player, &texProgram);
+	entityManager = new EntityManagerCenital();
+	entityManager->init(player, &texProgram);
 }
 
 void SceneLvl2::update(int deltaTime)
@@ -60,17 +60,8 @@ void SceneLvl2::update(int deltaTime)
 	currentTime += deltaTime;
 
 	if (!levelComplete) player->update(deltaTime);
-	//entityManager->update(deltaTime);
+	entityManager->update(deltaTime);
 	int tSize = map->getTileSize();
-
-	//level completed
-	/*if (int(player->getPosition().x / map->getTileSize()) >= LEVEL_COMPLETE_X) {
-		if (!levelComplete) {
-			SoundManager::getInstance()->removeAllSound();
-			SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
-			levelComplete = true;
-		}
-	}*/
 
 	if (deadPlayer) gameOver->update();
 }
@@ -80,7 +71,7 @@ void SceneLvl2::render()
 	glm::mat4 modelview;
 	float playerX = player->getPosition().x;
 	float playerY = player->getPosition().y;
-	projection = glm::ortho(playerX - float(SCREEN_WIDTH - 1) / 2.0f - 64.f * 1, playerX + float(SCREEN_WIDTH - 1) / 2.0f + 64.f * 1, playerY + float(SCREEN_HEIGHT - 1) / 2.0f + 64.f*1, playerY - float(SCREEN_HEIGHT - 1) / 2.0f - 64.f * 1);
+	projection = glm::ortho(playerX+64 - float(SCREEN_WIDTH - 1) / 2.0f - 64.f * 1, playerX+64 + float(SCREEN_WIDTH - 1) / 2.0f + 64.f * 1, playerY+64 + float(SCREEN_HEIGHT - 1) / 2.0f + 64.f*1, playerY+64 - float(SCREEN_HEIGHT - 1) / 2.0f - 64.f * 1);
 	texProgram.use();
 	texProgram.setUniformMatrix4f("projection", projection);
 	texProgram.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
@@ -89,7 +80,7 @@ void SceneLvl2::render()
 
 	map->render();
 	player->render();
-	//entityManager->render();
+	entityManager->render();
 
 
 	// Death screen

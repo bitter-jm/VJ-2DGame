@@ -16,7 +16,7 @@ void Game::init()
 	SoundManager::getInstance()->playSound("sounds/mainMenu.ogg", false);
 	bPlay = true;
 	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-	state = LEVEL1;
+	state = LEVEL2;
 	scene.init();
 	scene2.init();
 	bossScene.init();

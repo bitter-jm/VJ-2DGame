@@ -5,7 +5,7 @@
 #include "ShaderProgram.h"
 #include "TileMap.h"
 #include "PlayerCenital.h"
-#include "EntityManager.h"
+#include "EntityManagerCenital.h"
 #include "GameOver.h"
 #include "NPC.h"
 #include "Turret.h"
@@ -39,7 +39,7 @@ private:
 	ShaderProgram texProgram;
 	float currentTime;
 	glm::mat4 projection;
-	EntityManager* entityManager;
+	EntityManagerCenital* entityManager;
 	int deathTime;
 	bool deadPlayer, levelComplete;
 };

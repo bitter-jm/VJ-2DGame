@@ -306,6 +306,7 @@ void Player::changeBasicAction(int basicAnimation, int deltaTime)
 
 void Player::update(int deltaTime)
 {
+	cout << getProjectileType() << endl;
 	if (currentGun == 1 && spreadGun) {
 		SoundManager::getInstance()->playSound("sounds/pickShotgun.ogg", false);
 		currentGun = 2;
@@ -464,7 +465,7 @@ void Player::shoot(double angulo, int x, int y)
 	projectileCoords.y = y;
 	if (basicAction == STAND_LEFT || basicAction == MOVE_LEFT) projectileCoords.x -= 20;
 	else projectileCoords.x += 20;
-	projectileType = currentGun;
+	projectileType = (int)spreadGun +1;
 	projectileVelocity = SHOT_VELOCITY;
 	//projectileAngle = angulo;
 	if ((basicAction == STAND_LEFT || basicAction == MOVE_LEFT) && angulo < 90 && angulo > -90) projectileAngle = 180;

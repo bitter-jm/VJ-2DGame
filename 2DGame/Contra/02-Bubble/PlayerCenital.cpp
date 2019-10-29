@@ -11,7 +11,7 @@
 #define JUMP_HEIGHT 96
 #define FALL_STEP 4
 #define RUN_VELOCITY 4
-#define SHOT_VELOCITY 8
+#define SHOT_VELOCITY 11
 #define UPGRADE_WEAPON_X 2600
 
 enum PlayerCenitalAnims
@@ -463,9 +463,9 @@ void PlayerCenital::update(int deltaTime)
 	if (Game::instance().getSpecialKey(GLUT_KEY_UP) && !dead)
 	{
 		posPlayerCenital.y -= RUN_VELOCITY;
-		//if (map->collisionMoveUp(posPlayerCenital, glm::ivec2(48, 48))) // TODO!!!!
-		//  	posPlayerCenital.y += RUN_VELOCITY;
-		/*else*/ moving = true;
+		if (map->collisionMoveUp(glm::vec2(posPlayerCenital.x + 32, posPlayerCenital.y+32), glm::ivec2(48, 48))) // TODO!!!!
+		  	posPlayerCenital.y += RUN_VELOCITY;
+		else moving = true;
 	}
 	if (Game::instance().getSpecialKey(GLUT_KEY_DOWN) && !dead)
 	{
@@ -506,17 +506,11 @@ void PlayerCenital::shoot(double angulo, int x, int y)
 	if (currentGun == 1) SoundManager::getInstance()->playSound("sounds/defaultGun.ogg", false);
 	else if (currentGun == 2) SoundManager::getInstance()->playSound("sounds/shotGun.ogg", false);
 	shootedProjectile = true;
-	projectileCoords.x = x;
-	projectileCoords.y = y;
+	projectileCoords.x = x+64;
+	projectileCoords.y = y+64;
 	projectileType = currentGun;
 	projectileVelocity = SHOT_VELOCITY;
 	projectileAngle = angle;
-
-
-	/*if (basicAction == STAND_LEFT || basicAction == MOVE_LEFT) projectileCoords.x -= 20;
-	else projectileCoords.x += 20;*/
-	/*if (projectileAngle > 0 && projectileAngle != 180)  projectileCoords.y -= 20;
-	else if (projectileAngle < 0 && projectileAngle != -180)  projectileCoords.y += 20;*/
 }
 
 void PlayerCenital::kill() {
@@ -554,5 +548,4 @@ void PlayerCenital::upgradeSpreadGun() {
 	this->spreadGun = true;
 	this->render();
 }
-
 

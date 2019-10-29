@@ -25,6 +25,7 @@
     <ClCompile Include="BossScene.cpp" />
     <ClCompile Include="SceneLvl2.cpp" />
     <ClCompile Include="PlayerCenital.cpp" />
+    <ClCompile Include="EntityManagerCenital.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
@@ -51,5 +52,6 @@
     <ClInclude Include="BossScene.h" />
     <ClInclude Include="SceneLvl2.h" />
     <ClInclude Include="PlayerCenital.h" />
+    <ClInclude Include="EntityManagerCenital.h" />
   </ItemGroup>
 </Project>
