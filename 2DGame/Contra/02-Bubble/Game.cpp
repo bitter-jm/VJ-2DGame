@@ -3,14 +3,14 @@
 #include "Game.h"
 #include "SoundManager.h"
 
-enum State 
+enum State
 {
-	MENU, LEVEL1, LEVEL2, LEVEL3, CREDITS
+	MENU, LEVEL1, LEVEL2, LEVEL3
 };
 
 void Game::init()
 {
-	AllocConsole(); 
+	AllocConsole();
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
 	bPlay = true;
@@ -25,7 +25,6 @@ bool Game::update(int deltaTime)
 	else if (state == LEVEL1) scene.update(deltaTime);
 	else if (state == LEVEL2) scene2.update(deltaTime);
 	else if (state == LEVEL3) bossScene.update(deltaTime);
-	
 	return bPlay;
 }
 
@@ -63,11 +62,6 @@ void Game::tutorialToMenu()
 	menu.toMenu();
 }
 
-void Game::showCredits()
-{
-	state = CREDITS;
-}
-
 void Game::changeLevel(int lvl)
 {
 	if (lvl == 1) {
@@ -83,12 +77,11 @@ void Game::changeLevel(int lvl)
 		state = LEVEL3;
 	}
 	//restartLevel();
-	
 }
 
 void Game::keyPressed(int key)
 {
-	if(key == 27) // Escape code
+	if (key == 27) // Escape code
 		bPlay = false;
 	keys[key] = true;
 }
@@ -134,7 +127,6 @@ bool Game::getSpecialKey(int key) const
 	return specialKeys[key];
 }
 
-
 int Game::getPosMouseX() const
 {
 	return posMouseX;
@@ -154,4 +146,10 @@ int Game::getCurrentLevel() {
 	if (state == LEVEL1) return 1;
 	else if (state == LEVEL2) return 2;
 	else if (state == LEVEL3) return 3;
+}
+
+void Game::showCredits() {
+	state = MENU;
+	menu.init();
+	menu.toCredits();
 }

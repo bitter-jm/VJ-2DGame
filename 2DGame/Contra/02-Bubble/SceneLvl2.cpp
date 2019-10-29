@@ -21,7 +21,7 @@
 #define SPREADGUN_X 41*64
 #define SPREADGUN_Y 3.25*64
 
-#define PROB_HEART 0.25
+#define PROB_HEART 0.15
 
 
 SceneLvl2::SceneLvl2()
@@ -139,9 +139,9 @@ void SceneLvl2::update(int deltaTime)
 	}
 
 	for (int i = 0; i < hearts.size(); i++) {
-		int distX = player->getPosition().x - hearts[i]->getPosition().x;
-		int distY = player->getPosition().y - hearts[i]->getPosition().y;
-		if (abs(distX) <= 64 && abs(distY) <= 64) {
+		int distX = player->getPosition().x+64 - hearts[i]->getPosition().x;
+		int distY = player->getPosition().y+64 - hearts[i]->getPosition().y;
+		if (abs(distX) <= 32 && abs(distY) <= 32) {
 			hearts.erase(hearts.begin() + i);
 			SoundManager::getInstance()->playSound("sounds/health.ogg", false);
 			player->addHP(1);
@@ -190,6 +190,7 @@ void SceneLvl2::render()
 	player->render();
 	entityManager->render();
 
+	for (int i = 0; i < hearts.size(); i++) hearts[i]->render();
 
 	// Death screen
 	//cout << player->isDead() << endl;
@@ -219,8 +220,6 @@ void SceneLvl2::render()
 			Game::instance().changeLevel(3);
 		}
 	}
-
-	for (int i = 0; i < hearts.size(); i++) hearts[i]->render();
 }
 
 void SceneLvl2::initShaders()

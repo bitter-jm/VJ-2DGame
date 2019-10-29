@@ -21,15 +21,15 @@ class Game
 
 public:
 	Game() {}
-	
-	
-	static Game &instance()
+
+
+	static Game& instance()
 	{
 		static Game G;
-	
+
 		return G;
 	}
-	
+
 	void init();
 	bool update(int deltaTime);
 	void render();
@@ -42,7 +42,7 @@ public:
 	void tutorialToMenu();
 
 	int getCurrentLevel();
-	
+
 	// Input callback methods
 	void keyPressed(int key);
 	void keyReleased(int key);
@@ -51,7 +51,7 @@ public:
 	void mouseMove(int x, int y);
 	void mousePress(int button);
 	void mouseRelease(int button);
-	
+
 	bool getKey(int key) const;
 	bool getSpecialKey(int key) const;
 	bool isMousePressed() const;
@@ -65,7 +65,7 @@ private:
 	SceneLvl2 scene2;
 	BossScene bossScene;                      // Scene level 1
 	bool keys[256], specialKeys[256]; // Store key states so that 
-	                                  // we can have access at any time
+									  // we can have access at any time
 	int posMouseX = 0;
 	int posMouseY = 0;
 	bool mousePressed = false;
