@@ -541,10 +541,10 @@ void Player::shoot(double angulo, int x, int y)
 	}
 	projectileVelocity = getShotVelocity();
 	//projectileAngle = angulo;
-	if ((basicAction == STAND_LEFT || basicAction == MOVE_LEFT) && (angulo < 75 || angulo < -75)) {
+	if ((basicAction == STAND_LEFT || basicAction == MOVE_LEFT) && (angulo < 75 && angulo >= 0) || (angulo <= 0 && angulo > -75)) {
 		shootedProjectile = false;
 	}
-	else if ((basicAction == STAND_RIGHT || basicAction == MOVE_RIGHT) && (angulo > 105 || angulo < -105)) {
+	else if ((basicAction == STAND_RIGHT || basicAction == MOVE_RIGHT) && (angulo > 105 && angulo <= 180) || (angulo >= -180 && angulo < -105)) {
 		shootedProjectile = false;
 	}
 	else if (angulo > -22 && angulo < 22) projectileAngle = 0;
