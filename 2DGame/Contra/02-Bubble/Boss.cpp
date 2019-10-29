@@ -51,8 +51,8 @@ void Boss::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, int 
 	range = 15;
 	leftPartRange = rightPartRange = 15;
 
-	hp = 30;
-	rightPartHP = leftPartHP = 10;
+	hp = 40;
+	rightPartHP = leftPartHP = 15;
 	dmg = 2;
 	rightPartDMG = leftPartDMG = 1;
 	secondsToAttack = 3;
