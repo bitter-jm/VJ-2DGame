@@ -1,29 +1,5 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (02-Bubble.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Scene.cpp
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(49,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(63,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(77,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(90,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(157,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(173,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(189,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(213,25): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(220,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(221,13): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(221,13): warning C4244:         with
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(221,13): warning C4244:         [
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(221,13): warning C4244:             T=float
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(221,13): warning C4244:         ]
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(222,13): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(222,13): warning C4244:         with
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(222,13): warning C4244:         [
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(222,13): warning C4244:             T=float
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(222,13): warning C4244:         ]
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(259,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(262,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(265,20): warning C4018: '<': no coinciden signed/unsigned
   SceneLvl2.cpp
-C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(269,20): warning C4018: '<': no coinciden signed/unsigned
 C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(52,20): warning C4018: '<': no coinciden signed/unsigned
 C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(69,20): warning C4018: '<': no coinciden signed/unsigned
 C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(118,20): warning C4018: '<': no coinciden signed/unsigned
@@ -41,7 +17,6 @@ C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(143
 C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(143,13): warning C4244:         ]
 C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(178,20): warning C4018: '<': no coinciden signed/unsigned
 C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(184,20): warning C4018: '<': no coinciden signed/unsigned
-  Generando código...
 C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(193,20): warning C4018: '<': no coinciden signed/unsigned
 SOIL.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_DXT.obj)' o en 'C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 SOIL.lib(image_helper.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_helper.obj)' o en 'C:\Users\joanp\Desktop\Clean\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
