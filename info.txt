@@ -1,0 +1,9 @@
+Yimin Pan
+Joan Marc Pastor
+
+
+funcionalidades extras:
+
+- Tipos de armas: sniper, shotgun, rifle default.
+- Sistema de vidas: en cada escena el jugador empieza con 3 vidas, pero tiene posibilidad de conseguir m¨¢s al matar un enemigo.
+- Angulos de disparo.

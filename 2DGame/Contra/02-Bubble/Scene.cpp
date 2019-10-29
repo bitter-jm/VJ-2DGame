@@ -25,7 +25,7 @@
 #define SNIPERGUN_X 35*64
 #define SNIPERGUN_Y 1.25*64
 
-#define PROB_HEART 1
+#define PROB_HEART 0.25
 
 
 Scene::Scene()
