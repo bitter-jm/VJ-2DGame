@@ -40,6 +40,8 @@ void EntityManagerCenital::update(int deltaTime)
 
 	checkCollisionPlayer();
 
+	checkCollisionWalls();
+
 	set<int> toErase;
 	for (auto& x : projectiles) {
 		x.second.update(deltaTime);
@@ -114,20 +116,46 @@ void EntityManagerCenital::checkCollisionPlayer() {
 
 			if (pX + PROJECTILESIZE >= playerX && pX + PROJECTILESIZE <= playerX + PLAYERWIDTH && pY >= playerY && pY <= playerY + PLAYERHEIGHT) { //RIGHT UP
 				p.second.collisioned();
-				player->kill();
+				player->reduceHP((float)1);
+				SoundManager::getInstance()->playSound("sounds/hurt.ogg", false, 0.5);
 			}
-			if (pX + PROJECTILESIZE >= playerX && pX + PROJECTILESIZE <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //RIGHT DOWN
+			else if (pX + PROJECTILESIZE >= playerX && pX + PROJECTILESIZE <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //RIGHT DOWN
 				p.second.collisioned();
-				player->kill();
+				player->reduceHP((float)1);
+				SoundManager::getInstance()->playSound("sounds/hurt.ogg", false, 0.5);
 			}
-			if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY >= playerY && pY <= playerY + PLAYERHEIGHT) { //LEFT UP
+			else if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY >= playerY && pY <= playerY + PLAYERHEIGHT) { //LEFT UP
 				p.second.collisioned();
-				player->kill();
+				player->reduceHP((float)1);
+				SoundManager::getInstance()->playSound("sounds/hurt.ogg", false, 0.5);
 			}
-			if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //LEFT DOWN
+			else if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //LEFT DOWN
 				p.second.collisioned();
-				player->kill();
+				player->reduceHP((float)1);
+				SoundManager::getInstance()->playSound("sounds/hurt.ogg", false, 0.5);
 			}
+		}
+	}
+}
+
+void EntityManagerCenital::setMap(TileMap* m) {
+	map = m;
+}
+
+void EntityManagerCenital::checkCollisionWalls() {
+	for (auto& p : projectiles) {
+		int a = 0;
+		if (map->collisionMoveLeft(p.second.getPosition(), glm::ivec2(16, 16))) {
+			p.second.collisioned();
+		}
+		else if (map->collisionMoveRight(p.second.getPosition(), glm::ivec2(16, 16))) {
+			p.second.collisioned();
+		}
+		else if (map->collisionMoveUp(p.second.getPosition(), glm::ivec2(16, 16))) {
+			p.second.collisioned();
+		}
+		else if (map->collisionMoveDown(p.second.getPosition(), glm::ivec2(16, 16), &a)) {
+			p.second.collisioned();
 		}
 	}
 }

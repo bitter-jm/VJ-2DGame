@@ -127,7 +127,7 @@ void SoldierC::update(int deltaTime)
 		if (playerInRange()) {
 			if (time - lastShoot >= secondsToAttack * 1000) {
 				// TODO: modificar angulo y punto de inicio
-				emc->createProjectile(glm::vec2(position.x +32, position.y +32), angle, projectileSpeed, 1, range);
+				emc->createProjectile(glm::vec2(position.x +48, position.y +48), angle, projectileSpeed, 1, range);
 				lastShoot = time;
 			}
 		}

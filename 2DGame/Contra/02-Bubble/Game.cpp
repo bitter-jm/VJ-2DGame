@@ -49,6 +49,7 @@ void Game::restartLevel()
 void Game::returnToMenu()
 {
 	state = MENU;
+	menu.init();
 	tutorialToMenu();
 }
 

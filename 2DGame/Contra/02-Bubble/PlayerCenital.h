@@ -4,6 +4,7 @@
 
 #include "Sprite.h" 
 #include "TileMap.h"
+#include "Life.h"
 
 
 // PlayerCenital is basically a Sprite that represents the player. As such it has
@@ -15,7 +16,7 @@ class PlayerCenital
 
 public:
 	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram);
-	void update(int deltaTime);
+	void update(int deltaTime, ShaderProgram& shaderProgram);
 	void render();
 
 	void setTileMap(TileMap* tileMap);
@@ -31,6 +32,9 @@ public:
 	int getProjectileVelocity();
 	int getProjectileType();
 	void upgradeSpreadGun();
+	int getDeathFinished();
+
+	void reduceHP(float dmg);
 
 private:
 	bool bJumping;
@@ -60,6 +64,8 @@ private:
 	bool spreadGun = false;
 	glm::ivec2 projectileCoords;
 	int projectileAngle, projectileVelocity, projectileType;
+	vector<Life*> lifes;
+	float hp;
 
 };
 

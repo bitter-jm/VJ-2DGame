@@ -11,13 +11,10 @@ void GameOver::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, 
 	buttonSound1 = false;
 	buttonSound1 = true;
 
-	cout << "Empezando init GameOver" << endl;
 	//spritesheet.loadFromFile("images/GameOverScreen.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	spritesheet.loadFromFile("images/gameover.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	cout << "Imagen Cargada" << endl;
 	//sprite = Sprite::createSprite(glm::ivec2(768, 512), glm::vec2(0.25, 0.25), &spritesheet, &shaderProgram);
 	sprite = Sprite::createSprite(glm::ivec2(768, 512), glm::vec2(0.25, 1), &spritesheet, &shaderProgram);
-	cout << "Sprite creado" << endl;
 	sprite->setNumberAnimations(3);
 
 	sprite->setAnimationSpeed(0, 2);
@@ -29,15 +26,12 @@ void GameOver::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, 
 	sprite->setAnimationSpeed(2, 2);
 	sprite->addKeyframe(0, glm::vec2(0.5f, 0.f));
 
-	cout << "Animaciones cargadas" << endl;
-
 	posPlayer = pp;
 
 	sprite->changeAnimation(0);
-	cout << "Animacion cambiada" << endl;
 	tileMapDispl = tileMapPos;
-	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x - 768/2), float(tileMapDispl.y)));
-	cout << "Posicion cambiada" << endl;
+	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x - 768/2), float(tileMapDispl.y))); // PROJECTION LEVEL 1 & 3
+
 
 }
 
@@ -83,12 +77,10 @@ void GameOver::update()
 		if (absMX > 240 && absMX < 561) {
 			if (absMY > 256 && absMY < 369) {
 				if (absMY < 315) {
-					cout << "Restart Level" << endl;
 					timeAction = glutGet(GLUT_ELAPSED_TIME);
 					action = 1;
 				}
 				else {
-					cout << "Return Menu" << endl;
 					timeAction = glutGet(GLUT_ELAPSED_TIME);
 					action = 2;
 					//Game::instance().returnToMenu();

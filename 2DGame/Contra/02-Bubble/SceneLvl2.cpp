@@ -76,7 +76,11 @@ void SceneLvl2::spawnSoldierCs() {
 
 void SceneLvl2::init()
 {
+	SoundManager::getInstance()->removeAllSound();
+	SoundManager::getInstance()->playSound("sounds/level1.ogg", true, 0.5f);
+
 	deadPlayer = false;
+	levelComplete = false;
 
 	if (soldierCs.size() != 0) soldierCs.clear();
 	if (minas.size() != 0) minas.clear();
@@ -93,6 +97,7 @@ void SceneLvl2::init()
 	currentTime = 0.0f;
 	entityManager = new EntityManagerCenital();
 	entityManager->init(player, &texProgram);
+	entityManager->setMap(map);
 
 	spawnMines();
 	spawnSoldierCs();
@@ -102,7 +107,7 @@ void SceneLvl2::update(int deltaTime)
 {
 	currentTime += deltaTime;
 
-	if (!levelComplete) player->update(deltaTime);
+	if (!levelComplete) player->update(deltaTime, texProgram);
 	entityManager->update(deltaTime);
 	int tSize = map->getTileSize();
 	if (deadPlayer) gameOver->update();
@@ -126,9 +131,18 @@ void SceneLvl2::update(int deltaTime)
 void SceneLvl2::render()
 {
 	glm::mat4 modelview;
+
+
 	float playerX = player->getPosition().x;
 	float playerY = player->getPosition().y;
-	projection = glm::ortho(playerX+64 - float(SCREEN_WIDTH - 1) / 2.0f - 64.f * 1, playerX+64 + float(SCREEN_WIDTH - 1) / 2.0f + 64.f * 1, playerY+64 + float(SCREEN_HEIGHT - 1) / 2.0f + 64.f*1, playerY+64 - float(SCREEN_HEIGHT - 1) / 2.0f - 64.f * 1);
+	if (player->getDeathFinished()) {
+		float iniX = player->getPosition().x - float(SCREEN_WIDTH - 1) / 2;
+		float finalX = player->getPosition().x + float(SCREEN_WIDTH - 1) / 2;
+		projection = glm::ortho(iniX, finalX, float(SCREEN_HEIGHT - 1), 0.f);
+	}
+	else {
+		projection = glm::ortho(playerX+64 - float(SCREEN_WIDTH - 1) / 2.0f - 64.f * 1, playerX+64 + float(SCREEN_WIDTH - 1) / 2.0f + 64.f * 1, playerY+64 + float(SCREEN_HEIGHT - 1) / 2.0f + 64.f*1, playerY+64 - float(SCREEN_HEIGHT - 1) / 2.0f - 64.f * 1);
+	}
 	texProgram.use();
 	texProgram.setUniformMatrix4f("projection", projection);
 	texProgram.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
@@ -163,10 +177,8 @@ void SceneLvl2::render()
 			deathTime = glutGet(GLUT_ELAPSED_TIME);
 			gameOver = new GameOver();
 			gameOver->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, player->getPosition());
-			cout << "Inicializado correctamente GameOver" << endl;
 		}
 		if (deathTime + 1000 < glutGet(GLUT_ELAPSED_TIME)) {
-			//cout << "rendering Game Over" << endl;
 			gameOver->render();
 
 		}
@@ -183,7 +195,6 @@ void SceneLvl2::render()
 			Game::instance().changeLevel(3);
 		}
 	}
-
 }
 
 void SceneLvl2::initShaders()

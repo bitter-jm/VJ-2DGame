@@ -90,6 +90,7 @@ void Scene::init()
 	if (soldierBs.size() != 0) soldierBs.clear();
 
 	deadPlayer = false;
+	levelComplete = false;
 
 	initShaders();
 	map = TileMap::createTileMap("levels/level1.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
