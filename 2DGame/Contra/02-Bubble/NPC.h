@@ -14,6 +14,7 @@ public:
 	void setPosition(const glm::vec2& pos);
 	void setEntityManager(EntityManager* em);
 	bool is_dead();
+	bool is_dying();
 	glm::vec2 getPosition();
 	void setPlayer(Player* p);
 	void reduceHP(float dmg);
