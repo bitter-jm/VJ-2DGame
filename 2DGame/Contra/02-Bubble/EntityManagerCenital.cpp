@@ -40,6 +40,8 @@ void EntityManagerCenital::update(int deltaTime)
 
 	checkCollisionPlayer();
 
+	checkCollisionWalls();
+
 	set<int> toErase;
 	for (auto& x : projectiles) {
 		x.second.update(deltaTime);
@@ -128,6 +130,28 @@ void EntityManagerCenital::checkCollisionPlayer() {
 				p.second.collisioned();
 				player->kill();
 			}
+		}
+	}
+}
+
+void EntityManagerCenital::setMap(TileMap* m) {
+	map = m;
+}
+
+void EntityManagerCenital::checkCollisionWalls() {
+	for (auto& p : projectiles) {
+		int a = 0;
+		if (map->collisionMoveLeft(p.second.getPosition(), glm::ivec2(16, 16))) {
+			p.second.collisioned();
+		}
+		else if (map->collisionMoveRight(p.second.getPosition(), glm::ivec2(16, 16))) {
+			p.second.collisioned();
+		}
+		else if (map->collisionMoveUp(p.second.getPosition(), glm::ivec2(16, 16))) {
+			p.second.collisioned();
+		}
+		else if (map->collisionMoveDown(p.second.getPosition(), glm::ivec2(16, 16), &a)) {
+			p.second.collisioned();
 		}
 	}
 }

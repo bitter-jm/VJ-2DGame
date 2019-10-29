@@ -39,6 +39,7 @@ void BossScene::init()
 
 	spreadgunHidden = false;
 	deadPlayer = false;
+	levelComplete = false;
 
 	initShaders();
 	map = TileMap::createTileMap("levels/bossLevel.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);

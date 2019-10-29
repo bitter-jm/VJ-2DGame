@@ -77,6 +77,7 @@ void SceneLvl2::spawnSoldierCs() {
 void SceneLvl2::init()
 {
 	deadPlayer = false;
+	levelComplete = false;
 
 	if (soldierCs.size() != 0) soldierCs.clear();
 	if (minas.size() != 0) minas.clear();
@@ -93,6 +94,7 @@ void SceneLvl2::init()
 	currentTime = 0.0f;
 	entityManager = new EntityManagerCenital();
 	entityManager->init(player, &texProgram);
+	entityManager->setMap(map);
 
 	spawnMines();
 	spawnSoldierCs();
@@ -183,7 +185,6 @@ void SceneLvl2::render()
 			Game::instance().changeLevel(3);
 		}
 	}
-
 }
 
 void SceneLvl2::initShaders()
