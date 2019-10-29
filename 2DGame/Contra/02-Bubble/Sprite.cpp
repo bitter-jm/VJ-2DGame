@@ -8,7 +8,7 @@
 Sprite *Sprite::createSprite(const glm::vec2 &quadSize, const glm::vec2 &sizeInSpritesheet, Texture *spritesheet, ShaderProgram *program)
 {
 	Sprite *quad = new Sprite(quadSize, sizeInSpritesheet, spritesheet, program);
-
+	 
 	return quad;
 }
 
@@ -96,6 +96,7 @@ void Sprite::addKeyframe(int animId, const glm::vec2 &displacement)
 
 void Sprite::changeAnimation(int animId)
 {
+	//cout << animId << endl;
 	if(animId < int(animations.size()))
 	{
 		currentAnimation = animId;

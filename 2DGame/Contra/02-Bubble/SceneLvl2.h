@@ -3,15 +3,13 @@
 
 #include <glm/glm.hpp>
 #include "ShaderProgram.h"
-#include "TileMap.h"
-#include "PlayerCenital.h"
+//#include "TileMap.h"
+#include "PlayerCenital.h" 
 #include "EntityManagerCenital.h"
 #include "GameOver.h"
 #include "NPC.h"
-#include "Turret.h"
-#include "SoldierA.h"
-#include "SoldierB.h"
-#include "SpreadGun.h"
+#include "Mina.h"
+#include "SoldierC.h"
 #include "SoundManager.h"
 
 // SceneLvl2 contains all the entities of our game.
@@ -31,6 +29,8 @@ public:
 
 private:
 	void initShaders();
+	void spawnMines();
+	void spawnSoldierCs();
 
 private:
 	TileMap* map;
@@ -39,6 +39,8 @@ private:
 	ShaderProgram texProgram;
 	float currentTime;
 	glm::mat4 projection;
+	vector<Mina*> minas;
+	vector<SoldierC*> soldierCs;
 	EntityManagerCenital* entityManager;
 	int deathTime;
 	bool deadPlayer, levelComplete;

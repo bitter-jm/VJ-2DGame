@@ -12,13 +12,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="BossScene.h" />
     <ClInclude Include="EntityManagerCenital.h" />
+    <ClInclude Include="Flag.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="GameOver.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Life.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="Mina.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerCenital.h" />
@@ -29,6 +34,7 @@
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="SoldierA.h" />
     <ClInclude Include="SoldierB.h" />
+    <ClInclude Include="SoldierC.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpreadGun.h" />
     <ClInclude Include="Sprite.h" />
@@ -38,12 +44,17 @@
     <ClInclude Include="Tutorial.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossScene.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EntityManagerCenital.cpp" />
+    <ClCompile Include="Flag.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Life.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mina.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerCenital.cpp" />
@@ -56,6 +67,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="SoldierB.cpp" />
+    <ClCompile Include="SoldierC.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpreadGun.cpp" />
     <ClCompile Include="Sprite.cpp" />

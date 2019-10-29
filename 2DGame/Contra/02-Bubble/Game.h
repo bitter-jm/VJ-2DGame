@@ -9,7 +9,7 @@
 #include "SceneLvl2.h"
 
 
-#define SCREEN_WIDTH 512*1.5
+#define SCREEN_WIDTH 512*1.5 
 #define SCREEN_HEIGHT 512
 
 

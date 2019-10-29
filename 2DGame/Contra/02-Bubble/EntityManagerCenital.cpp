@@ -5,12 +5,12 @@
 #include <set>
 #include "Projectile.h"
 #include "Game.h"
-
+ 
 using namespace std;
 
 #define playerRange 7
 #define PROJECTILESIZE 16
-#define PLAYERHEIGHT 32
+#define PLAYERHEIGHT 48
 #define PLAYERWIDTH 48
 
 //EntityManagerCenital::EntityManagerCenital()
@@ -108,8 +108,8 @@ void EntityManagerCenital::checkCollisionPlayer() {
 
 			int pX = p.second.getPosition().x;
 			int pY = p.second.getPosition().y;
-			int playerX = player->getPosition().x;
-			int playerY = player->getPosition().y + 8;
+			int playerX = player->getPosition().x+40;
+			int playerY = player->getPosition().y+40;
 
 
 			if (pX + PROJECTILESIZE >= playerX && pX + PROJECTILESIZE <= playerX + PLAYERWIDTH && pY >= playerY && pY <= playerY + PLAYERHEIGHT) { //RIGHT UP

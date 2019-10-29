@@ -8,7 +8,7 @@ void NPC::update(int deltaTime)
 }
 
 void NPC::render()
-{
+{ 
 	sprite->render();
 }
 

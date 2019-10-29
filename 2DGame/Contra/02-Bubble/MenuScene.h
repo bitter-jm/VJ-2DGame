@@ -7,7 +7,7 @@
 #include "Tutorial.h"
 
 // MenuScene contains all the entities of our game.
-// It is responsible for updating and render them.
+// It is responsible for updating and render them. 
 
 
 class MenuScene

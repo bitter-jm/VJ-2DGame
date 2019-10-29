@@ -4,7 +4,7 @@
 #include <iostream>
 #include <set>
 #include "Projectile.h"
-#include "Game.h"
+#include "Game.h" 
 
 using namespace std;
 
@@ -108,12 +108,15 @@ void EntityManager::render()
 	}
 }
 
-void EntityManager::createProjectile(glm::vec2 initPos, int angle, int vel, int type, int range) {
+void EntityManager::createProjectile(glm::vec2 initPos, int angle, int vel, int type, int range, float dmg) {
 	Projectile p;
 	projectiles[nextProjectileID] = p;
 	projectiles[nextProjectileID].init(nextProjectileID, initPos.x, initPos.y, angle, vel, type, range, true, *shaderProgram);
+	projectiles[nextProjectileID].setDmg(dmg);
 	nextProjectileID++;
 }
+
+
 
 void EntityManager::destroyProjectile(int id) {
 
@@ -155,27 +158,31 @@ void EntityManager::checkCollisionPlayer() {
 	for (auto& p : projectiles) {
 		if (p.second.isEnemyProjectile() && !p.second.isExploding()) {
 
+			float dmg = p.second.getDmg();
 			int pX = p.second.getPosition().x;
 			int pY = p.second.getPosition().y;
 			int playerX = player->getPosition().x;
 			int playerY = player->getPosition().y+8;
 
-
 			if (pX + PROJECTILESIZE >= playerX && pX + PROJECTILESIZE <= playerX + PLAYERWIDTH && pY >= playerY && pY <= playerY + PLAYERHEIGHT) { //RIGHT UP
 				p.second.collisioned();
-				player->kill();
+				SoundManager::getInstance()->playSound("sounds/hurt.ogg", false, 0.5);
+				player->reduceHP(dmg);
 			}
-			if (pX + PROJECTILESIZE >= playerX && pX + PROJECTILESIZE <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //RIGHT DOWN
+			else if (pX + PROJECTILESIZE >= playerX && pX + PROJECTILESIZE <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //RIGHT DOWN
 				p.second.collisioned();
-				player->kill();
+				SoundManager::getInstance()->playSound("sounds/hurt.ogg", false, 0.5);
+				player->reduceHP(dmg);
 			}
-			if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY >= playerY && pY <= playerY + PLAYERHEIGHT) { //LEFT UP
+			else if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY >= playerY && pY <= playerY + PLAYERHEIGHT) { //LEFT UP
 				p.second.collisioned();
-				player->kill();
+				SoundManager::getInstance()->playSound("sounds/hurt.ogg", false, 0.5);
+				player->reduceHP(dmg);
 			}
-			if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //LEFT DOWN
+			else if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //LEFT DOWN
 				p.second.collisioned();
-				player->kill();
+				SoundManager::getInstance()->playSound("sounds/hurt.ogg", false, 0.5);
+				player->reduceHP(dmg);
 			}
 		}
 	}

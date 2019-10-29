@@ -3,13 +3,14 @@
 #include "TileMap.h"
 #include "Player.h"
 #include "EntityManager.h"
+#include <math.h>     
 
 class NPC
 {
 public:
 	void update(int deltaTime);
 	void render();
-	void setTileMap(TileMap* tileMap);
+	void setTileMap(TileMap* tileMap); 
 	void setPosition(const glm::vec2& pos);
 	void setEntityManager(EntityManager* em);
 	bool is_dead();

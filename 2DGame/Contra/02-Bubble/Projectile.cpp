@@ -4,7 +4,7 @@
 #include <GL/glut.h>
 #include "Projectile.h"
 
-# define M_PI 3.14159265358979323846  /* pi */
+# define M_PI 3.14159265358979323846  /* pi */ 
 #define EXPLODING_TIME 300
 #define TILESIZE 64
 
@@ -40,11 +40,28 @@ void Projectile::init(int ID, int x, int y, int a, int v, int t, float range, bo
 		sprite->addKeyframe(FLYING, glm::vec2(0.3f, 0.f));
 	} 
 	else {
-		sprite->setAnimationSpeed(FLYING, 8);
-		sprite->addKeyframe(FLYING, glm::vec2(0.0f, 0.2f));
-		sprite->addKeyframe(FLYING, glm::vec2(0.1f, 0.2f));
-		sprite->addKeyframe(FLYING, glm::vec2(0.2f, 0.2f));
-		sprite->addKeyframe(FLYING, glm::vec2(0.3f, 0.2f));
+		if (type == 2) {
+			sprite->setAnimationSpeed(FLYING, 8);
+			sprite->addKeyframe(FLYING, glm::vec2(0.f, 0.4f));
+			sprite->addKeyframe(FLYING, glm::vec2(0.1f, 0.4f));
+		}
+		else if (type == 4) {
+			sprite->setAnimationSpeed(FLYING, 8);
+			sprite->addKeyframe(FLYING, glm::vec2(0.f, 0.3f));
+		}
+		else if (type == 5) {
+			sprite->setAnimationSpeed(FLYING, 8);
+			sprite->addKeyframe(FLYING, glm::vec2(0.1f, 0.3f));
+			sprite->addKeyframe(FLYING, glm::vec2(0.2f, 0.3f));
+			sprite->addKeyframe(FLYING, glm::vec2(0.3f, 0.3f));
+		}
+		else {
+			sprite->setAnimationSpeed(FLYING, 8);
+			sprite->addKeyframe(FLYING, glm::vec2(0.0f, 0.2f));
+			sprite->addKeyframe(FLYING, glm::vec2(0.1f, 0.2f));
+			sprite->addKeyframe(FLYING, glm::vec2(0.2f, 0.2f));
+			sprite->addKeyframe(FLYING, glm::vec2(0.3f, 0.2f));
+		}
 	}
 
 	sprite->setAnimationSpeed(EXPLODING, 20);
@@ -58,6 +75,8 @@ void Projectile::init(int ID, int x, int y, int a, int v, int t, float range, bo
 	sprite->changeAnimation(0);
 	sprite->setPosition(glm::vec2(float(posProjectile.x), float(posProjectile.y)));
 }
+
+
 
 void Projectile::update(int deltaTime)
 {
@@ -132,4 +151,12 @@ bool Projectile::isEnemyProjectile() {
 
 bool Projectile::isExploding() {
 	return (sprite->animation() == EXPLODING);
+}
+
+int Projectile::getDmg() {
+	return dmg;
+}
+
+void Projectile::setDmg(float dmg) {
+	this->dmg = dmg;
 }

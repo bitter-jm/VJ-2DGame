@@ -7,7 +7,7 @@
 #include <servprov.h>
 #include "Menu.h"
 #include "Shader.h"
-#include "Game.h"
+#include "Game.h" 
 
 // Desplazamiento de pantalla 
 #define SCREEN_X 0
@@ -15,6 +15,8 @@
 
 void Menu::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 {
+	SoundManager::getInstance()->playSound("sounds/mainMenu.ogg", false);
+
 	buttonSound1 = false;
 	buttonSound2 = false;
 
@@ -78,9 +80,7 @@ void Menu::update()
 		if (absMX > 191 && absMX < 389) {
 			if (absMY > 347 && absMY < 416) {
 				if (absMY < 380) {
-					SoundManager::getInstance()->removeSound("sounds/mainMenu.ogg");
-					Game::instance().changeLevel(1);
-					SoundManager::getInstance()->playSound("sounds/level1.ogg", true, 0.5f);
+					Game::instance().changeLevel(2);
 				}
 				else {
 					Game::instance().menuToTutorial();

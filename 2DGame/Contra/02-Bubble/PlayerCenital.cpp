@@ -6,7 +6,7 @@
 #include "Game.h"
 
 # define M_PI 3.14159265358979323846  /* pi */
-
+ 
 #define JUMP_ANGLE_STEP 4
 #define JUMP_HEIGHT 96
 #define FALL_STEP 4
@@ -186,52 +186,52 @@ void PlayerCenital::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProg
 	sprite->addKeyframe(PS338, glm::vec2(0.0625f * 4.f, 0.0625f * 11.f));
 
 	// DYING
-	sprite->setAnimationSpeed(PD0,5);
+	sprite->setAnimationSpeed(PD0,2);
 	sprite->addKeyframe(PD0, glm::vec2(0.0625f * 5.f, 0.0625f * 12.f));
 	sprite->addKeyframe(PD0, glm::vec2(0.0625f * 6.f, 0.0625f * 12.f));
-	sprite->setAnimationSpeed(PD22, 5);
+	sprite->setAnimationSpeed(PD22, 2);
 	sprite->addKeyframe(PD22, glm::vec2(0.0625f * 5.f, 0.0625f * 13.f));
 	sprite->addKeyframe(PD22, glm::vec2(0.0625f * 6.f, 0.0625f * 13.f));
-	sprite->setAnimationSpeed(PD45, 5);
+	sprite->setAnimationSpeed(PD45, 2);
 	sprite->addKeyframe(PD45, glm::vec2(0.0625f * 5.f, 0.0625f * 14.f));
 	sprite->addKeyframe(PD45, glm::vec2(0.0625f * 6.f, 0.0625f * 14.f));
-	sprite->setAnimationSpeed(PD67, 5);
+	sprite->setAnimationSpeed(PD67, 2);
 	sprite->addKeyframe(PD67, glm::vec2(0.0625f * 5.f, 0.0625f * 15.f));
 	sprite->addKeyframe(PD67, glm::vec2(0.0625f * 6.f, 0.0625f * 15.f));
-	sprite->setAnimationSpeed(PD90, 5);
+	sprite->setAnimationSpeed(PD90, 2);
 	sprite->addKeyframe(PD90, glm::vec2(0.0625f * 5.f, 0.f));
 	sprite->addKeyframe(PD90, glm::vec2(0.0625f * 6.f, 0.f));
-	sprite->setAnimationSpeed(PD112, 5);
+	sprite->setAnimationSpeed(PD112, 2);
 	sprite->addKeyframe(PD112, glm::vec2(0.0625f * 5.f, 0.0625f));
 	sprite->addKeyframe(PD112, glm::vec2(0.0625f * 6.f, 0.0625f));
-	sprite->setAnimationSpeed(PD135, 5);
+	sprite->setAnimationSpeed(PD135, 2);
 	sprite->addKeyframe(PD135, glm::vec2(0.0625f * 5.f, 0.0625f * 2.f));
 	sprite->addKeyframe(PD135, glm::vec2(0.0625f * 6.f, 0.0625f * 2.f));
-	sprite->setAnimationSpeed(PD157, 5);
+	sprite->setAnimationSpeed(PD157, 2);
 	sprite->addKeyframe(PD157, glm::vec2(0.0625f * 5.f, 0.0625f * 3.f));
 	sprite->addKeyframe(PD157, glm::vec2(0.0625f * 6.f, 0.0625f * 3.f));
-	sprite->setAnimationSpeed(PD180, 5);
+	sprite->setAnimationSpeed(PD180, 2);
 	sprite->addKeyframe(PD180, glm::vec2(0.0625f * 5.f, 0.0625f * 4.f));
 	sprite->addKeyframe(PD180, glm::vec2(0.0625f * 6.f, 0.0625f * 4.f));
-	sprite->setAnimationSpeed(PD203, 5);
+	sprite->setAnimationSpeed(PD203, 2);
 	sprite->addKeyframe(PD203, glm::vec2(0.0625f * 5.f, 0.0625f * 5.f));
 	sprite->addKeyframe(PD203, glm::vec2(0.0625f * 6.f, 0.0625f * 5.f));
-	sprite->setAnimationSpeed(PD225, 5);
+	sprite->setAnimationSpeed(PD225, 2);
 	sprite->addKeyframe(PD225, glm::vec2(0.0625f * 5.f, 0.0625f * 6.f));
 	sprite->addKeyframe(PD225, glm::vec2(0.0625f * 6.f, 0.0625f * 6.f));
-	sprite->setAnimationSpeed(PD248, 5);
+	sprite->setAnimationSpeed(PD248, 2);
 	sprite->addKeyframe(PD248, glm::vec2(0.0625f * 5.f, 0.0625f * 7.f));
 	sprite->addKeyframe(PD248, glm::vec2(0.0625f * 6.f, 0.0625f * 7.f));
-	sprite->setAnimationSpeed(PD270, 5);
+	sprite->setAnimationSpeed(PD270, 2);
 	sprite->addKeyframe(PD270, glm::vec2(0.0625f * 5.f, 0.0625f * 8.f));
 	sprite->addKeyframe(PD270, glm::vec2(0.0625f * 6.f, 0.0625f * 8.f));
-	sprite->setAnimationSpeed(PD293, 5);
+	sprite->setAnimationSpeed(PD293, 2);
 	sprite->addKeyframe(PD293, glm::vec2(0.0625f * 5.f, 0.0625f * 9.f));
 	sprite->addKeyframe(PD293, glm::vec2(0.0625f * 6.f, 0.0625f * 9.f));
-	sprite->setAnimationSpeed(PD314, 5);
+	sprite->setAnimationSpeed(PD314, 2);
 	sprite->addKeyframe(PD314, glm::vec2(0.0625f * 5.f, 0.0625f * 10.f));
 	sprite->addKeyframe(PD314, glm::vec2(0.0625f * 6.f, 0.0625f * 10.f));
-	sprite->setAnimationSpeed(PD338, 5);
+	sprite->setAnimationSpeed(PD338, 2);
 	sprite->addKeyframe(PD338, glm::vec2(0.0625f * 5.f, 0.0625f * 11.f));
 	sprite->addKeyframe(PD338, glm::vec2(0.0625f * 6.f, 0.0625f * 11.f));
 
@@ -278,8 +278,6 @@ void PlayerCenital::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProg
 // Encargado de hacer seguir el raton y disparar
 void PlayerCenital::changeBasicAction()
 {
-	if (dead) return;
-
 	posMouseX = Game::instance().getPosMouseX();
 	posMouseY = Game::instance().getPosMouseY();
 	int windowSizeX = glutGet(GLUT_WINDOW_WIDTH);
@@ -293,147 +291,281 @@ void PlayerCenital::changeBasicAction()
 	//PLAYER -> X = windowSizeX / 2		sobre [0, windowSizeX]
 	//MOUSE -> X = posMouseX			sobre [0, windowSizeX]
 	// double angulo = atan2(MOUSE.Y - PLAYER.Y, MOUSE.X - PLAYER.X) * 180 / M_PI;
-	angle = atan2(posMouseY - windowSizeY / 2, posMouseX - windowSizeX / 2) * 180 / M_PI;
-	angle = -angle;
-	if (angle < 0) angle = 360 + angle % 360;
+	if (!dead) {
+		angle = atan2(posMouseY - windowSizeY / 2, posMouseX - windowSizeX / 2) * 180 / M_PI;
+		angle = -angle;
+		if (angle < 0) angle = 360 + angle % 360;
+	}
 
 	// SHOOTING**
 	// CURRENT TIME -> glutGet(GLUT_ELAPSED_TIME)
 	// LAST SHOOTED -> lastShot
 	// CURRENTLY SHOOTING -> shooting
-	if (!shooting && Game::instance().isMousePressed() && lastShot + 400 <= glutGet(GLUT_ELAPSED_TIME) && basicAction != OTHERS) {
-		// Initial shoot action
-		shooting = true;
-		lastShot = glutGet(GLUT_ELAPSED_TIME);
-		shoot(angle, posPlayerCenital.x, posPlayerCenital.y);
+	if (!dead) {
+		if (!shooting && Game::instance().isMousePressed() && lastShot + 400 <= glutGet(GLUT_ELAPSED_TIME) && basicAction != OTHERS) {
+			// Initial shoot action
+			shooting = true;
+			lastShot = glutGet(GLUT_ELAPSED_TIME);
+			shoot(angle, posPlayerCenital.x, posPlayerCenital.y);
+		}
+		else if (lastShot < glutGet(GLUT_ELAPSED_TIME) && lastShot + 75 >= glutGet(GLUT_ELAPSED_TIME) && basicAction != OTHERS) {
+			// Shooting animation
+			shooting = true;
+		}
+		else {
+			shooting = false;
+		}
 	}
-	else if (lastShot < glutGet(GLUT_ELAPSED_TIME) && lastShot + 75 >= glutGet(GLUT_ELAPSED_TIME) && basicAction != OTHERS) {
-		// Shooting animation
-		shooting = true;
-	}
-	else {
-		shooting = false;
-	}
+	else shooting = false;
 
 	// DYING**
 	bool renderDying = false;
 	bool renderDead = false;
-	if (dead && deathTime + 500 >= glutGet(GLUT_ELAPSED_TIME)) {
+	if (dead && deathTime + 1000 >= glutGet(GLUT_ELAPSED_TIME)) {
 		renderDying = true;
 	}
 	else if (dead) {
 		renderDead = true;
+		deathFinished = true;
 	}
 
 
 	if (angle > 349 || angle <= 11) {
-		if (renderDying && sprite->animation() != PD0) sprite->changeAnimation(PD0);
-		else if (renderDead && sprite->animation() != PDE0) sprite->changeAnimation(PDE0);
+		if (renderDying) {
+			if (sprite->animation() != PD0) {
+				sprite->changeAnimation(PD0);
+			}
+		}
+		else if (renderDead) {
+			if (sprite->animation() != PDE0) {
+				sprite->changeAnimation(PDE0);
+			}
+		}
 		else if (shooting) sprite->changeAnimation(PS0);
 		else if (moving && sprite->animation() != PR0) sprite->changeAnimation(PR0);
 		else if (!moving && sprite->animation() != P0) sprite->changeAnimation(P0);
 	}
 	else if (angle <= 33) {
-		if (renderDying && sprite->animation() != PD22) sprite->changeAnimation(PD22);
-		else if (renderDead && sprite->animation() != PDE22) sprite->changeAnimation(PDE22);
+		if (renderDying) {
+			if (sprite->animation() != PD22) {
+				sprite->changeAnimation(PD22);
+			}
+		}
+		else if (renderDead) {
+			if (sprite->animation() != PDE22) {
+				sprite->changeAnimation(PDE22);
+			}
+		}
 		else if (shooting) sprite->changeAnimation(PS22);
 		else if (moving && sprite->animation() != PR22) sprite->changeAnimation(PR22);
 		else if (!moving && sprite->animation() != P22) sprite->changeAnimation(P22);
 	}
 	else if (angle <= 56) {
-		if (renderDying && sprite->animation() != PD45) sprite->changeAnimation(PD45);
-		else if (renderDead && sprite->animation() != PDE45) sprite->changeAnimation(PDE45);
+		if (renderDying) {
+			if (sprite->animation() != PD45) {
+				sprite->changeAnimation(PD45);
+			}
+		}
+		else if (renderDead) {
+			if (sprite->animation() != PDE45) {
+				sprite->changeAnimation(PDE45);
+			}
+		}
 		else if (shooting) sprite->changeAnimation(PS45);
 		else if (moving && sprite->animation() != PR45) sprite->changeAnimation(PR45);
 		else if (!moving && sprite->animation() != P45) sprite->changeAnimation(P45);
 	}
 	else if (angle <= 78) {
-		if (renderDying && sprite->animation() != PD67) sprite->changeAnimation(PD67);
-		else if (renderDead && sprite->animation() != PDE67) sprite->changeAnimation(PDE67);
+		if (renderDying) {
+			if (sprite->animation() != PD67) {
+				sprite->changeAnimation(PD67);
+			}
+		}
+		else if (renderDead) {
+			if (sprite->animation() != PDE67) {
+				sprite->changeAnimation(PDE67);
+			}
+		}
 		else if (shooting) sprite->changeAnimation(PS67);
 		else if (moving && sprite->animation() != PR67) sprite->changeAnimation(PR67);
 		else if (!moving && sprite->animation() != P67) sprite->changeAnimation(P67);
 	}
 	else if (angle <= 101) {
-		if (renderDying && sprite->animation() != PD90) sprite->changeAnimation(PD90);
-		else if (renderDead && sprite->animation() != PDE90) sprite->changeAnimation(PDE90);
+		if (renderDying) {
+			if (sprite->animation() != PD90) {
+				sprite->changeAnimation(PD90);
+			}
+		}
+		else if (renderDead) {
+			if (sprite->animation() != PDE90) {
+				sprite->changeAnimation(PDE90);
+			}
+		}
 		else if (shooting) sprite->changeAnimation(PS90);
 		else if (moving && sprite->animation() != PR90) sprite->changeAnimation(PR90);
 		else if (!moving && sprite->animation() != P90) sprite->changeAnimation(P90);
 	}
 	else if (angle <= 123) {
-		if (renderDying && sprite->animation() != PD112) sprite->changeAnimation(PD112);
-		else if (renderDead && sprite->animation() != PDE112) sprite->changeAnimation(PDE112);
+		if (renderDying) {
+			if (sprite->animation() != PD112) {
+				sprite->changeAnimation(PD112);
+			}
+		}
+		else if (renderDead) {
+			if (sprite->animation() != PDE112) {
+				sprite->changeAnimation(PDE112);
+			}
+		}
 		else if (shooting) sprite->changeAnimation(PS112);
 		else if (moving && sprite->animation() != PR112) sprite->changeAnimation(PR112);
 		else if (!moving && sprite->animation() != P112) sprite->changeAnimation(P112);
 	}
 	else if (angle <= 146) {
-		if (renderDying && sprite->animation() != PD135) sprite->changeAnimation(PD135);
-		else if (renderDead && sprite->animation() != PDE135) sprite->changeAnimation(PDE135);
+		if (renderDying) {
+			if (sprite->animation() != PD135) {
+				sprite->changeAnimation(PD135);
+			}
+		}
+		else if (renderDead) {
+			if (sprite->animation() != PDE135) {
+				sprite->changeAnimation(PDE135);
+			}
+		}
 		else if (shooting) sprite->changeAnimation(PS135);
 		else if (moving && sprite->animation() != PR135) sprite->changeAnimation(PR135);
 		else if (!moving && sprite->animation() != P135) sprite->changeAnimation(P135);
 	}
 	else if (angle <= 168) {
-		if (renderDying && sprite->animation() != PD157) sprite->changeAnimation(PD157);
-		else if (renderDead && sprite->animation() != PDE157) sprite->changeAnimation(PDE157);
+	if (renderDying) {
+		if (sprite->animation() != PD157) {
+			sprite->changeAnimation(PD157);
+		}
+	}
+	else if (renderDead) {
+		if (sprite->animation() != PDE157) {
+			sprite->changeAnimation(PDE157);
+		}
+	}
 		else if (shooting) sprite->changeAnimation(PS157);
 		else if (moving && sprite->animation() != PR157) sprite->changeAnimation(PR157);
 		else if (!moving && sprite->animation() != P157) sprite->changeAnimation(P157);
 	}
 	else if (angle <= 191) {
-		if (renderDying && sprite->animation() != PD180) sprite->changeAnimation(PD180);
-		else if (renderDead && sprite->animation() != PDE180) sprite->changeAnimation(PDE180);
+	if (renderDying) {
+		if (sprite->animation() != PD180) {
+			sprite->changeAnimation(PD180);
+		}
+	}
+	else if (renderDead) {
+		if (sprite->animation() != PDE180) {
+			sprite->changeAnimation(PDE180);
+		}
+	}
 		else if (shooting) sprite->changeAnimation(PS180);
 		else if (moving && sprite->animation() != PR180) sprite->changeAnimation(PR180);
 		else if (!moving && sprite->animation() != P180) sprite->changeAnimation(P180);
 	}
 	else if (angle <= 214) {
-		if (renderDying && sprite->animation() != PD203) sprite->changeAnimation(PD203);
-		else if (renderDead && sprite->animation() != PDE203) sprite->changeAnimation(PDE203);
+	if (renderDying) {
+		if (sprite->animation() != PD203) {
+			sprite->changeAnimation(PD203);
+		}
+	}
+	else if (renderDead) {
+		if (sprite->animation() != PDE203) {
+			sprite->changeAnimation(PDE203);
+		}
+	}
 		else if (shooting) sprite->changeAnimation(PS203);
 		else if (moving && sprite->animation() != PR203) sprite->changeAnimation(PR203);
 		else if (!moving && sprite->animation() != P203) sprite->changeAnimation(P203);
 	}
 	else if (angle <= 236) {
-		if (renderDying && sprite->animation() != PD225) sprite->changeAnimation(PD225);
-		else if (renderDead && sprite->animation() != PDE225) sprite->changeAnimation(PDE225);
+	if (renderDying) {
+		if (sprite->animation() != PD225) {
+			sprite->changeAnimation(PD225);
+		}
+	}
+	else if (renderDead) {
+		if (sprite->animation() != PDE225) {
+			sprite->changeAnimation(PDE225);
+		}
+	}
 		else if (shooting) sprite->changeAnimation(PS225);
 		else if (moving && sprite->animation() != PR225) sprite->changeAnimation(PR225);
 		else if (!moving && sprite->animation() != P225) sprite->changeAnimation(P225);
 	}
 	else if (angle <= 259) {
-		if (renderDying && sprite->animation() != PD248) sprite->changeAnimation(PD248);
-		else if (renderDead && sprite->animation() != PDE248) sprite->changeAnimation(PDE248);
+	if (renderDying) {
+		if (sprite->animation() != PD248) {
+			sprite->changeAnimation(PD248);
+		}
+	}
+	else if (renderDead) {
+		if (sprite->animation() != PDE248) {
+			sprite->changeAnimation(PDE248);
+		}
+	}
 		else if (shooting) sprite->changeAnimation(PS248);
 		else if (moving && sprite->animation() != PR248) sprite->changeAnimation(PR248);
 		else if (!moving && sprite->animation() != P248) sprite->changeAnimation(P248);
 	}
 	else if (angle <= 281) {
-		if (renderDying && sprite->animation() != PD270) sprite->changeAnimation(PD270);
-		else if (renderDead && sprite->animation() != PDE270) sprite->changeAnimation(PDE270);
+	if (renderDying) {
+		if (sprite->animation() != PD270) {
+			sprite->changeAnimation(PD270);
+		}
+	}
+	else if (renderDead) {
+		if (sprite->animation() != PDE270) {
+			sprite->changeAnimation(PDE270);
+		}
+	}
 		else if (shooting) sprite->changeAnimation(PS270);
 		else if (moving && sprite->animation() != PR270) sprite->changeAnimation(PR270);
 		else if (!moving && sprite->animation() != P270) sprite->changeAnimation(P270);
 	}
 	else if (angle <= 304) {
-		if (renderDying && sprite->animation() != PD293) sprite->changeAnimation(PD293);
-		else if (renderDead && sprite->animation() != PDE293) sprite->changeAnimation(PDE293);
+	if (renderDying) {
+		if (sprite->animation() != PD293) {
+			sprite->changeAnimation(PD293);
+		}
+	}
+	else if (renderDead) {
+		if (sprite->animation() != PDE293) {
+			sprite->changeAnimation(PDE293);
+		}
+	}
 		else if (shooting) sprite->changeAnimation(PS293);
 		else if (moving && sprite->animation() != PR293) sprite->changeAnimation(PR293);
 		else if (!moving && sprite->animation() != P293) sprite->changeAnimation(P293);
 	}
 	else if (angle <= 325) {
-		if (renderDying && sprite->animation() != PD314) sprite->changeAnimation(PD314);
-		else if (renderDead && sprite->animation() != PDE314) sprite->changeAnimation(PDE314);
+	if (renderDying) {
+		if (sprite->animation() != PD314) {
+			sprite->changeAnimation(PD314);
+		}
+	}
+	else if (renderDead) {
+		if (sprite->animation() != PDE314) {
+			sprite->changeAnimation(PDE314);
+		}
+	}
 		else if (shooting) sprite->changeAnimation(PS314);
 		else if (moving && sprite->animation() != PR314) sprite->changeAnimation(PR314);
 		else if (!moving && sprite->animation() != P314) sprite->changeAnimation(P314);
 	}
 	else if (angle <= 349) {
-		if (renderDying && sprite->animation() != PD338) sprite->changeAnimation(PD338);
-		else if (renderDead && sprite->animation() != PDE338) sprite->changeAnimation(PDE338);
+	if (renderDying) {
+		if (sprite->animation() != PD338) {
+			sprite->changeAnimation(PD338);
+		}
+	}
+	else if (renderDead) {
+		if (sprite->animation() != PDE338) {
+			sprite->changeAnimation(PDE338);
+		}
+	}
 		else if (shooting) sprite->changeAnimation(PS338);
 		else if (moving && sprite->animation() != PR338) sprite->changeAnimation(PR338);
 		else if (!moving && sprite->animation() != P338) sprite->changeAnimation(P338);
@@ -502,7 +634,6 @@ glm::vec2 PlayerCenital::getPosition()
 
 void PlayerCenital::shoot(double angulo, int x, int y)
 {
-	cout << "shooted" << endl;
 	if (currentGun == 1) SoundManager::getInstance()->playSound("sounds/defaultGun.ogg", false);
 	else if (currentGun == 2) SoundManager::getInstance()->playSound("sounds/shotGun.ogg", false);
 	shootedProjectile = true;

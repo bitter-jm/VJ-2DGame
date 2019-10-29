@@ -23,9 +23,15 @@
     <ClCompile Include="Tutorial.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="BossScene.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="SceneLvl2.cpp" />
     <ClCompile Include="PlayerCenital.cpp" />
     <ClCompile Include="EntityManagerCenital.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Flag.cpp" />
+    <ClCompile Include="Life.cpp" />
+    <ClCompile Include="Mina.cpp" />
+    <ClCompile Include="SoldierC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
@@ -50,8 +56,14 @@
     <ClInclude Include="Tutorial.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="BossScene.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="SceneLvl2.h" />
     <ClInclude Include="PlayerCenital.h" />
     <ClInclude Include="EntityManagerCenital.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Flag.h" />
+    <ClInclude Include="Life.h" />
+    <ClInclude Include="Mina.h" />
+    <ClInclude Include="SoldierC.h" />
   </ItemGroup>
 </Project>

@@ -5,10 +5,11 @@
 #include "TileMap.h"
 #include "Player.h"
 #include "EntityManager.h"
-#include "GameOver.h"
+#include "GameOver.h" 
 #include "NPC.h"
 #include "SpreadGun.h"
 #include "SoundManager.h"
+#include "Boss.h"
 
 class BossScene
 {
@@ -35,5 +36,7 @@ private:
 	bool spreadgunHidden;
 	int deathTime;
 	bool deadPlayer, levelComplete;
+	float completeTime, waitTime;
+	Boss* boss;
 };
 

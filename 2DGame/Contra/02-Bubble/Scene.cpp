@@ -5,8 +5,8 @@
 #include <GL/glut.h>
 #include "Scene.h"
 #include "Game.h"
-#include <servprov.h>
-#include "SoundManager.h"
+#include <servprov.h> 
+#include "SoundManager.h" 
 
 // Desplazamiento de pantalla
 #define SCREEN_X 0
@@ -15,8 +15,8 @@
 #define INIT_PLAYER_X_TILES 4
 #define INIT_PLAYER_Y_TILES 0
 
-#define LEVEL_COMPLETE_X 95
-#define LEVEL_COMPLETE_Y 6
+#define LEVEL_COMPLETE_X 95*64
+#define LEVEL_COMPLETE_Y 6*64 + 20
 
 #define SPREADGUN_X 41*64
 #define SPREADGUN_Y 3.25*64
@@ -64,7 +64,7 @@ void Scene::spawnSoldierAs() {
 		soldierAs.push_back(s);
 	}
 } 
-
+ 
 void Scene::spawnSoldierBs() {
 	enum Position { STAND_LEFT, EXPLODE };
 	vector<glm::ivec2> posSoldierBs = { glm::ivec2(13,1), glm::ivec2(20,3), glm::ivec2(34,2), glm::ivec2(52,1), glm::ivec2(78,0) };
@@ -81,12 +81,14 @@ void Scene::spawnSoldierBs() {
 
 void Scene::init()
 {
+	SoundManager::getInstance()->removeAllSound();
+	SoundManager::getInstance()->playSound("sounds/level1.ogg", true, 0.5f);
+	waitTime = 2.5; //s
 	// For restart level correctly
 	if (turrets.size() != 0) turrets.clear();
 	if (soldierAs.size() != 0) soldierAs.clear();
 	if (soldierBs.size() != 0) soldierBs.clear();
 
-	spreadgunHidden = false;
 	deadPlayer = false;
 
 	initShaders();
@@ -98,6 +100,7 @@ void Scene::init()
 	player->setTileMap(map);
 	spreadgun = new SpreadGun();
 	spreadgun->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(SPREADGUN_X, SPREADGUN_Y));
+	spreadgun->setHidden(false);
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
 	entityManager = new EntityManager();
@@ -106,17 +109,22 @@ void Scene::init()
 	spawnTurrets();
 	spawnSoldierAs();
 	spawnSoldierBs();
+
+	flag = new Flag();
+	flag->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(LEVEL_COMPLETE_X, LEVEL_COMPLETE_Y));
+	flag->setHidden(false);
 }
 
 void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
+	int tileSize = map->getTileSize();
 
-	if (!levelComplete) player->update(deltaTime);
+	if (!levelComplete) player->update(deltaTime, texProgram);
 	entityManager->update(deltaTime);
-	int tSize = map->getTileSize();
-	if (!spreadgunHidden && int((player->getPosition().x - SPREADGUN_X) / tSize) == 0 && int((player->getPosition().y - SPREADGUN_Y) / tSize) == 0) {
-		spreadgunHidden = true;
+	if (!spreadgun->is_Hidden() && int((player->getPosition().x - SPREADGUN_X) / tileSize) == 0
+		&& int((player->getPosition().y - SPREADGUN_Y) / tileSize) == 0) {
+		spreadgun->setHidden(true);
 		player->upgradeSpreadGun();
 	}
 	else spreadgun->update(deltaTime);
@@ -147,15 +155,17 @@ void Scene::update(int deltaTime)
 	}
 
 	//level completed
-	if (int(player->getPosition().x / map->getTileSize()) >= LEVEL_COMPLETE_X) {
-		if (!levelComplete) {
-			SoundManager::getInstance()->removeAllSound();
-			SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
-			levelComplete = true;
-		}
-		else {
-			Game::instance().changeLevel(2);
-		}
+	if (!levelComplete && int(player->getPosition().x / tileSize) == int(flag->getPosition().x/ tileSize) &&
+		int(player->getPosition().y / tileSize) == int(flag->getPosition().y / tileSize)) {
+		flag->setHidden(true);
+		levelComplete = true;
+		SoundManager::getInstance()->removeAllSound();
+		SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
+		completeTime = glutGet(GLUT_ELAPSED_TIME);
+	}
+
+	if (levelComplete && glutGet(GLUT_ELAPSED_TIME) - completeTime >= waitTime*1000) {
+		Game::instance().changeLevel(2);
 	}
 
 	if (deadPlayer) gameOver->update();
@@ -181,7 +191,8 @@ void Scene::render()
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 
 	map->render();
-	if (!spreadgunHidden) spreadgun->render();
+	if (!spreadgun->is_Hidden()) spreadgun->render();
+	if (!flag->is_Hidden()) flag->render();
 	player->render();
 	entityManager->render();
 

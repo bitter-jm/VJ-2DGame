@@ -5,7 +5,7 @@
 #include "ShaderProgram.h"
 
 class Projectile
-{
+{ 
 	
 public:
 	void init(int ID, int x, int y, int a, int v, int t, float range, bool e, ShaderProgram& shaderProgram);
@@ -17,6 +17,8 @@ public:
 	bool needToDelete();
 	bool isEnemyProjectile();
 	bool isExploding();
+	int getDmg();
+	void setDmg(float dmg);
 
 private:
 	Texture spritesheet;
@@ -33,6 +35,7 @@ private:
 	bool deleteProjectile = false;
 	float range;
 	int timesUpdated;
+	float dmg = 1.f;
 };
 
 

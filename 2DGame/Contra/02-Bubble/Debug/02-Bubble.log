@@ -1,6 +1,11 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (02-Bubble.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  PlayerCenital.cpp
-C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\PlayerCenital.cpp(296,80): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+  SoldierC.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierC.cpp(38,27): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierC.cpp(39,31): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierC.cpp(88,20): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xtgmath.h(22,101): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierC.cpp(130,97): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierC.cpp(130,77): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
 SOIL.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_DXT.obj)' o en 'C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 SOIL.lib(image_helper.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_helper.obj)' o en 'C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 SOIL.lib(SOIL.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(SOIL.obj)' o en 'C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración

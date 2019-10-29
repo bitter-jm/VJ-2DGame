@@ -5,7 +5,7 @@
 
 using namespace std;
 
-
+ 
 Texture::Texture()
 {
 	wrapS = GL_REPEAT;

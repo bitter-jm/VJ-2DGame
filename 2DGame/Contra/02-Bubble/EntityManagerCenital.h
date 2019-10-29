@@ -7,7 +7,7 @@
 #include "ShaderProgram.h"
 
 class EntityManagerCenital
-{
+{ 
 
 public:
 	//EntityManager() {}

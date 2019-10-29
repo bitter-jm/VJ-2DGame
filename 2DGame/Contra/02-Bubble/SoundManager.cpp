@@ -6,7 +6,7 @@ SoundManager* SoundManager::instance = 0;
 SoundManager* SoundManager::getInstance()
 {
 	if (instance == 0)
-	{
+	{ 
 		instance = new SoundManager();
 		instance->init();
 	}

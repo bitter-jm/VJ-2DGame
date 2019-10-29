@@ -7,7 +7,7 @@
 
 class Tutorial
 {
-
+ 
 public:
 
 	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram);

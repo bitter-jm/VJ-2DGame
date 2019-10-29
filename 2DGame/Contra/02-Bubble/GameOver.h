@@ -9,7 +9,7 @@ class GameOver
 {
 
 public:
-	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, glm::ivec2 posPlayer);
+	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, glm::ivec2 posPlayer); 
 	void render();
 	void update();
 

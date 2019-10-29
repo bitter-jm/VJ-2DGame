@@ -4,7 +4,7 @@
 #include <map>
 #include "Player.h"
 #include "Projectile.h"
-#include "ShaderProgram.h"
+#include "ShaderProgram.h" 
 
 class EntityManager
 {
@@ -14,8 +14,10 @@ public:
 
 	void init(Player *p, ShaderProgram *shaderProgram);
 	void update(int deltaTime); 
-	void render(); 
-	void createProjectile(glm::vec2 initPos, int angle, int vel, int type, int range); //enemyProjectile
+	void render();
+
+
+	void createProjectile(glm::vec2 initPos, int angle, int vel, int type, int range, float dmg); //enemyProjectile
 	void destroyProjectile(int id);
 	bool checkCollisionEnemy(glm::vec2 posE, int xSize, int ySize);
 

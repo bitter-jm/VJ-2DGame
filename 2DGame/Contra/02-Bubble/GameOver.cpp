@@ -7,7 +7,7 @@
 
  
 void GameOver::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, glm::ivec2 pp)
-{
+{ 
 	buttonSound1 = false;
 	buttonSound1 = true;
 

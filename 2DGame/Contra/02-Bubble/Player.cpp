@@ -5,7 +5,7 @@
 #include "Player.h"
 #include "Game.h"
 
-# define M_PI 3.14159265358979323846  /* pi */
+# define M_PI 3.14159265358979323846  /* pi */ 
 
 #define JUMP_ANGLE_STEP 4
 #define JUMP_HEIGHT 96
@@ -34,6 +34,8 @@ enum BasicAnimations
 
 void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
+	hp = 3;
+
 	ableToMove = true;
 	bJumping = false;
 	spritesheet.loadFromFile("images/player.png", TEXTURE_PIXEL_FORMAT_RGBA);
@@ -304,9 +306,18 @@ void Player::changeBasicAction(int basicAnimation, int deltaTime)
 
 }
 
-void Player::update(int deltaTime)
+void Player::update(int deltaTime, ShaderProgram& shaderProgram)
 {
-	cout << getProjectileType() << endl;
+
+	//actualizamos vector de vida
+	lifes.clear();
+	for (int i = 0; i < hp; i++) {
+		Life* l = new Life();
+		if (posPlayer.x <= float(SCREEN_WIDTH - 1) / 2.0f) l->init(tileMapDispl, shaderProgram, glm::vec2(10 + i * 32, 10));
+		else l->init(tileMapDispl, shaderProgram, glm::vec2(posPlayer.x + 10 + i*32 - SCREEN_WIDTH/2 , 10));
+		lifes.push_back(l);
+	}
+
 	if (currentGun == 1 && spreadGun) {
 		SoundManager::getInstance()->playSound("sounds/pickShotgun.ogg", false);
 		currentGun = 2;
@@ -340,9 +351,10 @@ void Player::update(int deltaTime)
 	
 	sprite->update(deltaTime);
 
-	
-	if (Game::instance().getSpecialKey(GLUT_KEY_DOWN) && bJumping == false && !dead) {
-		posPlayer.y += 2;
+	if (Game::instance().getCurrentLevel() != 3) {
+		if (Game::instance().getSpecialKey(GLUT_KEY_DOWN) && bJumping == false && !dead) {
+			posPlayer.y += 2;
+		}
 	}
 	if (Game::instance().getSpecialKey(GLUT_KEY_LEFT) && !dead)
 	{
@@ -438,6 +450,9 @@ void Player::update(int deltaTime)
 void Player::render()
 {
 	sprite->render();
+	for (int i = 0; i < lifes.size(); i++) {
+		lifes[i]->render();
+	}
 }
 
 void Player::setTileMap(TileMap *tileMap)
@@ -514,7 +529,14 @@ int Player::getProjectileType() {
 
 void Player::upgradeSpreadGun() {
 	this->spreadGun = true;
+	currentGun = 2;
 	this->render();
 }
+
+void Player::reduceHP(float dmg) {
+	hp -= dmg;
+	if (hp <= 0) this->kill();
+}
+
 
 

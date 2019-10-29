@@ -4,17 +4,14 @@
 #include <GL/glew.h>
 #include <GL/glut.h>
 #include "Game.h"
-#include <servprov.h>
+#include <servprov.h> 
 
 // Desplazamiento de pantalla
 #define SCREEN_X 0
 #define SCREEN_Y 0
 
-#define INIT_PLAYER_X_TILES 4
-#define INIT_PLAYER_Y_TILES 0
-
-#define LEVEL_COMPLETE_X 95
-#define LEVEL_COMPLETE_Y 6
+#define INIT_PLAYER_X_TILES 6
+#define INIT_PLAYER_Y_TILES 4
 
 #define SPREADGUN_X 1*64
 #define SPREADGUN_Y 5.25*64
@@ -36,6 +33,9 @@ BossScene::~BossScene()
 
 void BossScene::init()
 {
+	SoundManager::getInstance()->removeAllSound();
+	SoundManager::getInstance()->playSound("sounds/bossLevel.mp3", true, 0.8f);
+	waitTime = 4.4;
 
 	spreadgunHidden = false;
 	deadPlayer = false;
@@ -53,13 +53,38 @@ void BossScene::init()
 	currentTime = 0.0f;
 	entityManager = new EntityManager();
 	entityManager->init(player, &texProgram);
+
+	boss = new Boss();
+	boss->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, 1, map, glm::vec2(4 * map->getTileSize(), 0 * map->getTileSize()));
+	boss->setPlayer(player);
+	boss->setEntityManager(entityManager);
+
 }
 
 void BossScene::update(int deltaTime)
 {
-	currentTime += deltaTime;
+	if (player->getPosition().y / map->getTileSize() >= 6) player->kill();
 
-	if (!levelComplete) player->update(deltaTime);
+	currentTime += deltaTime;
+	if (!boss->is_dead()) {
+		glm::vec2 bodyPos = glm::vec2(boss->getPosition().x + 3* map->getTileSize(), boss->getPosition().y);
+		// body triangular region
+		if (entityManager->checkCollisionEnemy(bodyPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceHP();
+		else if (entityManager->checkCollisionEnemy(glm::vec2(bodyPos.x-0.5* map->getTileSize(), bodyPos.y),
+			0.5 * map->getTileSize(), 2 * map->getTileSize())) boss->reduceHP();
+		else if (entityManager->checkCollisionEnemy(glm::vec2(bodyPos.x + 2* map->getTileSize(), bodyPos.y), 
+			0.5 * map->getTileSize(), 2 * map->getTileSize())) boss->reduceHP();
+	}
+	if (!boss->is_left_dead()) {
+		glm::vec2 leftPos = glm::vec2(boss->getPosition().x, boss->getPosition().y);
+		if (entityManager->checkCollisionEnemy(leftPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceLeftHp(1);
+	}
+	if (!boss->is_right_dead()) {
+		glm::vec2 rightPos = glm::vec2(boss->getPosition().x + 6 * map->getTileSize(), boss->getPosition().y);
+		if (entityManager->checkCollisionEnemy(rightPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceRightHp(1);
+	}
+	
+	if (!levelComplete) player->update(deltaTime, texProgram);
 	entityManager->update(deltaTime);
 	int tSize = map->getTileSize();
 	if (!spreadgunHidden && int((player->getPosition().x-SPREADGUN_X)/tSize) == 0 && int((player->getPosition().y - SPREADGUN_Y)/ tSize) == 0) {
@@ -69,30 +94,42 @@ void BossScene::update(int deltaTime)
 	else spreadgun->update(deltaTime);
 
 	//level completed
-	if (int(player->getPosition().x / map->getTileSize()) >= LEVEL_COMPLETE_X) {
+	if (boss->is_dead()) {
 		if (!levelComplete) {
 			SoundManager::getInstance()->removeAllSound();
-			SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
+			SoundManager::getInstance()->playSound("sounds/finalLevelComplete.ogg", false);
 			levelComplete = true;
+			completeTime = glutGet(GLUT_ELAPSED_TIME);
 		}
+	}
+	if (levelComplete && glutGet(GLUT_ELAPSED_TIME) - completeTime >= waitTime * 1000) {
+		//gameOver->update();
+
 	}
 
 	if (deadPlayer) gameOver->update();
+	if (!boss->is_dead()) boss->update(deltaTime);
 }
 
 void BossScene::render()
 {
 	glm::mat4 modelview;
 	float playerX = player->getPosition().x;
-	// Limitar camara por izquierda
-	if (playerX <= float(SCREEN_WIDTH - 1) / 2.0f)
-		projection = glm::ortho(0.0f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
-	// Limitar por derecha
-	else if (playerX >= map->getMapSize().x * map->getTileSize() - float(SCREEN_WIDTH - 1) / 2.0f)
-		projection = glm::ortho(map->getMapSize().x * map->getTileSize() - float(SCREEN_WIDTH - 1),
-			map->getMapSize().x * map->getTileSize(), float(SCREEN_HEIGHT - 1), 0.f);
-	// Seguir al personaje
-	else projection = glm::ortho(playerX - float(SCREEN_WIDTH - 1) / 2.0f, playerX + float(SCREEN_WIDTH - 1) / 2.0f, float(SCREEN_HEIGHT - 1), 0.f);
+	if (player->isDead()) {
+		float iniX = player->getPosition().x - float(SCREEN_WIDTH - 1)/2;
+		float finalX = player->getPosition().x + float(SCREEN_WIDTH - 1)/2;
+		projection = glm::ortho(iniX, finalX, float(SCREEN_HEIGHT - 1), 0.f);
+	}
+	else {
+		if (playerX <= float(SCREEN_WIDTH - 1) / 2.0f)
+			projection = glm::ortho(0.0f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
+		// Limitar por derecha
+		else if (playerX >= map->getMapSize().x * map->getTileSize() - float(SCREEN_WIDTH - 1) / 2.0f)
+			projection = glm::ortho(map->getMapSize().x * map->getTileSize() - float(SCREEN_WIDTH - 1),
+				map->getMapSize().x * map->getTileSize(), float(SCREEN_HEIGHT - 1), 0.f);
+		// Seguir al personaje
+		else projection = glm::ortho(playerX - float(SCREEN_WIDTH - 1) / 2.0f, playerX + float(SCREEN_WIDTH - 1) / 2.0f, float(SCREEN_HEIGHT - 1), 0.f);
+	}
 	texProgram.use();
 	texProgram.setUniformMatrix4f("projection", projection);
 	texProgram.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
@@ -103,7 +140,7 @@ void BossScene::render()
 	if (!spreadgunHidden) spreadgun->render();
 	player->render();
 	entityManager->render();
-
+	if (!boss->is_dead()) boss->render();
 
 	// Death screen
 	if (player->isDead()) {

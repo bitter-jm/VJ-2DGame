@@ -5,7 +5,7 @@
 #include <vector>
 
 
-using namespace std;
+using namespace std; 
 
 
 // AnimKeyframes contains all information related to a single animation.

@@ -9,7 +9,7 @@ class Menu
 {
 
 public:
-
+	 
 	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram);
 	void render();
 	void update();

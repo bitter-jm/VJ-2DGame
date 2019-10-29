@@ -5,7 +5,7 @@
 #include <GL/glut.h>
 #include "MenuScene.h"
 #include "Game.h"
-#include <servprov.h>
+#include <servprov.h> 
  
 // Desplazamiento de pantalla
 #define SCREEN_X 0

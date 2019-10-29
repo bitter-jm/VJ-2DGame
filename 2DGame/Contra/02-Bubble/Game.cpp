@@ -10,16 +10,12 @@ enum State
 
 void Game::init()
 {
-	AllocConsole();
+	AllocConsole(); 
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
-	SoundManager::getInstance()->playSound("sounds/mainMenu.ogg", false);
 	bPlay = true;
 	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-	state = LEVEL2;
-	scene.init();
-	scene2.init();
-	bossScene.init();
+	state = MENU;
 	menu.init();
 }
 
@@ -73,10 +69,19 @@ void Game::showCredits()
 
 void Game::changeLevel(int lvl)
 {
-	if (lvl == 1) state = LEVEL1;
-	else if (lvl == 2) state = LEVEL2;
-	else if (lvl == 3) state = LEVEL3;
-	restartLevel();
+	if (lvl == 1) {
+		scene.init();
+		state = LEVEL1;
+	}
+	else if (lvl == 2) {
+		scene2.init();
+		state = LEVEL2;
+	}
+	else if (lvl == 3) {
+		bossScene.init();
+		state = LEVEL3;
+	}
+	//restartLevel();
 	
 }
 
