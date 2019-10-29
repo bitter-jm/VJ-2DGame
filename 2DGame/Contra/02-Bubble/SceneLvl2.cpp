@@ -104,7 +104,7 @@ void SceneLvl2::update(int deltaTime)
 {
 	currentTime += deltaTime;
 
-	if (!levelComplete) player->update(deltaTime);
+	if (!levelComplete) player->update(deltaTime, texProgram);
 	entityManager->update(deltaTime);
 	int tSize = map->getTileSize();
 	if (deadPlayer) gameOver->update();

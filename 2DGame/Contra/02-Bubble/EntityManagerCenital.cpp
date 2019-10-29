@@ -116,19 +116,19 @@ void EntityManagerCenital::checkCollisionPlayer() {
 
 			if (pX + PROJECTILESIZE >= playerX && pX + PROJECTILESIZE <= playerX + PLAYERWIDTH && pY >= playerY && pY <= playerY + PLAYERHEIGHT) { //RIGHT UP
 				p.second.collisioned();
-				player->kill();
+				player->reduceHP((float)1);
 			}
 			if (pX + PROJECTILESIZE >= playerX && pX + PROJECTILESIZE <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //RIGHT DOWN
 				p.second.collisioned();
-				player->kill();
+				player->reduceHP((float)1);
 			}
 			if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY >= playerY && pY <= playerY + PLAYERHEIGHT) { //LEFT UP
 				p.second.collisioned();
-				player->kill();
+				player->reduceHP((float)1);
 			}
 			if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //LEFT DOWN
 				p.second.collisioned();
-				player->kill();
+				player->reduceHP((float)1);
 			}
 		}
 	}

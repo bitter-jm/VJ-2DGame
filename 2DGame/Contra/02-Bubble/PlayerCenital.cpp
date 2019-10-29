@@ -31,6 +31,7 @@ enum BasicAnimations
 void PlayerCenital::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 {
 	bJumping = false;
+	hp = 3;
 	spritesheet.loadFromFile("images/playercenital.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sprite = Sprite::createSprite(glm::ivec2(128, 128), glm::vec2(0.0625, 0.0625), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(80);
@@ -572,9 +573,20 @@ void PlayerCenital::changeBasicAction()
 	}
 }
 
-void PlayerCenital::update(int deltaTime)
+void PlayerCenital::update(int deltaTime, ShaderProgram& shaderProgram)
 {
 	changeBasicAction();
+
+	//if (hp <= 0) kill();
+
+	// Actualizar numero de vidas (visual)
+	lifes.clear();
+	for (int i = 0; i < hp; i++) {
+		Life* l = new Life();
+		if (posPlayerCenital.x <= float(SCREEN_WIDTH - 1) / 2.0f) l->init(tileMapDispl, shaderProgram, glm::vec2(10 + i * 32, 10));
+		else l->init(tileMapDispl, shaderProgram, glm::vec2(posPlayerCenital.x + 10 + i * 32 - SCREEN_WIDTH / 2, 10));
+		lifes.push_back(l);
+	}
 
 	// Movimiento
 	moving = false;
@@ -614,6 +626,9 @@ void PlayerCenital::update(int deltaTime)
 void PlayerCenital::render()
 {
 	sprite->render();
+	for (int i = 0; i < lifes.size(); i++) {
+		lifes[i]->render();
+	}
 }
 
 void PlayerCenital::setTileMap(TileMap* tileMap)
@@ -680,3 +695,8 @@ void PlayerCenital::upgradeSpreadGun() {
 	this->render();
 }
 
+void PlayerCenital::reduceHP(float dmg) {
+	hp -= dmg;
+	if (hp < 0) hp = 0;
+	if (hp == 0) kill();
+}

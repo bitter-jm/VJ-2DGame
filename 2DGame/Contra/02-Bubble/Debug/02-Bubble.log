@@ -1,9 +1,230 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (02-Bubble.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Boss.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(19,13): warning C4244: 'inicializando': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(21,84): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(21,64): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(22,15): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(29,13): warning C4244: 'inicializando': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(31,82): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(31,64): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(39,13): warning C4244: 'inicializando': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(41,85): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(41,66): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(127,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(132,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(137,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(183,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(188,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(196,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(201,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(223,22): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(228,24): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(229,32): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  BossScene.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(230,34): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\BossScene.cpp(38,16): warning C4305: '=': truncamiento de 'double' a 'float'
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\BossScene.cpp(75,8): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\BossScene.cpp(77,8): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+  EntityManager.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\BossScene.cpp(103,26): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(114,95): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(114,73): warning C4244: 'argumento': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(114,73): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(114,73): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(114,73): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(114,73): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(114,62): warning C4244: 'argumento': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(114,62): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(114,62): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(114,62): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(114,62): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(129,11): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(129,11): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(129,11): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(129,11): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(129,11): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(130,11): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(130,11): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(130,11): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(130,11): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(130,11): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(161,14): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(162,11): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(162,11): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(162,11): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(162,11): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(162,11): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(163,11): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(163,11): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(163,11): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(163,11): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(163,11): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(164,16): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(164,16): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(164,16): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(164,16): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(164,16): warning C4244:         ]
+  EntityManagerCenital.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(165,16): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(165,16): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(165,16): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(165,16): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(165,16): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,95): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,73): warning C4244: 'argumento': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,73): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,73): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,73): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,73): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,62): warning C4244: 'argumento': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,62): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,62): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,62): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,62): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(79,11): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(79,11): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(79,11): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(79,11): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(79,11): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(80,11): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(80,11): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(80,11): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(80,11): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(80,11): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(111,11): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(111,11): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(111,11): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(111,11): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(111,11): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(112,11): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(112,11): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(112,11): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(112,11): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(112,11): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(113,16): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(113,16): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(113,16): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(113,16): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(113,16): warning C4244:         ]
   Game.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(114,16): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(114,16): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(114,16): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(114,16): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(114,16): warning C4244:         ]
 C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Game.cpp(14,1): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(243): message : vea la declaración de 'freopen'
 C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Game.cpp(15,1): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  GameOver.cpp
+  Menu.cpp
+  MenuScene.cpp
+  Mina.cpp
+  Player.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(243): message : vea la declaración de 'freopen'
+  PlayerCenital.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Player.cpp(453,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\PlayerCenital.cpp(296,81): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+  Scene.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\PlayerCenital.cpp(629,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(43,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(57,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(71,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(133,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(141,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(149,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(165,25): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(200,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(203,20): warning C4018: '<': no coinciden signed/unsigned
+  SceneLvl2.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Scene.cpp(206,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(49,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(66,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(112,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(118,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(142,20): warning C4018: '<': no coinciden signed/unsigned
+  SoldierA.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SceneLvl2.cpp(148,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(16,12): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(16,12): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(16,12): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(16,12): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(16,12): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(17,12): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(17,12): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(17,12): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(17,12): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(17,12): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(18,11): warning C4244: 'inicializando': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(48,27): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(49,29): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(86,20): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(95,13): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(95,13): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(95,13): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(95,13): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(95,13): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(96,13): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(96,13): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(96,13): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(96,13): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(96,13): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(97,16): warning C4244: 'inicializando': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(115,97): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(115,77): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(121,87): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(121,67): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(127,98): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  SoldierB.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierA.cpp(127,78): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(12,12): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(12,12): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(12,12): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(12,12): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(12,12): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(13,12): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(13,12): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(13,12): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(13,12): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(13,12): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(31,26): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(32,33): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(61,20): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(71,89): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  SoldierC.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierB.cpp(71,69): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierC.cpp(38,27): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierC.cpp(39,31): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierC.cpp(88,20): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xtgmath.h(22,101): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierC.cpp(130,97): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  SpreadGun.cpp
+  Turret.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\SoldierC.cpp(130,77): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(13,12): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(13,12): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(13,12): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(13,12): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(13,12): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(14,12): warning C4244: 'inicializando': conversión de 'T' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(14,12): warning C4244:         with
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(14,12): warning C4244:         [
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(14,12): warning C4244:             T=float
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(14,12): warning C4244:         ]
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(45,26): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(46,33): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(84,20): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(95,92): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(95,72): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(101,90): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(101,70): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(107,91): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(107,71): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(113,92): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  Tutorial.cpp
+  main.cpp
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(113,72): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  Generando código...
+C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\main.cpp(90,21): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
 C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\02-Bubble\Game.cpp(157): warning C4715: 'Game::getCurrentLevel': no todas las rutas de acceso de control devuelven un valor
 SOIL.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_DXT.obj)' o en 'C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 SOIL.lib(image_helper.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_helper.obj)' o en 'C:\Users\joanp\Desktop\Last last last pull\VJ-2DGame\2DGame\Contra\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
