@@ -17,6 +17,8 @@ public:
 	bool needToDelete();
 	bool isEnemyProjectile();
 	bool isExploding();
+	int getDmg();
+	void setDmg(float dmg);
 
 private:
 	Texture spritesheet;
@@ -32,6 +34,8 @@ private:
 	bool enemy;
 	bool deleteProjectile = false;
 	float range;
+	int timesUpdated;
+	float dmg = 1.f;
 };
 
 

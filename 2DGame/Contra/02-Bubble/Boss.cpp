@@ -18,17 +18,29 @@ void Boss::shootMain(float time) {
 	if (time - lastShoot >= secondsToAttack * 1000) {
 		int angle = atan2(mainPos.y - player->getPosition().y, player->getPosition().x - mainPos.x) * 180 / M_PI;
 		if (angle < 0) angle += 360;
-		em->createProjectile(glm::vec2(mainPos.x, mainPos.y), angle, projectileSpeed, 1, range);
+		em->createProjectile(glm::vec2(mainPos.x, mainPos.y), angle, projectileSpeed, 4, range, dmg);
 		lastShoot = time;
 	}
 }
 
 void Boss::shootLeft(float time) {
-
+	if (time - leftLastShot >= secondsToAttackLeft * 1000) {
+		glm::vec2 leftPos = glm::vec2(position.x + 1 * map->getTileSize(), position.y + 2.5 * map->getTileSize());
+		int angle = atan2(leftPos.y - player->getPosition().y, player->getPosition().x -10 - leftPos.x) * 180 / M_PI;
+		if (angle < 0) angle += 360;
+		em->createProjectile(glm::vec2(leftPos.x, leftPos.y), angle, leftProjSpeed, 5, range, leftPartDMG);
+		leftLastShot = time;
+	}
 }
 
 void Boss::shootRight(float time) {
-
+	if (time - rightLastShot >= secondsToAttackRight * 1000) {
+		glm::vec2 rightPos = glm::vec2(position.x + 7 * map->getTileSize(), position.y + 2.5 * map->getTileSize());
+		int angle = atan2(rightPos.y - player->getPosition().y, player->getPosition().x + 10 - rightPos.x) * 180 / M_PI;
+		if (angle < 0) angle += 360;
+		em->createProjectile(glm::vec2(rightPos.x, rightPos.y), angle, rightProjSpeed, 5, range, rightPartDMG);
+		rightLastShot = time;
+	}
 }
 
 void Boss::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, int pID, TileMap* tileMap, glm::vec2 pos)
@@ -39,14 +51,14 @@ void Boss::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, int 
 	range = 15;
 	leftPartRange = rightPartRange = 15;
 
-	hp = 10;
-	rightPartHP = leftPartHP = 3;
+	hp = 30;
+	rightPartHP = leftPartHP = 10;
 	dmg = 2;
 	rightPartDMG = leftPartDMG = 1;
-	secondsToAttack = 2;
-	secondsToAttackLeft = secondsToAttackRight = 1;
-	projectileSpeed = 2;
-	leftProjSpeed = rightProjSpeed = 3;
+	secondsToAttack = 3;
+	secondsToAttackLeft = secondsToAttackRight = 2.5;
+	projectileSpeed = 1;
+	leftProjSpeed = rightProjSpeed = 1;
 
 	dead = false;
 	dyingTime = 300; //ms 
@@ -95,7 +107,7 @@ void Boss::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, int 
 	sprite->addKeyframe(WITHOUT_RIGHT, glm::vec2(1 * spriteSheetX, 3 * spriteSheetY));
 
 	sprite->setAnimationSpeed(WITHOUT_RIGHT_EXPLODE_LEFT, 2);
-	sprite->addKeyframe(WITHOUT_RIGHT_EXPLODE_LEFT, glm::vec2(1 * spriteSheetX, 2 * spriteSheetY));
+	sprite->addKeyframe(WITHOUT_RIGHT_EXPLODE_LEFT, glm::vec2(0 * spriteSheetX, 4 * spriteSheetY));
 
 	sprite->changeAnimation(FULL);
 

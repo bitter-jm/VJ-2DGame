@@ -23,7 +23,8 @@ bool Game::update(int deltaTime)
 {
 	if (state == MENU) menu.update(deltaTime);
 	else if (state == LEVEL1) scene.update(deltaTime);
-	else if (state == LEVEL2) bossScene.update(deltaTime);
+	else if (state == LEVEL2) scene2.update(deltaTime);
+	else if (state == LEVEL3) bossScene.update(deltaTime);
 	
 	return bPlay;
 }
@@ -34,13 +35,15 @@ void Game::render()
 
 	if (state == MENU) menu.render();
 	else if (state == LEVEL1) scene.render();
-	else if (state == LEVEL2) bossScene.render();
+	else if (state == LEVEL2) scene2.render();
+	else if (state == LEVEL3) bossScene.render();
 }
 
 void Game::restartLevel()
 {
 	if (state == LEVEL1) scene.init();
-	if (state == LEVEL2) bossScene.init();
+	if (state == LEVEL2) scene2.init();
+	if (state == LEVEL3) bossScene.init();
 }
 
 void Game::returnToMenu()
@@ -66,9 +69,18 @@ void Game::showCredits()
 
 void Game::changeLevel(int lvl)
 {
-	if (lvl == 1) state = LEVEL1;
-	else if (lvl == 2) state = LEVEL2;
-	else if (lvl == 3) state = LEVEL3;
+	if (lvl == 1) {
+		scene.init();
+		state = LEVEL1;
+	}
+	else if (lvl == 2) {
+		scene2.init();
+		state = LEVEL2;
+	}
+	else if (lvl == 3) {
+		bossScene.init();
+		state = LEVEL3;
+	}
 	restartLevel();
 	
 }
@@ -137,3 +149,8 @@ bool Game::isMousePressed() const
 	return mousePressed;
 }
 
+int Game::getCurrentLevel() {
+	if (state == LEVEL1) return 1;
+	else if (state == LEVEL2) return 2;
+	else if (state == LEVEL3) return 3;
+}

@@ -36,6 +36,7 @@ private:
 	bool spreadgunHidden;
 	int deathTime;
 	bool deadPlayer, levelComplete;
+	float completeTime, waitTime;
 	Boss* boss;
 };
 

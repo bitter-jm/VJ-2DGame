@@ -112,19 +112,19 @@ void SoldierA::update(int deltaTime)
 		if (playerInRange()) {
 			if (stanceID == STAND_LEFT) {
 				if (time - lastShoot >= secondsToAttack * 1000) {
-					em->createProjectile(glm::vec2(position.x, position.y + 15), 180, projectileSpeed, 1, range);
+					em->createProjectile(glm::vec2(position.x - 10, position.y + 15), 180, projectileSpeed, 1, range, dmg);
 					lastShoot = time;
 				}
 			}
 			else if (stanceID == STAND_LEFT_DIAG_UP) {
 				if (time - lastShoot >= secondsToAttack * 1000) {
-					em->createProjectile(glm::vec2(position.x + 15, position.y), 135, projectileSpeed, 1, range);
+					em->createProjectile(glm::vec2(position.x, position.y), 135, projectileSpeed, 1, range, dmg);
 					lastShoot = time;
 				}
 			}
 			else if (stanceID == STAND_LEFT_DAIG_DOWN) {
 				if (time - lastShoot >= secondsToAttack * 1000) {
-					em->createProjectile(glm::vec2(position.x + 15, position.y), -135, projectileSpeed, 1, range);
+					em->createProjectile(glm::vec2(position.x - 10, position.y + 25), -135, projectileSpeed, 1, range, dmg);
 					lastShoot = time;
 				}
 			}

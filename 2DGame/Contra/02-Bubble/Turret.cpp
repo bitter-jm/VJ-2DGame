@@ -34,7 +34,7 @@ void Turret::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, in
 {
 	range = 5;
 	hp = 5;
-	dmg = 2;
+	dmg = 1;
 	secondsToAttack = 1;
 	projectileSpeed = 3;
 	dead = false;
@@ -92,25 +92,25 @@ void Turret::update(int deltaTime)
 		if (playerInRange()) {
 			if (stanceID == LEFT) {
 				if (time - lastShoot >= secondsToAttack * 1000) {
-					em->createProjectile(glm::vec2(position.x, position.y + 15), 180, projectileSpeed, 1, range);
+					em->createProjectile(glm::vec2(position.x, position.y + 15), 180, projectileSpeed, 1, range, dmg);
 					lastShoot = time;
 				}
 			}
 			else if (stanceID == RIGHT) {
 				if (time - lastShoot >= secondsToAttack * 1000) {
-					em->createProjectile(glm::vec2(position.x, position.y + 15), 0, projectileSpeed, 1, range);
+					em->createProjectile(glm::vec2(position.x, position.y + 15), 0, projectileSpeed, 1, range, dmg);
 					lastShoot = time;
 				}
 			}
 			else if (stanceID == UP) {
 				if (time - lastShoot >= secondsToAttack * 1000) {
-					em->createProjectile(glm::vec2(position.x + 15, position.y), 90, projectileSpeed, 1, range);
+					em->createProjectile(glm::vec2(position.x + 15, position.y), 90, projectileSpeed, 1, range, dmg);
 					lastShoot = time;
 				}
 			}
 			else if (stanceID == DOWN) {
 				if (time - lastShoot >= secondsToAttack * 1000) {
-					em->createProjectile(glm::vec2(position.x + 15, position.y), -90, projectileSpeed, 1, range);
+					em->createProjectile(glm::vec2(position.x + 15, position.y), -90, projectileSpeed, 1, range, dmg);
 					lastShoot = time;
 				}
 			}

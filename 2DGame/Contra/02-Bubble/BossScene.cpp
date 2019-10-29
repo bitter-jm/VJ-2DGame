@@ -32,12 +32,11 @@ BossScene::~BossScene()
 		delete player;
 }
 
-
-
 void BossScene::init()
 {
 	SoundManager::getInstance()->removeAllSound();
-	SoundManager::getInstance()->playSound("sounds/bossLevel.ogg", true, 0.8f);
+	SoundManager::getInstance()->playSound("sounds/bossLevel.mp3", true, 0.8f);
+	waitTime = 4.4;
 
 	spreadgunHidden = false;
 	deadPlayer = false;
@@ -65,6 +64,8 @@ void BossScene::init()
 
 void BossScene::update(int deltaTime)
 {
+	if (player->getPosition().y / map->getTileSize() >= 6) player->kill();
+
 	currentTime += deltaTime;
 	if (!boss->is_dead()) {
 		glm::vec2 bodyPos = glm::vec2(boss->getPosition().x + 3* map->getTileSize(), boss->getPosition().y);
@@ -84,7 +85,7 @@ void BossScene::update(int deltaTime)
 		if (entityManager->checkCollisionEnemy(rightPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceRightHp(1);
 	}
 	
-	if (!levelComplete) player->update(deltaTime);
+	if (!levelComplete) player->update(deltaTime, texProgram);
 	entityManager->update(deltaTime);
 	int tSize = map->getTileSize();
 	if (!spreadgunHidden && int((player->getPosition().x-SPREADGUN_X)/tSize) == 0 && int((player->getPosition().y - SPREADGUN_Y)/ tSize) == 0) {
@@ -97,9 +98,14 @@ void BossScene::update(int deltaTime)
 	if (boss->is_dead()) {
 		if (!levelComplete) {
 			SoundManager::getInstance()->removeAllSound();
-			SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
+			SoundManager::getInstance()->playSound("sounds/finalLevelComplete.ogg", false);
 			levelComplete = true;
+			completeTime = glutGet(GLUT_ELAPSED_TIME);
 		}
+	}
+	if (levelComplete && glutGet(GLUT_ELAPSED_TIME) - completeTime >= waitTime * 1000) {
+		//gameOver->update();
+
 	}
 
 	if (deadPlayer) gameOver->update();
@@ -110,15 +116,21 @@ void BossScene::render()
 {
 	glm::mat4 modelview;
 	float playerX = player->getPosition().x;
-	// Limitar camara por izquierda
-	if (playerX <= float(SCREEN_WIDTH - 1) / 2.0f)
-		projection = glm::ortho(0.0f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
-	// Limitar por derecha
-	else if (playerX >= map->getMapSize().x * map->getTileSize() - float(SCREEN_WIDTH - 1) / 2.0f)
-		projection = glm::ortho(map->getMapSize().x * map->getTileSize() - float(SCREEN_WIDTH - 1),
-			map->getMapSize().x * map->getTileSize(), float(SCREEN_HEIGHT - 1), 0.f);
-	// Seguir al personaje
-	else projection = glm::ortho(playerX - float(SCREEN_WIDTH - 1) / 2.0f, playerX + float(SCREEN_WIDTH - 1) / 2.0f, float(SCREEN_HEIGHT - 1), 0.f);
+	if (player->isDead()) {
+		float iniX = player->getPosition().x - float(SCREEN_WIDTH - 1)/2;
+		float finalX = player->getPosition().x + float(SCREEN_WIDTH - 1)/2;
+		projection = glm::ortho(iniX, finalX, float(SCREEN_HEIGHT - 1), 0.f);
+	}
+	else {
+		if (playerX <= float(SCREEN_WIDTH - 1) / 2.0f)
+			projection = glm::ortho(0.0f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
+		// Limitar por derecha
+		else if (playerX >= map->getMapSize().x * map->getTileSize() - float(SCREEN_WIDTH - 1) / 2.0f)
+			projection = glm::ortho(map->getMapSize().x * map->getTileSize() - float(SCREEN_WIDTH - 1),
+				map->getMapSize().x * map->getTileSize(), float(SCREEN_HEIGHT - 1), 0.f);
+		// Seguir al personaje
+		else projection = glm::ortho(playerX - float(SCREEN_WIDTH - 1) / 2.0f, playerX + float(SCREEN_WIDTH - 1) / 2.0f, float(SCREEN_HEIGHT - 1), 0.f);
+	}
 	texProgram.use();
 	texProgram.setUniformMatrix4f("projection", projection);
 	texProgram.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
@@ -182,4 +194,6 @@ void BossScene::initShaders()
 	vShader.free();
 	fShader.free();
 }
+
+
 

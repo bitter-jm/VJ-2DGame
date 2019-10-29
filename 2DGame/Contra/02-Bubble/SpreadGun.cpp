@@ -1,14 +1,5 @@
-#include <cmath>
-#include <iostream>
-#include <GL/glew.h>
-#include <GL/glut.h>
 #include "SpreadGun.h"
 #include "Game.h"
-
-
-#define JUMP_ANGLE_STEP 4
-#define JUMP_HEIGHT 96
-#define FALL_STEP 4
 
 
 void SpreadGun::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, glm::vec2 pos)
@@ -27,16 +18,6 @@ void SpreadGun::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram,
 
 }
 
-void SpreadGun::update(int deltaTime)
-{
-	sprite->update(deltaTime);
 
-	sprite->setPosition(glm::vec2(float(tileMapDispl.x + pos.x), float(tileMapDispl.y + pos.y)));
-}
-
-void SpreadGun::render()
-{
-	sprite->render();
-}
 
  

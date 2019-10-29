@@ -68,7 +68,7 @@ void SoldierB::update(int deltaTime)
 
 	else if (!dying && !dead) {
 		if (playerInRange() && time - lastShoot >= secondsToAttack * 1000) {
-			em->createProjectile(glm::vec2(position.x, position.y + 7), 180, projectileSpeed, 1, range);
+			em->createProjectile(glm::vec2(position.x, position.y + 7), 180, projectileSpeed, 2, range, dmg);
 			lastShoot = time;
 		}
 	}

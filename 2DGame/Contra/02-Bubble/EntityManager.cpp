@@ -4,6 +4,7 @@
 #include <iostream>
 #include <set>
 #include "Projectile.h"
+#include "Game.h"
 
 using namespace std;
 
@@ -36,45 +37,54 @@ void EntityManager::update(int deltaTime)
 		projectiles[nextProjectileID] = p;
 		projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, angleproj, velocityproj, typeproj, playerRange, false, *shaderProgram);
 		nextProjectileID++;
-		if (typeproj == 2) {
-			Projectile p2, p3;
-			if (angleproj == 0) {
-				projectiles[nextProjectileID] = p2;
-				projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 22, velocityproj, typeproj, playerRange, false, *shaderProgram);
-				projectiles[nextProjectileID+1] = p3;
-				projectiles[nextProjectileID + 1].init(nextProjectileID+1, coordsproj.x, coordsproj.y, -22, velocityproj, typeproj, playerRange, false, *shaderProgram);
+
+		if (Game::instance().getCurrentLevel() == 1 || Game::instance().getCurrentLevel() == 2) {
+			if (typeproj == 2) {
+				Projectile p2, p3;
+				if (angleproj == 0) {
+					projectiles[nextProjectileID] = p2;
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 22, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID+1] = p3;
+					projectiles[nextProjectileID + 1].init(nextProjectileID+1, coordsproj.x, coordsproj.y, -22, velocityproj, typeproj, playerRange, false, *shaderProgram);
+				}
+				else if (angleproj == 45) {
+					projectiles[nextProjectileID] = p2;
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 67, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1] = p3;
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 22, velocityproj, typeproj, playerRange, false, *shaderProgram);
+				}
+				else if (angleproj == 90) {
+					projectiles[nextProjectileID] = p2;
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 112, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1] = p3;
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 67, velocityproj, typeproj, playerRange, false, *shaderProgram);
+				}
+				else if (angleproj == 135) {
+					projectiles[nextProjectileID] = p2;
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 112, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1] = p3;
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 157, velocityproj, typeproj, playerRange, false, *shaderProgram);
+				}
+				else if (angleproj == 180 || angleproj == -180) {
+					projectiles[nextProjectileID] = p2;
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 157, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1] = p3;
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -157, velocityproj, typeproj, playerRange, false, *shaderProgram);
+				}
+				else if (angleproj == -135 || angleproj == 225) {
+					projectiles[nextProjectileID] = p2;
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, -157, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1] = p3;
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -112, velocityproj, typeproj, playerRange, false, *shaderProgram);
+				}
+				else if (angleproj == -45 || angleproj == 315) {
+					projectiles[nextProjectileID] = p2;
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, -67, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1] = p3;
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -22, velocityproj, typeproj, playerRange, false, *shaderProgram);
+				}
+				nextProjectileID += 2;
 			}
-			else if (angleproj == 45) {
-				projectiles[nextProjectileID] = p2;
-				projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 67, velocityproj, typeproj, playerRange, false, *shaderProgram);
-				projectiles[nextProjectileID + 1] = p3;
-				projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 22, velocityproj, typeproj, playerRange, false, *shaderProgram);
-			}
-			else if (angleproj == 135) {
-				projectiles[nextProjectileID] = p2;
-				projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 112, velocityproj, typeproj, playerRange, false, *shaderProgram);
-				projectiles[nextProjectileID + 1] = p3;
-				projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 157, velocityproj, typeproj, playerRange, false, *shaderProgram);
-			}
-			else if (angleproj == 180 || angleproj == -180) {
-				projectiles[nextProjectileID] = p2;
-				projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 157, velocityproj, typeproj, playerRange, false, *shaderProgram);
-				projectiles[nextProjectileID + 1] = p3;
-				projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -157, velocityproj, typeproj, playerRange, false, *shaderProgram);
-			}
-			else if (angleproj == -135 || angleproj == 225) {
-				projectiles[nextProjectileID] = p2;
-				projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, -157, velocityproj, typeproj, playerRange, false, *shaderProgram);
-				projectiles[nextProjectileID + 1] = p3;
-				projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -112, velocityproj, typeproj, playerRange, false, *shaderProgram);
-			}
-			else if (angleproj == -45 || angleproj == 315) {
-				projectiles[nextProjectileID] = p2;
-				projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, -67, velocityproj, typeproj, playerRange, false, *shaderProgram);
-				projectiles[nextProjectileID + 1] = p3;
-				projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -22, velocityproj, typeproj, playerRange, false, *shaderProgram);
-			}
-			nextProjectileID += 2;
 		}
 	}
 
@@ -107,12 +117,15 @@ void EntityManager::render()
 	}
 }
 
-void EntityManager::createProjectile(glm::vec2 initPos, int angle, int vel, int type, int range) {
+void EntityManager::createProjectile(glm::vec2 initPos, int angle, int vel, int type, int range, float dmg) {
 	Projectile p;
 	projectiles[nextProjectileID] = p;
 	projectiles[nextProjectileID].init(nextProjectileID, initPos.x, initPos.y, angle, vel, type, range, true, *shaderProgram);
+	projectiles[nextProjectileID].setDmg(dmg);
 	nextProjectileID++;
 }
+
+
 
 void EntityManager::destroyProjectile(int id) {
 
@@ -154,27 +167,31 @@ void EntityManager::checkCollisionPlayer() {
 	for (auto& p : projectiles) {
 		if (p.second.isEnemyProjectile() && !p.second.isExploding()) {
 
+			float dmg = p.second.getDmg();
 			int pX = p.second.getPosition().x;
 			int pY = p.second.getPosition().y;
 			int playerX = player->getPosition().x;
 			int playerY = player->getPosition().y+8;
 
-
 			if (pX + PROJECTILESIZE >= playerX && pX + PROJECTILESIZE <= playerX + PLAYERWIDTH && pY >= playerY && pY <= playerY + PLAYERHEIGHT) { //RIGHT UP
 				p.second.collisioned();
-				player->kill();
+				SoundManager::getInstance()->playSound("sounds/hurt.ogg", false, 0.5);
+				player->reduceHP(dmg);
 			}
-			if (pX + PROJECTILESIZE >= playerX && pX + PROJECTILESIZE <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //RIGHT DOWN
+			else if (pX + PROJECTILESIZE >= playerX && pX + PROJECTILESIZE <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //RIGHT DOWN
 				p.second.collisioned();
-				player->kill();
+				SoundManager::getInstance()->playSound("sounds/hurt.ogg", false, 0.5);
+				player->reduceHP(dmg);
 			}
-			if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY >= playerY && pY <= playerY + PLAYERHEIGHT) { //LEFT UP
+			else if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY >= playerY && pY <= playerY + PLAYERHEIGHT) { //LEFT UP
 				p.second.collisioned();
-				player->kill();
+				SoundManager::getInstance()->playSound("sounds/hurt.ogg", false, 0.5);
+				player->reduceHP(dmg);
 			}
-			if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //LEFT DOWN
+			else if (pX >= playerX && pX <= playerX + PLAYERWIDTH && pY + PROJECTILESIZE >= playerY && pY + PROJECTILESIZE <= playerY + PLAYERHEIGHT) { //LEFT DOWN
 				p.second.collisioned();
-				player->kill();
+				SoundManager::getInstance()->playSound("sounds/hurt.ogg", false, 0.5);
+				player->reduceHP(dmg);
 			}
 		}
 	}
