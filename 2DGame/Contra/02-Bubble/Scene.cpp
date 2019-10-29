@@ -158,7 +158,7 @@ void Scene::update(int deltaTime)
 		if (!turrets[i]->is_dead()) { 
 			turrets[i]->update(deltaTime); 
 			if (entityManager->checkCollisionEnemy(glm::vec2(turrets[i]->getPosition().x, turrets[i]->getPosition().y+8), 48, 40)) {
-				turrets[i]->reduceHP(1);
+				turrets[i]->reduceHP(player->getDMG());
 				if (turrets[i]->is_dead()) {
 					float r = float(rand()%100)/100;
 					if (r <= PROB_HEART) {
@@ -174,7 +174,7 @@ void Scene::update(int deltaTime)
 		if (!soldierAs[i]->is_dead()) { 
 			soldierAs[i]->update(deltaTime); 
 			if (entityManager->checkCollisionEnemy(glm::vec2(soldierAs[i]->getPosition().x+16, soldierAs[i]->getPosition().y+16), 32, 32)) {
-				soldierAs[i]->reduceHP(1);
+				soldierAs[i]->reduceHP(player->getDMG());
 				if (soldierAs[i]->is_dead()) {
 					float r = float(rand() % 100) / 100;
 					if (r <= PROB_HEART) {
@@ -190,7 +190,7 @@ void Scene::update(int deltaTime)
 		if (!soldierBs[i]->is_dead()) {
 			soldierBs[i]->update(deltaTime);
 			if (entityManager->checkCollisionEnemy(soldierBs[i]->getPosition(), 64, 64)) {
-				soldierBs[i]->reduceHP(1);
+				soldierBs[i]->reduceHP(player->getDMG());
 				if (soldierBs[i]->is_dead()) {
 					float r = float(rand() % 100) / 100;
 					if (r <= PROB_HEART) {

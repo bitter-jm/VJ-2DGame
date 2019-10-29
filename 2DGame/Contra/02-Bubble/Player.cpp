@@ -11,7 +11,6 @@
 #define JUMP_HEIGHT 96
 #define FALL_STEP 4
 #define RUN_VELOCITY 3
-#define SHOT_VELOCITY 8
 #define UPGRADE_WEAPON_X 2600
 
 enum PlayerAnims
@@ -35,6 +34,11 @@ enum BasicAnimations
 {
 	STAND_LEFT, STAND_RIGHT, MOVE_LEFT, MOVE_RIGHT, OTHERS
 };
+
+float Player::getShotVelocity() {
+	if (currentGun == 1 || currentGun == 2) return 8;
+	else if (currentGun == 3) return 10;
+}
 
 void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
@@ -277,7 +281,7 @@ void Player::changeBasicAction(int basicAnimation, int deltaTime)
 	double angulo = atan2(posMouseY - posPlayer.y, posMouseX - posPlayer.x) * 180 / M_PI;
 	angulo = -angulo;
 
-	if (!shooting && Game::instance().isMousePressed() && lastShot + 400 <= glutGet(GLUT_ELAPSED_TIME) && basicAction != OTHERS) {
+	if (!shooting && Game::instance().isMousePressed() && lastShot + getAttackSpeed() <= glutGet(GLUT_ELAPSED_TIME) && basicAction != OTHERS) {
 		// Initial shoot action
 		shooting = true;
 		lastShot = glutGet(GLUT_ELAPSED_TIME);
@@ -285,6 +289,7 @@ void Player::changeBasicAction(int basicAnimation, int deltaTime)
 	}
 	else if (lastShot < glutGet(GLUT_ELAPSED_TIME) && lastShot + 75 >= glutGet(GLUT_ELAPSED_TIME) && basicAction != OTHERS) {
 		// Shooting animation
+		shooting = true;
 	}
 	else {
 		shooting = false;
@@ -372,10 +377,6 @@ void Player::update(int deltaTime, ShaderProgram& shaderProgram)
 		lifes.push_back(l);
 	}
 
-	if (currentGun == 1 && spreadGun) {
-		SoundManager::getInstance()->playSound("sounds/pickShotgun.ogg", false);
-		currentGun = 2;
-	}
 	if (dead && deathTime + 500 >= glutGet(GLUT_ELAPSED_TIME)) {
 		if (basicAction == STAND_LEFT || basicAction == MOVE_LEFT || sprite->animation() == JUMP_LEFT || sprite->animation() == DYING_LEFT) {
 			if (sprite->animation() != DYING_LEFT) {
@@ -527,7 +528,6 @@ glm::vec2 Player::getPosition()
 
 void Player::shoot(double angulo, int x, int y) 
 {
-
 	shootedProjectile = true;
 	projectileCoords.x = x+22;
 	projectileCoords.y = y;
@@ -539,8 +539,7 @@ void Player::shoot(double angulo, int x, int y)
 		if (basicAction == STAND_LEFT || basicAction == MOVE_LEFT) projectileCoords.x -= 20;
 		else projectileCoords.x += 20;
 	}
-	projectileType = (int)spreadGun +1;
-	projectileVelocity = SHOT_VELOCITY;
+	projectileVelocity = getShotVelocity();
 	//projectileAngle = angulo;
 	if ((basicAction == STAND_LEFT || basicAction == MOVE_LEFT) && angulo < 90 && angulo > -90) {
 		shootedProjectile = false;
@@ -562,6 +561,7 @@ void Player::shoot(double angulo, int x, int y)
 	if (shootedProjectile == true) {
 		if (currentGun == 1) SoundManager::getInstance()->playSound("sounds/defaultGun.ogg", false);
 		else if (currentGun == 2) SoundManager::getInstance()->playSound("sounds/shotGun.ogg", false);
+		else if (currentGun == 3) SoundManager::getInstance()->playSound("sounds/sniperGun.ogg", false);
 	}
 }
 
@@ -593,13 +593,12 @@ int Player::getProjectileVelocity() {
 	return projectileVelocity;
 }
 int Player::getProjectileType() {
-	return projectileType;
+	return currentGun;
 }
 
 void Player::upgradeGun(int gun) {
 	SoundManager::getInstance()->playSound("sounds/pickShotgun.ogg", false);
 	this->currentGun = gun;
-	this->spreadGun = true;
 	this->render();
 }
 
@@ -611,6 +610,25 @@ void Player::reduceHP(float dmg) {
 void Player::addHP(float hp) {
 	if (hp > 0) this->hp += hp;
 }
+
+float Player::getDMG() {
+	if (currentGun == 1) return 1;
+	else if (currentGun == 2) return 2;
+	else if (currentGun == 3) return 5;
+}
+
+float Player::getAttackSpeed() {
+	if (currentGun == 1) return 500;
+	else if (currentGun == 2) return 1000;
+	else if (currentGun == 3) return 700;
+}
+
+float Player::getProjectileRange() {
+	if (currentGun == 1) return 5;
+	else if (currentGun == 2) return 4;
+	else if (currentGun == 3) return 8;
+}
+
 
 
 

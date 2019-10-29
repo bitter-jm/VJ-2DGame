@@ -16,6 +16,9 @@
 #define SPREADGUN_X 1*64
 #define SPREADGUN_Y 5.25*64
 
+#define SNIPERGUN_X 14*64
+#define SNIPERGUN_Y 5.25*64
+
 
 BossScene::BossScene()
 {
@@ -37,7 +40,6 @@ void BossScene::init()
 	SoundManager::getInstance()->playSound("sounds/bossLevel.mp3", true, 0.8f);
 	waitTime = 4.4;
 
-	spreadgunHidden = false;
 	deadPlayer = false;
 	levelComplete = false;
 
@@ -50,6 +52,10 @@ void BossScene::init()
 	player->setTileMap(map);
 	spreadgun = new SpreadGun();
 	spreadgun->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(SPREADGUN_X, SPREADGUN_Y));
+	spreadgun->setHidden(false);
+	snipergun = new SniperGun();
+	snipergun->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(SNIPERGUN_X, SNIPERGUN_Y));
+	snipergun->setHidden(false);
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
 	entityManager = new EntityManager();
@@ -72,27 +78,35 @@ void BossScene::update(int deltaTime)
 		// body triangular region
 		if (entityManager->checkCollisionEnemy(bodyPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceHP(1);
 		else if (entityManager->checkCollisionEnemy(glm::vec2(bodyPos.x-0.5* map->getTileSize(), bodyPos.y),
-			0.5 * map->getTileSize(), 2 * map->getTileSize())) boss->reduceHP(1);
+			0.5 * map->getTileSize(), 2 * map->getTileSize())) boss->reduceHP(player->getDMG());
 		else if (entityManager->checkCollisionEnemy(glm::vec2(bodyPos.x + 2* map->getTileSize(), bodyPos.y), 
-			0.5 * map->getTileSize(), 2 * map->getTileSize())) boss->reduceHP(1);
+			0.5 * map->getTileSize(), 2 * map->getTileSize())) boss->reduceHP(player->getDMG());
 	}
 	if (!boss->is_left_dead()) {
 		glm::vec2 leftPos = glm::vec2(boss->getPosition().x, boss->getPosition().y);
-		if (entityManager->checkCollisionEnemy(leftPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceLeftHp(1);
+		if (entityManager->checkCollisionEnemy(leftPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceLeftHp(player->getDMG());
 	}
 	if (!boss->is_right_dead()) {
 		glm::vec2 rightPos = glm::vec2(boss->getPosition().x + 6 * map->getTileSize(), boss->getPosition().y);
-		if (entityManager->checkCollisionEnemy(rightPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceRightHp(1);
+		if (entityManager->checkCollisionEnemy(rightPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceRightHp(player->getDMG());
 	}
 	
 	if (!levelComplete) player->update(deltaTime, texProgram);
 	entityManager->update(deltaTime);
 	int tSize = map->getTileSize();
-	if (!spreadgunHidden && int((player->getPosition().x-SPREADGUN_X)/tSize) == 0 && int((player->getPosition().y - SPREADGUN_Y)/ tSize) == 0) {
-		spreadgunHidden = true;
+	if (!spreadgun->is_Hidden() && int((player->getPosition().x - SPREADGUN_X) / tSize) == 0
+		&& int((player->getPosition().y - SPREADGUN_Y) / tSize) == 0) {
+		spreadgun->setHidden(true);
 		player->upgradeGun(2);
 	}
 	else spreadgun->update(deltaTime);
+
+	if (!snipergun->is_Hidden() && int((player->getPosition().x - SNIPERGUN_X) / tSize) == 0
+		&& int((player->getPosition().y - SNIPERGUN_Y) / tSize) == 0) {
+		snipergun->setHidden(true);
+		player->upgradeGun(3);
+	}
+	else snipergun->update(deltaTime);
 
 	//level completed
 	if (boss->is_dead()) {
@@ -139,7 +153,8 @@ void BossScene::render()
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 
 	map->render();
-	if (!spreadgunHidden) spreadgun->render();
+	if (!spreadgun->is_Hidden()) spreadgun->render();
+	if (!snipergun->is_Hidden()) snipergun->render();
 	player->render();
 	entityManager->render();
 	if (!boss->is_dead()) boss->render();

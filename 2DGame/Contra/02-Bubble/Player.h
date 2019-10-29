@@ -15,6 +15,7 @@ class Player
 {
 
 public:
+	float getShotVelocity();
 	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram);
 	void update(int deltaTime, ShaderProgram& shaderProgram);
 	void render();
@@ -32,9 +33,11 @@ public:
 	int getProjectileVelocity();
 	int getProjectileType();
 	void upgradeGun(int gun);
-
 	void reduceHP(float dmg);
 	void addHP(float dmg);
+	float getDMG();
+	float getAttackSpeed();
+	float getProjectileRange();
 
 private:
 	bool bJumping;
@@ -58,7 +61,6 @@ private:
 
 	//Creating projectiles
 	bool shootedProjectile = false;
-	bool spreadGun = false;
 	bool ableToMove;
 	glm::ivec2 projectileCoords;
 	int projectileAngle, projectileVelocity, projectileType;

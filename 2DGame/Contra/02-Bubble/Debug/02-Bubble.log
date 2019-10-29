@@ -22,54 +22,54 @@ D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(228,24): warning C4244:  'a
 D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(229,32): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
   BossScene.cpp
 D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Boss.cpp(230,34): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\BossScene.cpp(38,16): warning C4305:  '=': truncation from 'double' to 'float'
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\BossScene.cpp(75,8): warning C4244:  'argument': conversion from 'double' to 'int', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\BossScene.cpp(77,8): warning C4244:  'argument': conversion from 'double' to 'int', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\BossScene.cpp(41,16): warning C4305:  '=': truncation from 'double' to 'float'
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\BossScene.cpp(81,8): warning C4244:  'argument': conversion from 'double' to 'int', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\BossScene.cpp(83,8): warning C4244:  'argument': conversion from 'double' to 'int', possible loss of data
   EntityManager.cpp
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\BossScene.cpp(103,26): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(120,95): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(120,73): warning C4244:  'argument': conversion from 'T' to 'int', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(120,73): warning C4244:         with
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(120,73): warning C4244:         [
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(120,73): warning C4244:             T=float
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(120,73): warning C4244:         ]
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(120,62): warning C4244:  'argument': conversion from 'T' to 'int', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(120,62): warning C4244:         with
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(120,62): warning C4244:         [
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(120,62): warning C4244:             T=float
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(120,62): warning C4244:         ]
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(135,11): warning C4244:  'initializing': conversion from 'T' to 'int', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(135,11): warning C4244:         with
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(135,11): warning C4244:         [
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(135,11): warning C4244:             T=float
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(135,11): warning C4244:         ]
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,11): warning C4244:  'initializing': conversion from 'T' to 'int', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,11): warning C4244:         with
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,11): warning C4244:         [
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,11): warning C4244:             T=float
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,11): warning C4244:         ]
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(167,14): warning C4244:  'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(168,11): warning C4244:  'initializing': conversion from 'T' to 'int', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(168,11): warning C4244:         with
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(168,11): warning C4244:         [
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(168,11): warning C4244:             T=float
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(168,11): warning C4244:         ]
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(169,11): warning C4244:  'initializing': conversion from 'T' to 'int', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(169,11): warning C4244:         with
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(169,11): warning C4244:         [
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(169,11): warning C4244:             T=float
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(169,11): warning C4244:         ]
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(170,16): warning C4244:  'initializing': conversion from 'T' to 'int', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(170,16): warning C4244:         with
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(170,16): warning C4244:         [
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(170,16): warning C4244:             T=float
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(170,16): warning C4244:         ]
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\BossScene.cpp(117,26): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,95): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,73): warning C4244:  'argument': conversion from 'T' to 'int', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,73): warning C4244:         with
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,73): warning C4244:         [
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,73): warning C4244:             T=float
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,73): warning C4244:         ]
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,62): warning C4244:  'argument': conversion from 'T' to 'int', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,62): warning C4244:         with
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,62): warning C4244:         [
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,62): warning C4244:             T=float
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(136,62): warning C4244:         ]
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(151,11): warning C4244:  'initializing': conversion from 'T' to 'int', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(151,11): warning C4244:         with
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(151,11): warning C4244:         [
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(151,11): warning C4244:             T=float
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(151,11): warning C4244:         ]
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(152,11): warning C4244:  'initializing': conversion from 'T' to 'int', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(152,11): warning C4244:         with
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(152,11): warning C4244:         [
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(152,11): warning C4244:             T=float
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(152,11): warning C4244:         ]
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(183,14): warning C4244:  'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(184,11): warning C4244:  'initializing': conversion from 'T' to 'int', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(184,11): warning C4244:         with
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(184,11): warning C4244:         [
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(184,11): warning C4244:             T=float
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(184,11): warning C4244:         ]
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(185,11): warning C4244:  'initializing': conversion from 'T' to 'int', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(185,11): warning C4244:         with
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(185,11): warning C4244:         [
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(185,11): warning C4244:             T=float
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(185,11): warning C4244:         ]
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(186,16): warning C4244:  'initializing': conversion from 'T' to 'int', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(186,16): warning C4244:         with
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(186,16): warning C4244:         [
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(186,16): warning C4244:             T=float
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(186,16): warning C4244:         ]
   EntityManagerCenital.cpp
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(171,16): warning C4244:  'initializing': conversion from 'T' to 'int', possible loss of data
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(171,16): warning C4244:         with
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(171,16): warning C4244:         [
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(171,16): warning C4244:             T=float
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(171,16): warning C4244:         ]
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(187,16): warning C4244:  'initializing': conversion from 'T' to 'int', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(187,16): warning C4244:         with
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(187,16): warning C4244:         [
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(187,16): warning C4244:             T=float
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManager.cpp(187,16): warning C4244:         ]
 D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,95): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
 D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,73): warning C4244:  'argument': conversion from 'T' to 'int', possible loss of data
 D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\EntityManagerCenital.cpp(67,73): warning C4244:         with
@@ -119,12 +119,12 @@ D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Game.cpp(15,1): warning C4996:  'fre
   Menu.cpp
   MenuScene.cpp
   Mina.cpp
-  NPC.cpp
   Player.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(243): message :  see declaration of 'freopen'
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Player.cpp(49,22): warning C4305:  'initializing': truncation from 'double' to 'float'
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Player.cpp(53,22): warning C4305:  'initializing': truncation from 'double' to 'float'
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Player.cpp(508,20): warning C4018:  '<': signed/unsigned mismatch
   PlayerCenital.cpp
-D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Player.cpp(507,20): warning C4018:  '<': signed/unsigned mismatch
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Player.cpp(542,38): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
 D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\PlayerCenital.cpp(296,81): warning C4244:  '=': conversion from 'double' to 'int', possible loss of data
   Scene.cpp
 D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\PlayerCenital.cpp(628,20): warning C4018:  '<': signed/unsigned mismatch
@@ -248,10 +248,14 @@ D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(101,70): warning C4244:  
 D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(107,91): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
 D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(107,71): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
 D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(113,92): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
+  Tutorial.cpp
   Generating Code...
 D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Turret.cpp(113,72): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Player.cpp(41): warning C4715:  'Player::getShotVelocity': not all control paths return a value
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Player.cpp(618): warning C4715:  'Player::getDMG': not all control paths return a value
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Player.cpp(624): warning C4715:  'Player::getAttackSpeed': not all control paths return a value
+D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Player.cpp(630): warning C4715:  'Player::getProjectileRange': not all control paths return a value
   Compiling...
-  Tutorial.cpp
   main.cpp
 D:\Fib\VJ\VJ-2DGame\2DGame\Contra\02-Bubble\Game.cpp(157): warning C4715:  'Game::getCurrentLevel': not all control paths return a value
   Generating Code...
