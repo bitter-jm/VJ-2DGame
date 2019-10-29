@@ -32,6 +32,7 @@ public:
 	int getProjectileVelocity();
 	int getProjectileType();
 	void upgradeSpreadGun();
+	int getDeathFinished();
 
 	void reduceHP(float dmg);
 

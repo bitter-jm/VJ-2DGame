@@ -30,12 +30,9 @@ void GameOver::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, 
 
 	sprite->changeAnimation(0);
 	tileMapDispl = tileMapPos;
-	if (Game::instance().getCurrentLevel() != 2) {
-		sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x - 768/2), float(tileMapDispl.y))); // PROJECTION LEVEL 1 & 3
-	}
-	else {
-		sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x - 768/2), float(tileMapDispl.y + posPlayer.y - 512 / 2))); // PROJECTION LEVEL 2
-	}
+	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x - 768/2), float(tileMapDispl.y))); // PROJECTION LEVEL 1 & 3
+
+
 }
 
 void GameOver::render()

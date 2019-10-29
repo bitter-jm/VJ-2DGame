@@ -114,6 +114,7 @@ void BossScene::update(int deltaTime)
 
 void BossScene::render()
 {
+	cout << waitTime << endl;
 	glm::mat4 modelview;
 	float playerX = player->getPosition().x;
 	if (player->isDead()) {
