@@ -83,6 +83,12 @@ void EntityManager::update(int deltaTime)
 					projectiles[nextProjectileID + 1] = p3;
 					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -22, velocityproj, typeproj, playerRange, false, *shaderProgram);
 				}
+				else if (angleproj == 90) {
+					projectiles[nextProjectileID] = p2;
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 67, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1] = p3;
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 112, velocityproj, typeproj, playerRange, false, *shaderProgram);
+				}
 				nextProjectileID += 2;
 			}
 		}
