@@ -1,6 +1,5 @@
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\vc142.pdb
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\vc142.idb
-c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\shaderprogram.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\shader.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\scenelvl2.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\scene.obj
@@ -14,10 +13,10 @@ c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\life.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\item.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\heart.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\gameover.obj
-c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\game.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\flag.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\entitymanagercenital.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\entitymanager.obj
+c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\credits.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\bossscene.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\boss.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\tutorial.obj
@@ -33,6 +32,8 @@ c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\menuscene.o
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\menu.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\soldiera.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\snipergun.obj
+c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\shaderprogram.obj
+c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\02-bubble\debug\game.obj
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\debug\contra.exe
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\debug\contra.ilk
 c:\users\joanp\desktop\clean\vj-2dgame\2dgame\contra\debug\contra.pdb

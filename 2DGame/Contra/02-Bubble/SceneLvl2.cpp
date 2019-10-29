@@ -190,6 +190,7 @@ void SceneLvl2::render()
 	player->render();
 	entityManager->render();
 
+	for (int i = 0; i < hearts.size(); i++) hearts[i]->render();
 
 	// Death screen
 	//cout << player->isDead() << endl;
@@ -219,8 +220,6 @@ void SceneLvl2::render()
 			Game::instance().changeLevel(3);
 		}
 	}
-
-	for (int i = 0; i < hearts.size(); i++) hearts[i]->render();
 }
 
 void SceneLvl2::initShaders()

@@ -266,6 +266,8 @@ void Scene::render()
 		if (!soldierBs[i]->is_dead()) soldierBs[i]->render();
 	}
 	
+	for (int i = 0; i < hearts.size(); i++) hearts[i]->render();
+
 	// Death screen
 	if (player->isDead()) {
 		if (!deadPlayer) {
@@ -286,7 +288,6 @@ void Scene::render()
 		}
 	}
 
-	for (int i = 0; i < hearts.size(); i++) hearts[i]->render();
 
 }
 

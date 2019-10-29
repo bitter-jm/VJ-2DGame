@@ -18,7 +18,7 @@ enum PlayerAnims
 	STAND_LEFT_POINT_LEFT, STAND_RIGHT_POINT_RIGHT, MOVE_LEFT_POINT_LEFT, MOVE_RIGHT_POINT_RIGHT, JUMP_LEFT, JUMP_RIGHT,
 	STAND_LEFT_POINT_UP, STAND_LEFT_POINT_DOWN, STAND_RIGHT_POINT_UP, STAND_RIGHT_POINT_DOWN,
 	MOVE_LEFT_POINT_UP, MOVE_LEFT_POINT_DOWN, MOVE_RIGHT_POINT_UP, MOVE_RIGHT_POINT_DOWN,
-	
+
 	STAND_LEFT_POINT_STRAIGHT_UP, MOVE_LEFT_POINT_STRAIGHT_UP, STAND_RIGHT_POINT_STRAIGHT_UP, MOVE_RIGHT_POINT_STRAIGHT_UP,
 
 	STAND_LEFT_POINT_LEFT_SHOOT, STAND_RIGHT_POINT_RIGHT_SHOOT, MOVE_LEFT_POINT_LEFT_SHOOT, MOVE_RIGHT_POINT_RIGHT_SHOOT,
@@ -40,7 +40,7 @@ float Player::getShotVelocity() {
 	else if (currentGun == 3) return 10;
 }
 
-void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
+void Player::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 {
 	hp = 3;
 
@@ -62,11 +62,11 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 
 	sprite->setAnimationSpeed(STAND_LEFT_POINT_DOWN, 3);
 	sprite->addKeyframe(STAND_LEFT_POINT_DOWN, glm::vec2(0.6f, 5 * tileY));
-		
+
 	sprite->setAnimationSpeed(STAND_RIGHT_POINT_RIGHT, 3);
 	sprite->addKeyframe(STAND_RIGHT_POINT_RIGHT, glm::vec2(0.f, 0.f));
 	sprite->addKeyframe(STAND_RIGHT_POINT_RIGHT, glm::vec2(0.1f, 0.f));
-		
+
 	sprite->setAnimationSpeed(STAND_RIGHT_POINT_UP, 3);
 	sprite->addKeyframe(STAND_RIGHT_POINT_UP, glm::vec2(0.1f, 3 * tileY));
 
@@ -90,7 +90,7 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	sprite->addKeyframe(MOVE_LEFT_POINT_DOWN, glm::vec2(0.6f, 5 * tileY));
 	sprite->addKeyframe(MOVE_LEFT_POINT_DOWN, glm::vec2(0.5f, 5 * tileY));
 	sprite->addKeyframe(MOVE_LEFT_POINT_DOWN, glm::vec2(0.4f, 5 * tileY));
-		
+
 	sprite->setAnimationSpeed(MOVE_RIGHT_POINT_RIGHT, 8);
 	sprite->addKeyframe(MOVE_RIGHT_POINT_RIGHT, glm::vec2(0.0f, 1 * tileY));
 	sprite->addKeyframe(MOVE_RIGHT_POINT_RIGHT, glm::vec2(0.1f, 1 * tileY));
@@ -194,7 +194,7 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	sprite->addKeyframe(MOVE_RIGHT_POINT_DOWN_SHOOT, glm::vec2(0.1f, 5 * tileY));
 	sprite->addKeyframe(MOVE_RIGHT_POINT_DOWN_SHOOT, glm::vec2(0.2f, 5 * tileY));
 	sprite->addKeyframe(MOVE_RIGHT_POINT_DOWN_SHOOT, glm::vec2(0.3f, 5 * tileY));
-		
+
 	sprite->setAnimationSpeed(DYING_LEFT, 5);
 	sprite->addKeyframe(DYING_LEFT, glm::vec2(0.5f, 8 * tileY));
 	sprite->addKeyframe(DYING_LEFT, glm::vec2(0.4f, 8 * tileY));
@@ -254,7 +254,7 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	sprite->addKeyframe(MOVE_RIGHT_POINT_STRAIGHT_UP_SHOOT, glm::vec2(0.1f, 9 * tileY));
 	sprite->addKeyframe(MOVE_RIGHT_POINT_STRAIGHT_UP_SHOOT, glm::vec2(0.0f, 9 * tileY));
 	///////////////////////////////////////////
-		
+
 	sprite->changeAnimation(1);
 	tileMapDispl = tileMapPos;
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
@@ -309,10 +309,10 @@ void Player::changeBasicAction(int basicAnimation, int deltaTime)
 		}
 		else {
 			if (angulo > 75 && angulo <= 105) sprite->changeAnimation(STAND_LEFT_POINT_STRAIGHT_UP_SHOOT);
-			else if (angulo > 105 && angulo < 157 ) sprite->changeAnimation(STAND_LEFT_POINT_UP_SHOOT);
-			else if ((angulo >= 157 || angulo <= -157) ) sprite->changeAnimation(STAND_LEFT_POINT_LEFT_SHOOT);
-			else if (angulo < -90 && angulo > -157 ) sprite->changeAnimation(STAND_LEFT_POINT_DOWN_SHOOT);
-			else if (((angulo <= 90 && angulo > 0) || (angulo <= 0 && angulo >= -90)) ) sprite->changeAnimation(STAND_LEFT_POINT_LEFT_SHOOT);
+			else if (angulo > 105 && angulo < 157) sprite->changeAnimation(STAND_LEFT_POINT_UP_SHOOT);
+			else if ((angulo >= 157 || angulo <= -157)) sprite->changeAnimation(STAND_LEFT_POINT_LEFT_SHOOT);
+			else if (angulo < -90 && angulo > -157) sprite->changeAnimation(STAND_LEFT_POINT_DOWN_SHOOT);
+			else if (((angulo <= 90 && angulo > 0) || (angulo <= 0 && angulo >= -90))) sprite->changeAnimation(STAND_LEFT_POINT_LEFT_SHOOT);
 		}
 	}
 	else if (basicAnimation == STAND_RIGHT) {
@@ -373,7 +373,7 @@ void Player::update(int deltaTime, ShaderProgram& shaderProgram)
 	for (int i = 0; i < hp; i++) {
 		Life* l = new Life();
 		if (posPlayer.x <= float(SCREEN_WIDTH - 1) / 2.0f) l->init(tileMapDispl, shaderProgram, glm::vec2(10 + i * 32, 10));
-		else l->init(tileMapDispl, shaderProgram, glm::vec2(posPlayer.x + 10 + i*32 - SCREEN_WIDTH/2 , 10));
+		else l->init(tileMapDispl, shaderProgram, glm::vec2(posPlayer.x + 10 + i * 32 - SCREEN_WIDTH / 2, 10));
 		lifes.push_back(l);
 	}
 
@@ -387,7 +387,7 @@ void Player::update(int deltaTime, ShaderProgram& shaderProgram)
 			if (sprite->animation() != DYING_RIGHT) {
 				sprite->changeAnimation(DYING_RIGHT);
 			}
-		} 
+		}
 	}
 	else if (dead) {
 		if (sprite->animation() == DYING_LEFT)
@@ -401,9 +401,9 @@ void Player::update(int deltaTime, ShaderProgram& shaderProgram)
 			deathFinished = true;
 		}
 	}
-	   
+
 	changeBasicAction(basicAction, deltaTime);
-	
+
 	sprite->update(deltaTime);
 
 	if (Game::instance().getCurrentLevel() != 3) {
@@ -433,16 +433,16 @@ void Player::update(int deltaTime, ShaderProgram& shaderProgram)
 			changeBasicAction(STAND_RIGHT, deltaTime);
 		}
 	}
-	
+
 	else if (!dead)
 	{
-		if(basicAction == MOVE_LEFT)
+		if (basicAction == MOVE_LEFT)
 			changeBasicAction(STAND_LEFT, deltaTime);
-		else if(basicAction == MOVE_RIGHT)
+		else if (basicAction == MOVE_RIGHT)
 			changeBasicAction(STAND_RIGHT, deltaTime);
 	}
-	
-	if(bJumping && !dead)
+
+	if (bJumping && !dead)
 	{
 		if (Game::instance().getSpecialKey(GLUT_KEY_RIGHT) && sprite->animation() != JUMP_RIGHT) {
 			changeBasicAction(OTHERS, deltaTime);
@@ -462,7 +462,7 @@ void Player::update(int deltaTime, ShaderProgram& shaderProgram)
 		}
 
 		jumpAngle += JUMP_ANGLE_STEP;
-		if(jumpAngle == 180)
+		if (jumpAngle == 180)
 		{
 			bJumping = false;
 			posPlayer.y = startY;
@@ -470,7 +470,7 @@ void Player::update(int deltaTime, ShaderProgram& shaderProgram)
 		else
 		{
 			posPlayer.y = int(startY - 96 * sin(3.14159f * jumpAngle / 180.f));
-			if(jumpAngle > 90)
+			if (jumpAngle > 90)
 				bJumping = !map->collisionMoveDown(posPlayer, glm::ivec2(48, 48), &posPlayer.y);
 		}
 
@@ -498,7 +498,7 @@ void Player::update(int deltaTime, ShaderProgram& shaderProgram)
 		}
 		else if (!dead) kill();
 	}
-	
+
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
 }
 
@@ -510,12 +510,12 @@ void Player::render()
 	}
 }
 
-void Player::setTileMap(TileMap *tileMap)
+void Player::setTileMap(TileMap* tileMap)
 {
 	map = tileMap;
 }
 
-void Player::setPosition(const glm::vec2 &pos)
+void Player::setPosition(const glm::vec2& pos)
 {
 	posPlayer = pos;
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
@@ -526,10 +526,10 @@ glm::vec2 Player::getPosition()
 	return posPlayer;
 }
 
-void Player::shoot(double angulo, int x, int y) 
+void Player::shoot(double angulo, int x, int y)
 {
 	shootedProjectile = true;
-	projectileCoords.x = x+22;
+	projectileCoords.x = x + 22;
 	projectileCoords.y = y;
 	if (angulo >= 75 && angulo <= 105) {
 		if (STAND_LEFT || MOVE_LEFT) projectileCoords.x += 10;
@@ -628,8 +628,3 @@ float Player::getProjectileRange() {
 	else if (currentGun == 2) return 4;
 	else if (currentGun == 3) return 8;
 }
-
-
-
-
-
