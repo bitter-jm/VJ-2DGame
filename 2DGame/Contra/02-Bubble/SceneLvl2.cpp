@@ -21,6 +21,9 @@
 #define SPREADGUN_X 41*64
 #define SPREADGUN_Y 3.25*64
 
+#define PROB_HEART 1
+
+
 SceneLvl2::SceneLvl2()
 {
 	map = NULL;
@@ -77,13 +80,14 @@ void SceneLvl2::spawnSoldierCs() {
 void SceneLvl2::init()
 {
 	SoundManager::getInstance()->removeAllSound();
-	SoundManager::getInstance()->playSound("sounds/level1.ogg", true, 0.5f);
+	SoundManager::getInstance()->playSound("sounds/level2.ogg", true, 0.5f); 
 
 	deadPlayer = false;
 	levelComplete = false;
 
 	if (soldierCs.size() != 0) soldierCs.clear();
 	if (minas.size() != 0) minas.clear();
+	if (hearts.size() != 0) hearts.clear();
 
 	initShaders();
 	map = TileMap::createTileMap("levels/level2.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
@@ -110,7 +114,6 @@ void SceneLvl2::update(int deltaTime)
 	if (!levelComplete) player->update(deltaTime, texProgram);
 	entityManager->update(deltaTime);
 	int tSize = map->getTileSize();
-	if (deadPlayer) gameOver->update();
 
 	for (int i = 0; i < minas.size(); i++) {
 		if (!minas[i]->is_dead()) {
@@ -122,10 +125,30 @@ void SceneLvl2::update(int deltaTime)
 		if (!soldierCs[i]->is_dead()) {
 			soldierCs[i]->update(deltaTime);
 			if (entityManager->checkCollisionEnemy(glm::vec2(soldierCs[i]->getPosition().x + 32, soldierCs[i]->getPosition().y + 16), 64, 64)) {
-				soldierCs[i]->reduceHP();
+				soldierCs[i]->reduceHP(1);
+				if (soldierCs[i]->is_dead()) {
+					float r = float(rand() % 100) / 100;
+					if (r <= PROB_HEART) {
+						Heart* h = new Heart();
+						h->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(soldierCs[i]->getPosition().x + 32, soldierCs[i]->getPosition().y + 32));
+						hearts.push_back(h);
+					}
+				}
 			}
 		}
 	}
+
+	for (int i = 0; i < hearts.size(); i++) {
+		int distX = player->getPosition().x - hearts[i]->getPosition().x;
+		int distY = player->getPosition().y - hearts[i]->getPosition().y;
+		if (abs(distX) <= 64 && abs(distY) <= 64) {
+			hearts.erase(hearts.begin() + i);
+			player->addHP(1);
+		}
+	}
+
+	if (deadPlayer) gameOver->update();
+
 }
 
 void SceneLvl2::render()
@@ -195,6 +218,8 @@ void SceneLvl2::render()
 			Game::instance().changeLevel(3);
 		}
 	}
+
+	for (int i = 0; i < hearts.size(); i++) hearts[i]->render();
 }
 
 void SceneLvl2::initShaders()

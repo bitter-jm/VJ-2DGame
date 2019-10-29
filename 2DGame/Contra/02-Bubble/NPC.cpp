@@ -40,6 +40,7 @@ bool NPC::is_dead() {
 	return dead;
 }
 
-void NPC::reduceHP() {
-	if (hp > 0) hp--;
+void NPC::reduceHP(float dmg) {
+	if (hp > 0) hp -= dmg;
+	if (hp <= 0) dead = true;
 }

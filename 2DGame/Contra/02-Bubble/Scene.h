@@ -15,6 +15,7 @@
 #include "SpreadGun.h"
 #include "SoundManager.h"
 #include "Flag.h"
+#include "Heart.h"
 
 // Scene contains all the entities of our game.
 // It is responsible for updating and render them.
@@ -50,6 +51,7 @@ private:
 	vector<Turret*> turrets;
 	vector<SoldierA*> soldierAs;
 	vector<SoldierB*> soldierBs;
+	vector<Heart*> hearts;
 	int deathTime;
 	bool deadPlayer, levelComplete;
 	float completeTime, waitTime;

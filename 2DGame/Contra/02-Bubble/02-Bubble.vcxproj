@@ -19,6 +19,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="GameOver.h" />
+    <ClInclude Include="Heart.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Life.h" />
     <ClInclude Include="Menu.h" />
@@ -51,6 +52,7 @@
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="Heart.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Life.cpp" />
     <ClCompile Include="main.cpp" />

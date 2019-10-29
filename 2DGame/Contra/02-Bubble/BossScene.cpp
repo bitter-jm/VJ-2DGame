@@ -70,11 +70,11 @@ void BossScene::update(int deltaTime)
 	if (!boss->is_dead()) {
 		glm::vec2 bodyPos = glm::vec2(boss->getPosition().x + 3* map->getTileSize(), boss->getPosition().y);
 		// body triangular region
-		if (entityManager->checkCollisionEnemy(bodyPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceHP();
+		if (entityManager->checkCollisionEnemy(bodyPos, 2 * map->getTileSize(), 3 * map->getTileSize())) boss->reduceHP(1);
 		else if (entityManager->checkCollisionEnemy(glm::vec2(bodyPos.x-0.5* map->getTileSize(), bodyPos.y),
-			0.5 * map->getTileSize(), 2 * map->getTileSize())) boss->reduceHP();
+			0.5 * map->getTileSize(), 2 * map->getTileSize())) boss->reduceHP(1);
 		else if (entityManager->checkCollisionEnemy(glm::vec2(bodyPos.x + 2* map->getTileSize(), bodyPos.y), 
-			0.5 * map->getTileSize(), 2 * map->getTileSize())) boss->reduceHP();
+			0.5 * map->getTileSize(), 2 * map->getTileSize())) boss->reduceHP(1);
 	}
 	if (!boss->is_left_dead()) {
 		glm::vec2 leftPos = glm::vec2(boss->getPosition().x, boss->getPosition().y);

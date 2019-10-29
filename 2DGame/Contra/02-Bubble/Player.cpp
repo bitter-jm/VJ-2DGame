@@ -603,5 +603,10 @@ void Player::reduceHP(float dmg) {
 	if (hp <= 0) this->kill();
 }
 
+void Player::addHP(float hp) {
+	if (hp > 0) this->hp += hp;
+}
+
+
 
 

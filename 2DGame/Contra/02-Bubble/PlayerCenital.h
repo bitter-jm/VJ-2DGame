@@ -35,6 +35,7 @@ public:
 	int getDeathFinished();
 
 	void reduceHP(float dmg);
+	void addHP(float hp);
 
 private:
 	bool bJumping;

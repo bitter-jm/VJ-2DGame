@@ -80,7 +80,7 @@ void Menu::update()
 		if (absMX > 191 && absMX < 389) {
 			if (absMY > 347 && absMY < 416) {
 				if (absMY < 380) {
-					Game::instance().changeLevel(3);
+					Game::instance().changeLevel(2);
 				}
 				else {
 					Game::instance().menuToTutorial();

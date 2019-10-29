@@ -34,6 +34,7 @@ public:
 	void upgradeSpreadGun();
 
 	void reduceHP(float dmg);
+	void addHP(float dmg);
 
 private:
 	bool bJumping;

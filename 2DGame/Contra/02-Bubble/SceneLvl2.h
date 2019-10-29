@@ -11,6 +11,7 @@
 #include "Mina.h"
 #include "SoldierC.h"
 #include "SoundManager.h"
+#include "Heart.h"
 
 // SceneLvl2 contains all the entities of our game.
 // It is responsible for updating and render them.
@@ -44,6 +45,7 @@ private:
 	EntityManagerCenital* entityManager;
 	int deathTime;
 	bool deadPlayer, levelComplete;
+	vector<Heart*> hearts;
 };
 
 

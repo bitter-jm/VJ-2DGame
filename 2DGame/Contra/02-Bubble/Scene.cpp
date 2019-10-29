@@ -7,6 +7,7 @@
 #include "Game.h"
 #include <servprov.h> 
 #include "SoundManager.h" 
+#include "time.h"
 
 // Desplazamiento de pantalla
 #define SCREEN_X 0
@@ -20,6 +21,8 @@
 
 #define SPREADGUN_X 41*64
 #define SPREADGUN_Y 3.25*64
+
+#define PROB_HEART 0.1
 
 
 Scene::Scene()
@@ -81,6 +84,8 @@ void Scene::spawnSoldierBs() {
 
 void Scene::init()
 {
+	srand(time(NULL));
+
 	SoundManager::getInstance()->removeAllSound();
 	SoundManager::getInstance()->playSound("sounds/level1.ogg", true, 0.5f);
 	waitTime = 2.5; //s
@@ -88,6 +93,8 @@ void Scene::init()
 	if (turrets.size() != 0) turrets.clear();
 	if (soldierAs.size() != 0) soldierAs.clear();
 	if (soldierBs.size() != 0) soldierBs.clear();
+	if (hearts.size() != 0) hearts.clear();
+	
 
 	deadPlayer = false;
 	levelComplete = false;
@@ -114,6 +121,7 @@ void Scene::init()
 	flag = new Flag();
 	flag->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(LEVEL_COMPLETE_X, LEVEL_COMPLETE_Y));
 	flag->setHidden(false);
+
 }
 
 void Scene::update(int deltaTime)
@@ -134,7 +142,15 @@ void Scene::update(int deltaTime)
 		if (!turrets[i]->is_dead()) { 
 			turrets[i]->update(deltaTime); 
 			if (entityManager->checkCollisionEnemy(glm::vec2(turrets[i]->getPosition().x, turrets[i]->getPosition().y+8), 48, 40)) {
-				turrets[i]->reduceHP();
+				turrets[i]->reduceHP(1);
+				if (turrets[i]->is_dead()) {
+					float r = float(rand()%100)/100;
+					if (r <= PROB_HEART) {
+						Heart* h = new Heart();
+						h->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(turrets[i]->getPosition().x, turrets[i]->getPosition().y + 32));
+						hearts.push_back(h);
+					}
+				}
 			}
 		}
 	}
@@ -142,7 +158,15 @@ void Scene::update(int deltaTime)
 		if (!soldierAs[i]->is_dead()) { 
 			soldierAs[i]->update(deltaTime); 
 			if (entityManager->checkCollisionEnemy(glm::vec2(soldierAs[i]->getPosition().x+16, soldierAs[i]->getPosition().y+16), 32, 32)) {
-				soldierAs[i]->reduceHP();
+				soldierAs[i]->reduceHP(1);
+				if (soldierAs[i]->is_dead()) {
+					float r = float(rand() % 100) / 100;
+					if (r <= PROB_HEART) {
+						Heart* h = new Heart();
+						h->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(soldierAs[i]->getPosition().x, soldierAs[i]->getPosition().y));
+						hearts.push_back(h);
+					}
+				}
 			}
 		}
 	}
@@ -150,7 +174,15 @@ void Scene::update(int deltaTime)
 		if (!soldierBs[i]->is_dead()) {
 			soldierBs[i]->update(deltaTime);
 			if (entityManager->checkCollisionEnemy(soldierBs[i]->getPosition(), 64, 64)) {
-				soldierBs[i]->reduceHP();
+				soldierBs[i]->reduceHP(1);
+				if (soldierBs[i]->is_dead()) {
+					float r = float(rand() % 100) / 100;
+					if (r <= PROB_HEART) {
+						Heart* h = new Heart();
+						h->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(soldierBs[i]->getPosition().x, soldierBs[i]->getPosition().y));
+						hearts.push_back(h);
+					}
+				}
 			}
 		}
 	}
@@ -167,6 +199,15 @@ void Scene::update(int deltaTime)
 
 	if (levelComplete && glutGet(GLUT_ELAPSED_TIME) - completeTime >= waitTime*1000) {
 		Game::instance().changeLevel(2);
+	}
+
+	for (int i = 0; i < hearts.size(); i++) {
+		int distX = player->getPosition().x - hearts[i]->getPosition().x;
+		int distY = player->getPosition().y - hearts[i]->getPosition().y;
+		if (abs(distX) <= 32 && abs(distY) <= 32) {
+				hearts.erase(hearts.begin() + i);
+				player->addHP(1);
+		}
 	}
 
 	if (deadPlayer) gameOver->update();
@@ -226,6 +267,8 @@ void Scene::render()
 			//blackb->render(1);
 		}
 	}
+
+	for (int i = 0; i < hearts.size(); i++) hearts[i]->render();
 
 }
 

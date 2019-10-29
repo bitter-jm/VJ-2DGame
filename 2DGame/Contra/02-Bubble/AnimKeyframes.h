@@ -12,7 +12,7 @@ using namespace std;
 // These are the animation speed measured by millisecsPerKeyframe
 // and texture coordinates for all keyframes.
 
-
+ 
 struct AnimKeyframes
 {
 	float millisecsPerKeyframe;
