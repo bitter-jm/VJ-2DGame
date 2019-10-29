@@ -9,6 +9,10 @@
 #include "Shader.h"
 #include "Game.h" 
 
+enum Anim {
+	WITHOUT_POINTER, PLAY_POINTER, TUTORIAL_POINTER
+};
+
 // Desplazamiento de pantalla 
 #define SCREEN_X 0
 #define SCREEN_Y 0
@@ -21,16 +25,19 @@ void Menu::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 	buttonSound2 = false;
 
 	spritesheet.loadFromFile("images/menu.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sprite = Sprite::createSprite(glm::ivec2(768, 512), glm::vec2(0.5, 0.5), &spritesheet, &shaderProgram);
+	sprite = Sprite::createSprite(glm::ivec2(768, 512), glm::vec2(0.375, 0.5), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(3);
 
-	sprite->setAnimationSpeed(0, 2);
-	sprite->addKeyframe(0, glm::vec2(0.f, 0.f));
+	sprite->setAnimationSpeed(WITHOUT_POINTER, 2);
+	sprite->addKeyframe(WITHOUT_POINTER, glm::vec2(0.f, 0.f));
 
-	sprite->setAnimationSpeed(1, 2);
-	sprite->addKeyframe(0, glm::vec2(0.5f, 0.f));
+	sprite->setAnimationSpeed(PLAY_POINTER, 2);
+	sprite->addKeyframe(PLAY_POINTER, glm::vec2(0.f, 0.5f));
+
+	sprite->setAnimationSpeed(TUTORIAL_POINTER, 2);
+	sprite->addKeyframe(TUTORIAL_POINTER, glm::vec2(0.375f, 0.f));
 	
-	sprite->changeAnimation(0);
+	sprite->changeAnimation(WITHOUT_POINTER);
 
 	tileMapDispl = tileMapPos;
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x), float(tileMapDispl.y)));
@@ -58,6 +65,7 @@ void Menu::update()
 
 	if (absMX > 191 && absMX < 389 && absMY > 347 && absMY < 380) {
 		if (!buttonSound1) {
+			sprite->changeAnimation(PLAY_POINTER);
 			SoundManager::getInstance()->playSound("sounds/button.ogg", false);
 			buttonSound1 = true;
 		}
@@ -65,12 +73,14 @@ void Menu::update()
 	}
 	else if (absMX > 191 && absMX < 389 && absMY > 347 && absMY < 416) {
 		if (!buttonSound2) {
+			sprite->changeAnimation(TUTORIAL_POINTER);
 			SoundManager::getInstance()->playSound("sounds/button.ogg", false);
 			buttonSound2 = true;
 		}
 		buttonSound1 = false;
 	}
 	else {
+		sprite->changeAnimation(WITHOUT_POINTER);
 		buttonSound1 = false;
 		buttonSound2 = false;
 	}

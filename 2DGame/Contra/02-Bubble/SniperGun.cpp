@@ -4,7 +4,7 @@
 void SniperGun::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, glm::vec2 pos)
 {
 	this->pos = pos;
-	spritesheet.loadFromFile("images/sniperGun.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	spritesheet.loadFromFile("images/snipergun2.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sprite = Sprite::createSprite(glm::ivec2(48, 48), glm::vec2(1, 1), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(1);
 
