@@ -33,6 +33,7 @@
     <ClInclude Include="SceneLvl2.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="SniperGun.h" />
     <ClInclude Include="SoldierA.h" />
     <ClInclude Include="SoldierB.h" />
     <ClInclude Include="SoldierC.h" />
@@ -65,6 +66,7 @@
     <ClCompile Include="SceneLvl2.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="SniperGun.cpp" />
     <ClCompile Include="SoldierA.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuScene.cpp" />

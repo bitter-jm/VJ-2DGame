@@ -33,6 +33,7 @@
     <ClCompile Include="Mina.cpp" />
     <ClCompile Include="SoldierC.cpp" />
     <ClCompile Include="Heart.cpp" />
+    <ClCompile Include="SniperGun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
@@ -67,5 +68,6 @@
     <ClInclude Include="Mina.h" />
     <ClInclude Include="SoldierC.h" />
     <ClInclude Include="Heart.h" />
+    <ClInclude Include="SniperGun.h" />
   </ItemGroup>
 </Project>

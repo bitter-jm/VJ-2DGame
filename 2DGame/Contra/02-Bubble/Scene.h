@@ -13,6 +13,7 @@
 #include "SoldierA.h"
 #include "SoldierB.h"
 #include "SpreadGun.h"
+#include "SniperGun.h"
 #include "SoundManager.h"
 #include "Flag.h"
 #include "Heart.h"
@@ -42,6 +43,7 @@ private:
 	TileMap *map;
 	Player *player;
 	SpreadGun *spreadgun;
+	SniperGun *snipergun;
 	Flag* flag;
 	GameOver* gameOver;
 	ShaderProgram texProgram;

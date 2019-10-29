@@ -19,10 +19,13 @@
 #define LEVEL_COMPLETE_X 95*64
 #define LEVEL_COMPLETE_Y 6*64 + 20
 
-#define SPREADGUN_X 41*64
-#define SPREADGUN_Y 3.25*64
+#define SPREADGUN_X 13*64
+#define SPREADGUN_Y 5.25*64
 
-#define PROB_HEART 0.1
+#define SNIPERGUN_X 35*64
+#define SNIPERGUN_Y 1.25*64
+
+#define PROB_HEART 1
 
 
 Scene::Scene()
@@ -106,9 +109,14 @@ void Scene::init()
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
+
 	spreadgun = new SpreadGun();
 	spreadgun->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(SPREADGUN_X, SPREADGUN_Y));
 	spreadgun->setHidden(false);
+	snipergun = new SniperGun();
+	snipergun->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(SNIPERGUN_X, SNIPERGUN_Y));
+	snipergun->setHidden(false);
+
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
 	entityManager = new EntityManager();
@@ -131,12 +139,20 @@ void Scene::update(int deltaTime)
 
 	if (!levelComplete) player->update(deltaTime, texProgram);
 	entityManager->update(deltaTime);
+
 	if (!spreadgun->is_Hidden() && int((player->getPosition().x - SPREADGUN_X) / tileSize) == 0
 		&& int((player->getPosition().y - SPREADGUN_Y) / tileSize) == 0) {
 		spreadgun->setHidden(true);
-		player->upgradeSpreadGun();
+		player->upgradeGun(2);
 	}
 	else spreadgun->update(deltaTime);
+
+	if (!snipergun->is_Hidden() && int((player->getPosition().x - SNIPERGUN_X) / tileSize) == 0
+		&& int((player->getPosition().y - SNIPERGUN_Y) / tileSize) == 0) {
+		snipergun->setHidden(true);
+		player->upgradeGun(3);
+	}
+	else snipergun->update(deltaTime);
 	
 	for (int i = 0; i < turrets.size(); i++) {
 		if (!turrets[i]->is_dead()) { 
@@ -163,7 +179,7 @@ void Scene::update(int deltaTime)
 					float r = float(rand() % 100) / 100;
 					if (r <= PROB_HEART) {
 						Heart* h = new Heart();
-						h->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(soldierAs[i]->getPosition().x, soldierAs[i]->getPosition().y));
+						h->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(soldierAs[i]->getPosition().x, soldierAs[i]->getPosition().y + 16));
 						hearts.push_back(h);
 					}
 				}
@@ -179,7 +195,7 @@ void Scene::update(int deltaTime)
 					float r = float(rand() % 100) / 100;
 					if (r <= PROB_HEART) {
 						Heart* h = new Heart();
-						h->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(soldierBs[i]->getPosition().x, soldierBs[i]->getPosition().y));
+						h->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(soldierBs[i]->getPosition().x, soldierBs[i]->getPosition().y + 16));
 						hearts.push_back(h);
 					}
 				}
@@ -234,6 +250,7 @@ void Scene::render()
 
 	map->render();
 	if (!spreadgun->is_Hidden()) spreadgun->render();
+	if (!snipergun->is_Hidden()) snipergun->render();
 	if (!flag->is_Hidden()) flag->render();
 	player->render();
 	entityManager->render();

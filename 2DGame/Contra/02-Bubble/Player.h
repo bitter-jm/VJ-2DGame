@@ -31,7 +31,7 @@ public:
 	int getProjectileAngle();
 	int getProjectileVelocity();
 	int getProjectileType();
-	void upgradeSpreadGun();
+	void upgradeGun(int gun);
 
 	void reduceHP(float dmg);
 	void addHP(float dmg);

@@ -21,7 +21,7 @@
 #define SPREADGUN_X 41*64
 #define SPREADGUN_Y 3.25*64
 
-#define PROB_HEART 1
+#define PROB_HEART 0.25
 
 
 SceneLvl2::SceneLvl2()

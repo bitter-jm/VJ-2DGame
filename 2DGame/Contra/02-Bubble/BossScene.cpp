@@ -90,7 +90,7 @@ void BossScene::update(int deltaTime)
 	int tSize = map->getTileSize();
 	if (!spreadgunHidden && int((player->getPosition().x-SPREADGUN_X)/tSize) == 0 && int((player->getPosition().y - SPREADGUN_Y)/ tSize) == 0) {
 		spreadgunHidden = true;
-		player->upgradeSpreadGun();
+		player->upgradeGun(2);
 	}
 	else spreadgun->update(deltaTime);
 

@@ -527,8 +527,7 @@ glm::vec2 Player::getPosition()
 
 void Player::shoot(double angulo, int x, int y) 
 {
-	if (currentGun == 1) SoundManager::getInstance()->playSound("sounds/defaultGun.ogg", false);
-	else if(currentGun == 2) SoundManager::getInstance()->playSound("sounds/shotGun.ogg", false);
+
 	shootedProjectile = true;
 	projectileCoords.x = x+22;
 	projectileCoords.y = y;
@@ -559,6 +558,11 @@ void Player::shoot(double angulo, int x, int y)
 
 	if (projectileAngle > 0 && projectileAngle != 180)  projectileCoords.y -= 20;
 	else if (projectileAngle < 0 && projectileAngle != -180)  projectileCoords.y += 20;
+
+	if (shootedProjectile == true) {
+		if (currentGun == 1) SoundManager::getInstance()->playSound("sounds/defaultGun.ogg", false);
+		else if (currentGun == 2) SoundManager::getInstance()->playSound("sounds/shotGun.ogg", false);
+	}
 }
 
 void Player::kill() {
@@ -592,9 +596,10 @@ int Player::getProjectileType() {
 	return projectileType;
 }
 
-void Player::upgradeSpreadGun() {
+void Player::upgradeGun(int gun) {
+	SoundManager::getInstance()->playSound("sounds/pickShotgun.ogg", false);
+	this->currentGun = gun;
 	this->spreadGun = true;
-	currentGun = 2;
 	this->render();
 }
 
