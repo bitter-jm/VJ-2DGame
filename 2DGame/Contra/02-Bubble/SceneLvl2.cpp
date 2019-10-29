@@ -21,7 +21,7 @@
 #define SPREADGUN_X 41*64
 #define SPREADGUN_Y 3.25*64
 
-#define PROB_HEART 0.25
+#define PROB_HEART 1
 
 
 SceneLvl2::SceneLvl2()
@@ -139,9 +139,9 @@ void SceneLvl2::update(int deltaTime)
 	}
 
 	for (int i = 0; i < hearts.size(); i++) {
-		int distX = player->getPosition().x - hearts[i]->getPosition().x;
-		int distY = player->getPosition().y - hearts[i]->getPosition().y;
-		if (abs(distX) <= 64 && abs(distY) <= 64) {
+		int distX = player->getPosition().x+64 - hearts[i]->getPosition().x;
+		int distY = player->getPosition().y+64 - hearts[i]->getPosition().y;
+		if (abs(distX) <= 32 && abs(distY) <= 32) {
 			hearts.erase(hearts.begin() + i);
 			player->addHP(1);
 		}

@@ -701,8 +701,7 @@ void PlayerCenital::reduceHP(float dmg) {
 }
 
 void PlayerCenital::addHP(float hp) {
-	hp += hp;
-	if (hp <= 0) this->kill();
+	this->hp += hp;
 
 }
 
