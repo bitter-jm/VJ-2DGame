@@ -16,11 +16,14 @@
 void Tutorial::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram)
 {
 	spritesheet.loadFromFile("images/tutorial.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sprite = Sprite::createSprite(glm::ivec2(768, 512), glm::vec2(1, 1), &spritesheet, &shaderProgram);
-	sprite->setNumberAnimations(1);
+	sprite = Sprite::createSprite(glm::ivec2(768, 512), glm::vec2(0.375, 1), &spritesheet, &shaderProgram);
+	sprite->setNumberAnimations(2);
 
 	sprite->setAnimationSpeed(0, 2);
 	sprite->addKeyframe(0, glm::vec2(0.f, 0.f));
+
+	sprite->setAnimationSpeed(1, 2);
+	sprite->addKeyframe(1, glm::vec2(0.375f, 0.f));
 
 	sprite->changeAnimation(0);
 
@@ -48,11 +51,15 @@ void Tutorial::update()
 
 	if (absMX > 24 && absMX < 180 && absMY > 450 && absMY < 502) {
 		if (!buttonSound) {
+			sprite->changeAnimation(1);
 			SoundManager::getInstance()->playSound("sounds/button.ogg", false);
 			buttonSound = true;
 		}
 	}
-	else buttonSound = false;
+	else {
+		buttonSound = false;
+		sprite->changeAnimation(0);
+	}
 
 	if (Game::instance().isMousePressed()) {
 		if (absMX > 24 && absMX < 180) {

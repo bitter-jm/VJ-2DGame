@@ -33,11 +33,17 @@ void Projectile::init(int ID, int x, int y, int a, int v, int t, float range, bo
 	sprite->setNumberAnimations(2);
 
 	if (!enemy) {
-		sprite->setAnimationSpeed(FLYING, 8);
-		sprite->addKeyframe(FLYING, glm::vec2(0.0f, 0.f));
-		sprite->addKeyframe(FLYING, glm::vec2(0.1f, 0.f));
-		sprite->addKeyframe(FLYING, glm::vec2(0.2f, 0.f));
-		sprite->addKeyframe(FLYING, glm::vec2(0.3f, 0.f));
+		if (type == 1 || type == 2) {
+			sprite->setAnimationSpeed(FLYING, 8);
+			sprite->addKeyframe(FLYING, glm::vec2(0.0f, 0.f));
+			sprite->addKeyframe(FLYING, glm::vec2(0.1f, 0.f));
+			sprite->addKeyframe(FLYING, glm::vec2(0.2f, 0.f));
+			sprite->addKeyframe(FLYING, glm::vec2(0.3f, 0.f));
+		}
+		else if (type == 3) {
+			sprite->setAnimationSpeed(FLYING, 8);
+			sprite->addKeyframe(FLYING, glm::vec2(0.0f, 0.5f));
+		}
 	} 
 	else {
 		if (type == 2) {

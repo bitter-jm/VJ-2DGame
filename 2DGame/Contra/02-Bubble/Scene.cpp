@@ -158,8 +158,8 @@ void Scene::update(int deltaTime)
 		if (!turrets[i]->is_dead()) { 
 			turrets[i]->update(deltaTime); 
 			if (entityManager->checkCollisionEnemy(glm::vec2(turrets[i]->getPosition().x, turrets[i]->getPosition().y+8), 48, 40)) {
-				turrets[i]->reduceHP(1);
-				if (turrets[i]->is_dead()) {
+				turrets[i]->reduceHP(player->getDMG());
+				if (turrets[i]->is_dead() || turrets[i]->is_dying()) {
 					float r = float(rand()%100)/100;
 					if (r <= PROB_HEART) {
 						Heart* h = new Heart();
@@ -174,8 +174,8 @@ void Scene::update(int deltaTime)
 		if (!soldierAs[i]->is_dead()) { 
 			soldierAs[i]->update(deltaTime); 
 			if (entityManager->checkCollisionEnemy(glm::vec2(soldierAs[i]->getPosition().x+16, soldierAs[i]->getPosition().y+16), 32, 32)) {
-				soldierAs[i]->reduceHP(1);
-				if (soldierAs[i]->is_dead()) {
+				soldierAs[i]->reduceHP(player->getDMG());
+				if (soldierAs[i]->is_dead() || soldierAs[i]->is_dying()) {
 					float r = float(rand() % 100) / 100;
 					if (r <= PROB_HEART) {
 						Heart* h = new Heart();
@@ -190,8 +190,8 @@ void Scene::update(int deltaTime)
 		if (!soldierBs[i]->is_dead()) {
 			soldierBs[i]->update(deltaTime);
 			if (entityManager->checkCollisionEnemy(soldierBs[i]->getPosition(), 64, 64)) {
-				soldierBs[i]->reduceHP(1);
-				if (soldierBs[i]->is_dead()) {
+				soldierBs[i]->reduceHP(player->getDMG());
+				if (soldierBs[i]->is_dead() || soldierBs[i]->is_dying()) {
 					float r = float(rand() % 100) / 100;
 					if (r <= PROB_HEART) {
 						Heart* h = new Heart();
@@ -222,6 +222,7 @@ void Scene::update(int deltaTime)
 		int distY = player->getPosition().y - hearts[i]->getPosition().y;
 		if (abs(distX) <= 32 && abs(distY) <= 32) {
 				hearts.erase(hearts.begin() + i);
+				SoundManager::getInstance()->playSound("sounds/health.ogg", false);
 				player->addHP(1);
 		}
 	}
@@ -234,7 +235,7 @@ void Scene::render()
 	glm::mat4 modelview;
 	float playerX = player->getPosition().x;
 	// Limitar camara por izquierda
-	if (playerX <= float(SCREEN_WIDTH - 1) / 2.0f) 
+	if (playerX <= float(SCREEN_WIDTH - 1) / 2.0f)
 		projection = glm::ortho(0.0f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	// Limitar por derecha
 	else if (playerX >= map->getMapSize().x * map->getTileSize() - float(SCREEN_WIDTH - 1) / 2.0f) 

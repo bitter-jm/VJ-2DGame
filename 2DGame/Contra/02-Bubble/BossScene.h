@@ -8,6 +8,7 @@
 #include "GameOver.h" 
 #include "NPC.h"
 #include "SpreadGun.h"
+#include "SniperGun.h"
 #include "SoundManager.h"
 #include "Boss.h"
 
@@ -28,12 +29,12 @@ private:
 	TileMap* map;
 	Player* player;
 	SpreadGun* spreadgun;
+	SniperGun* snipergun;
 	GameOver* gameOver;
 	ShaderProgram texProgram;
 	float currentTime;
 	glm::mat4 projection;
 	EntityManager* entityManager;
-	bool spreadgunHidden;
 	int deathTime;
 	bool deadPlayer, levelComplete;
 	float completeTime, waitTime;

@@ -126,7 +126,7 @@ void SceneLvl2::update(int deltaTime)
 			soldierCs[i]->update(deltaTime);
 			if (entityManager->checkCollisionEnemy(glm::vec2(soldierCs[i]->getPosition().x + 32, soldierCs[i]->getPosition().y + 16), 64, 64)) {
 				soldierCs[i]->reduceHP(1);
-				if (soldierCs[i]->is_dead()) {
+				if (soldierCs[i]->is_dead() || soldierCs[i]->is_dying()) {
 					float r = float(rand() % 100) / 100;
 					if (r <= PROB_HEART) {
 						Heart* h = new Heart();
@@ -143,6 +143,7 @@ void SceneLvl2::update(int deltaTime)
 		int distY = player->getPosition().y+64 - hearts[i]->getPosition().y;
 		if (abs(distX) <= 32 && abs(distY) <= 32) {
 			hearts.erase(hearts.begin() + i);
+			SoundManager::getInstance()->playSound("sounds/health.ogg", false);
 			player->addHP(1);
 		}
 	}

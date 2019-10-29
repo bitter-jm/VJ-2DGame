@@ -8,7 +8,6 @@
 
 using namespace std;
 
-#define playerRange 5
 #define PROJECTILESIZE 16
 #define PLAYERHEIGHT 32
 #define PLAYERWIDTH 48
@@ -35,7 +34,8 @@ void EntityManager::update(int deltaTime)
 		Projectile p;
 		//p.init(nextProjectileID, coordsproj.x, coordsproj.y, angleproj, velocityproj, typeproj, playerRange, false, *shaderProgram);
 		projectiles[nextProjectileID] = p;
-		projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, angleproj, velocityproj, typeproj, playerRange, false, *shaderProgram);
+		projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, angleproj, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+		projectiles[nextProjectileID].setDmg(player->getDMG());
 		nextProjectileID++;
 
 		if (Game::instance().getCurrentLevel() == 1 || Game::instance().getCurrentLevel() == 3) {
@@ -43,51 +43,67 @@ void EntityManager::update(int deltaTime)
 				Projectile p2, p3;
 				if (angleproj == 0) {
 					projectiles[nextProjectileID] = p2;
-					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 22, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 22, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID].setDmg(player->getDMG());
 					projectiles[nextProjectileID+1] = p3;
-					projectiles[nextProjectileID + 1].init(nextProjectileID+1, coordsproj.x, coordsproj.y, -22, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1].init(nextProjectileID+1, coordsproj.x, coordsproj.y, -22, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID + 1].setDmg(player->getDMG());
 				}
 				else if (angleproj == 45) {
 					projectiles[nextProjectileID] = p2;
-					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 67, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 67, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID].setDmg(player->getDMG());
 					projectiles[nextProjectileID + 1] = p3;
-					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 22, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 22, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID+1].setDmg(player->getDMG());
 				}
 				else if (angleproj == 90) {
 					projectiles[nextProjectileID] = p2;
-					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 112, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 112, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID].setDmg(player->getDMG());
 					projectiles[nextProjectileID + 1] = p3;
-					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 67, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 67, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID+1].setDmg(player->getDMG());
 				}
 				else if (angleproj == 135) {
 					projectiles[nextProjectileID] = p2;
-					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 112, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 112, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID].setDmg(player->getDMG());
 					projectiles[nextProjectileID + 1] = p3;
-					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 157, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 157, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID+1].setDmg(player->getDMG());
 				}
 				else if (angleproj == 180 || angleproj == -180) {
 					projectiles[nextProjectileID] = p2;
-					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 157, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 157, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID].setDmg(player->getDMG());
 					projectiles[nextProjectileID + 1] = p3;
-					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -157, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -157, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID+1].setDmg(player->getDMG());
 				}
 				else if (angleproj == -135 || angleproj == 225) {
 					projectiles[nextProjectileID] = p2;
-					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, -157, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, -157, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID].setDmg(player->getDMG());
 					projectiles[nextProjectileID + 1] = p3;
-					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -112, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -112, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID+1].setDmg(player->getDMG());
 				}
 				else if (angleproj == -45 || angleproj == 315) {
 					projectiles[nextProjectileID] = p2;
-					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, -67, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, -67, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID].setDmg(player->getDMG());
 					projectiles[nextProjectileID + 1] = p3;
-					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -22, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, -22, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID+1].setDmg(player->getDMG());
 				}
 				else if (angleproj == 90) {
 					projectiles[nextProjectileID] = p2;
-					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 67, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID].init(nextProjectileID, coordsproj.x, coordsproj.y, 67, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID].setDmg(player->getDMG());
 					projectiles[nextProjectileID + 1] = p3;
-					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 112, velocityproj, typeproj, playerRange, false, *shaderProgram);
+					projectiles[nextProjectileID + 1].init(nextProjectileID + 1, coordsproj.x, coordsproj.y, 112, velocityproj, typeproj, player->getProjectileRange(), false, *shaderProgram);
+					projectiles[nextProjectileID+1].setDmg(player->getDMG());
 				}
 				nextProjectileID += 2;
 			}
