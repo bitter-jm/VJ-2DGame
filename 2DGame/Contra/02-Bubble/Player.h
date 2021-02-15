@@ -3,7 +3,8 @@
 
 
 #include "Sprite.h"
-#include "TileMap.h"
+#include "TileMap.h" 
+#include "Life.h"
 
 
 // Player is basically a Sprite that represents the player. As such it has
@@ -14,12 +15,13 @@ class Player
 {
 
 public:
-	void init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram);
-	void update(int deltaTime);
+	float getShotVelocity();
+	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram);
+	void update(int deltaTime, ShaderProgram& shaderProgram);
 	void render();
-	
-	void setTileMap(TileMap *tileMap);
-	void setPosition(const glm::vec2 &pos);
+
+	void setTileMap(TileMap* tileMap);
+	void setPosition(const glm::vec2& pos);
 	glm::vec2 getPosition();
 	void kill();
 	bool isDead();
@@ -30,14 +32,20 @@ public:
 	int getProjectileAngle();
 	int getProjectileVelocity();
 	int getProjectileType();
-	
+	void upgradeGun(int gun);
+	void reduceHP(float dmg);
+	void addHP(float dmg);
+	float getDMG();
+	float getAttackSpeed();
+	float getProjectileRange();
+
 private:
 	bool bJumping;
 	glm::ivec2 tileMapDispl, posPlayer;
 	int jumpAngle, startY;
 	Texture spritesheet;
-	Sprite *sprite;
-	TileMap *map;
+	Sprite* sprite;
+	TileMap* map;
 	int posMouseX = 0;
 	int posMouseY = 0;
 	bool lookingRight = false;
@@ -53,13 +61,15 @@ private:
 
 	//Creating projectiles
 	bool shootedProjectile = false;
+	bool ableToMove;
 	glm::ivec2 projectileCoords;
 	int projectileAngle, projectileVelocity, projectileType;
+
+	vector<Life*> lifes;
+	float hp;
 
 
 };
 
 
 #endif // _PLAYER_INCLUDE
-
-

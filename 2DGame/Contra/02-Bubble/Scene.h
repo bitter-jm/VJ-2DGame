@@ -6,13 +6,17 @@
 #include "ShaderProgram.h"
 #include "TileMap.h"
 #include "Player.h"
-#include "EntityManager.h"
+#include "EntityManager.h" 
 #include "GameOver.h"
 #include "NPC.h"
 #include "Turret.h"
 #include "SoldierA.h"
 #include "SoldierB.h"
 #include "SpreadGun.h"
+#include "SniperGun.h"
+#include "SoundManager.h"
+#include "Flag.h"
+#include "Heart.h"
 
 // Scene contains all the entities of our game.
 // It is responsible for updating and render them.
@@ -39,6 +43,8 @@ private:
 	TileMap *map;
 	Player *player;
 	SpreadGun *spreadgun;
+	SniperGun *snipergun;
+	Flag* flag;
 	GameOver* gameOver;
 	ShaderProgram texProgram;
 	float currentTime;
@@ -47,11 +53,10 @@ private:
 	vector<Turret*> turrets;
 	vector<SoldierA*> soldierAs;
 	vector<SoldierB*> soldierBs;
-	bool spreadgunHidden;
+	vector<Heart*> hearts;
 	int deathTime;
-	bool deadPlayer;
-	bool spreadgunHidden = false;
-
+	bool deadPlayer, levelComplete;
+	float completeTime, waitTime;
 };
 
 

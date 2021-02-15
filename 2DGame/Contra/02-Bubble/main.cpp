@@ -5,13 +5,13 @@
 
 //Remove console (only works in Visual Studio)
 #pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
-
+ 
 
 #define TIME_PER_FRAME 1000.f / 60.f // Approx. 60 fps
 
 
 static int prevTime;
-static Game game; // This object represents our whole game
+static Game game; // This object represents our whole game 
 
 
 // If a key is pressed this callback is called

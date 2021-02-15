@@ -1,5 +1,5 @@
 #include "NPC.h"
-
+#include <iostream>
 
 void NPC::update(int deltaTime)
 {
@@ -8,7 +8,7 @@ void NPC::update(int deltaTime)
 }
 
 void NPC::render()
-{
+{ 
 	sprite->render();
 }
 
@@ -30,4 +30,20 @@ glm::vec2 NPC::getPosition()
 
 void NPC::setPlayer(Player* p) {
 	player = p;
+}
+
+void NPC::setEntityManager(EntityManager* em) {
+	this->em = em;
+}
+
+bool NPC::is_dead() {
+	return dead;
+}
+
+bool NPC::is_dying() {
+	return hp <= 0;
+}
+
+void NPC::reduceHP(float dmg) {
+	if (hp > 0) hp -= dmg;
 }

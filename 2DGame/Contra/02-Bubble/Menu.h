@@ -9,7 +9,7 @@ class Menu
 {
 
 public:
-
+	 
 	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram);
 	void render();
 	void update();
@@ -21,6 +21,8 @@ private:
 	glm::ivec2 tileMapDispl;
 	Texture spritesheet;
 	Sprite* sprite;
+	bool buttonSound1;
+	bool buttonSound2;
 };
 
 

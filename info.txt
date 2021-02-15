@@ -1,0 +1,23 @@
+Yimin Pan
+Joan Marc Pastor
+
+Parte com¨²n:
+- Nivel 1: mapa de 100x8 tiles, con sprites del Contra Nes, 3 tipos de enemigos cada uno con hp y da?os diferentes. Hay 2 tipos de armas que pudes recoger en el mapa. Se complete el nivel al llegar al final del mapa (al recoger la bandera). 
+- Nivel 2: vista cenital, con 1 tipo de enemigo que dispara cuando el jugador entra al alcance, existen tambi¨¦n minas por el suelo. Se completa el nivel al salir del laberinto.
+- Nivel 3: fase de Boss, que tiene 3 partes: parte izquierdo, derecha y cuerpo. Todos pueden disparar proyectiles, se completa el nivel si se destruye el cuerpo del Boss. Hay 2 armas en los extremos del mapa.
+
+Durante el nivel 1 y 2 hay posibilidad de conseguir vidas eliminando a los enemigos. Pero las vidas no se pasan de un nivel a otro. (Son 3 al empezar cada nivel).
+
+Funcionalidad del juego:
+
+- 4 Pantallas: men¨², creditos, gameover y tutorial. Todos con indicaciones del bot¨®n elegido actualmente. Que llevar¨¢ de una pantalla a otra.
+- Sonido: m¨²sica de fondo diferente en cada nivel y pantalla, sonido de armas diferentes, y sonido para indicar que se ha recogido un arma o vida. 
+
+
+
+
+Funcionalidades extras:
+
+- Tipos de armas: sniper, shotgun, rifle default.
+- Sistema de vidas: en cada escena el jugador empieza con 3 vidas, pero tiene posibilidad de conseguir m¨¢s al matar un enemigo.
+- Angulos de disparo.

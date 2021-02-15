@@ -7,7 +7,7 @@
 enum TurretAnim {
 	LEFT, RIGHT, UP, DOWN, EXPLODE
 };
-
+ 
 bool Turret::playerInRange() {
 	// Distance in Tiles
 	int distY = (player->getPosition().y - position.y) / map->getTileSize();
@@ -35,13 +35,18 @@ void Turret::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, in
 	range = 5;
 	hp = 5;
 	dmg = 1;
+	secondsToAttack = 1;
+	projectileSpeed = 3;
+	dead = false;
+	dying = false;
+	dyingTime = 600; //ms 
 	stanceID = pID;
 
 	float spriteSheetX = 0.1;
 	float spriteSheetY = 1.0 / 18.0;
 	tileMapDispl = tileMapPos;
 	spritesheet.loadFromFile("images/enemies.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sprite = Sprite::createSprite(glm::ivec2(48, 48), glm::vec2(0.1, 0.05), &spritesheet, &shaderProgram);
+	sprite = Sprite::createSprite(glm::ivec2(48, 48), glm::vec2(0.1, 0.045), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(5);
 
 	sprite->setAnimationSpeed(LEFT, 2);
@@ -50,11 +55,11 @@ void Turret::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, in
 	sprite->setAnimationSpeed(RIGHT, 2);
 	sprite->addKeyframe(RIGHT, glm::vec2(0.0 * spriteSheetX, 4 * spriteSheetY));
 
-	sprite->setAnimationSpeed(UP, 2);
-	sprite->addKeyframe(UP, glm::vec2(0.0 * spriteSheetX, 5 * spriteSheetY));
-
 	sprite->setAnimationSpeed(DOWN, 2);
-	sprite->addKeyframe(DOWN, glm::vec2(0.0 * spriteSheetX, 7 * spriteSheetY));
+	sprite->addKeyframe(DOWN, glm::vec2(0.0 * spriteSheetX, 5 * spriteSheetY));
+
+	sprite->setAnimationSpeed(UP, 2);
+	sprite->addKeyframe(UP, glm::vec2(0.0 * spriteSheetX, 7 * spriteSheetY));
 	
 
 	sprite->setAnimationSpeed(EXPLODE, 3);
@@ -70,15 +75,50 @@ void Turret::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, in
 void Turret::update(int deltaTime)
 {
 	sprite->update(deltaTime);
+	int time = glutGet(GLUT_ELAPSED_TIME);
 
-	if (Game::instance().getSpecialKey(GLUT_KEY_F1)) {	//die
+	if ((hp <= 0 && !dying && !dead) || Game::instance().getSpecialKey(GLUT_KEY_F1)) {	//die
+		SoundManager::getInstance()->playSound("sounds/explode.ogg", false);
 		sprite->changeAnimation(EXPLODE);
+		dying = true;
+		dyingStartTime = time;
+		return;
 	}
-	else {
+	if (dying && time - dyingStartTime >= dyingTime) {
+		dead = true;
+		return;
+	}
+	if (!dying) {
 		if (playerInRange()) {
-			//shoot (in the turret direction)
+			if (stanceID == LEFT) {
+				if (time - lastShoot >= secondsToAttack * 1000) {
+					em->createProjectile(glm::vec2(position.x, position.y + 15), 180, projectileSpeed, 1, range, dmg);
+					lastShoot = time;
+				}
+			}
+			else if (stanceID == RIGHT) {
+				if (time - lastShoot >= secondsToAttack * 1000) {
+					em->createProjectile(glm::vec2(position.x, position.y + 15), 0, projectileSpeed, 1, range, dmg);
+					lastShoot = time;
+				}
+			}
+			else if (stanceID == UP) {
+				if (time - lastShoot >= secondsToAttack * 1000) {
+					em->createProjectile(glm::vec2(position.x + 15, position.y), 90, projectileSpeed, 1, range, dmg);
+					lastShoot = time;
+				}
+			}
+			else if (stanceID == DOWN) {
+				if (time - lastShoot >= secondsToAttack * 1000) {
+					em->createProjectile(glm::vec2(position.x + 15, position.y), -90, projectileSpeed, 1, range, dmg);
+					lastShoot = time;
+				}
+			}
 		}
+
 	}
+
 }
+
 
 

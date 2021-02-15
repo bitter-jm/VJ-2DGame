@@ -5,9 +5,9 @@
 using namespace std;
 
 
-Shader::Shader()
+Shader::Shader() 
 {
-	shaderId = 0;
+	shaderId = 0; 
 	compiled = false;
 }
 

@@ -5,7 +5,7 @@
 #include <GL/glut.h>
 #include "MenuScene.h"
 #include "Game.h"
-#include <servprov.h>
+#include <servprov.h> 
 
 // Desplazamiento de pantalla
 #define SCREEN_X 0
@@ -26,18 +26,17 @@ MenuScene::~MenuScene()
 
 void MenuScene::init()
 {
-	AllocConsole();
-	freopen("CONOUT$", "w", stdout);
-	freopen("CONOUT$", "w", stderr);
 
 	initShaders();
 
-	inTutorial = false;
+	screen = 0;
 
 	menu = new Menu();
 	menu->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	tutorial = new Tutorial();
 	tutorial->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	credits = new Credits();
+	credits->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
@@ -45,14 +44,16 @@ void MenuScene::init()
 
 void MenuScene::update(int deltaTime)
 {
-	if (!inTutorial) {
+	if (screen == 0) {
 		currentTime += deltaTime;
 		menu->update();
 	}
-	else {
+	else if (screen == 1) {
 		tutorial->update();
 	}
-	
+	else if (screen == 2) {
+		credits->update();
+	}
 }
 
 void MenuScene::render()
@@ -68,21 +69,28 @@ void MenuScene::render()
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 
-	if (!inTutorial) {
+	if (screen == 0) {
 		menu->render();
 	}
-	else {
+	else if (screen == 1) {
 		tutorial->render();
+	}
+	else if (screen == 2) {
+		credits->render();
 	}
 
 }
 
 void MenuScene::toTutorial() {
-	inTutorial = true;
+	screen = 1;
 }
 
 void MenuScene::toMenu() {
-	inTutorial = false;
+	screen = 0;
+}
+
+void MenuScene::toCredits() {
+	screen = 2;
 }
 
 void MenuScene::initShaders()

@@ -7,7 +7,7 @@ class Turret : public NPC
 		bool playerInRange();
 		void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram, int pID);
 		void update(int deltaTime);
-
+		 
 	private:
 
 };

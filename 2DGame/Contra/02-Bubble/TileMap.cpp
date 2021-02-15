@@ -5,16 +5,20 @@
 #include "TileMap.h"
 #include <msxml.h>
 
-
+ 
 using namespace std;
-
+ 
 
 vector<vector<int>> collisionLR = {
-	{17, 18, 19, 20, 21, 22, 28, 29, 30, 36, 37, 38, 41, 42, 44, 45, 46, 49, 50, 52, 53, 54, 57, 58, 60, 61}
+	{17, 21, 22, 28, 29, 30, 36, 37, 38, 41, 42, 44, 45, 46, 49, 50, 52, 53, 54, 57, 58, 60, 61},
+	{13, 17, 18, 19, 20, 21, 22, 23}, 
+	{1, 2, 3, 5}
 };
 
 vector<vector<int>> collisionD = {
-	{1, 18, 19, 20, 21, 22, 26, 58}
+	{1, 18, 19, 20, 21, 22, 26, 58},
+	{13, 17, 18, 19, 20, 21, 22, 23, 24},
+	{1, 2, 3, 5}
 };
 
 
@@ -192,6 +196,29 @@ bool TileMap::collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) c
 			return true;
 	}
 	
+	return false;
+}
+
+bool TileMap::collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size) const
+{
+	/*int x, y0, y1;
+
+	x = pos.x / tileSize;
+	y0 = pos.y / tileSize;
+	y1 = (pos.y + size.y - 1) / tileSize;*/
+
+	int y, x0, x1;
+	y = pos.y / tileSize;
+	x0 = pos.x / tileSize;
+	x1 = (pos.x + size.x-1) / tileSize;
+
+	for (int x = x0; x <= x1; x++)
+	{
+		int tile = map[y * mapSize.x + x];
+		if (binarySearch(collisionLR, 0, collisionLR[level - 1].size(), level, tile))
+			return true;
+	}
+
 	return false;
 }
 

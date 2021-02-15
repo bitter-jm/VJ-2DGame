@@ -5,9 +5,10 @@
 #include "ShaderProgram.h"
 #include "Menu.h"
 #include "Tutorial.h"
+#include "Credits.h"
 
 // MenuScene contains all the entities of our game.
-// It is responsible for updating and render them.
+// It is responsible for updating and render them. 
 
 
 class MenuScene
@@ -22,6 +23,7 @@ public:
 	void render();
 	void toTutorial();
 	void toMenu();
+	void toCredits();
 
 private:
 	void initShaders();
@@ -33,7 +35,9 @@ private:
 	glm::mat4 projection;
 	Menu *menu;
 	Tutorial *tutorial;
+	Credits* credits;
 	bool inTutorial;
+	int screen;
 
 };
 

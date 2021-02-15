@@ -5,16 +5,27 @@
 #include <GL/glut.h>
 #include "Scene.h"
 #include "Game.h"
-#include <servprov.h>
+#include <servprov.h> 
+#include "SoundManager.h" 
+#include "time.h"
 
 // Desplazamiento de pantalla
 #define SCREEN_X 0
 #define SCREEN_Y 0
 
-#define INIT_PLAYER_X_TILES 8
-#define INIT_PLAYER_Y_TILES 3
+#define INIT_PLAYER_X_TILES 4
+#define INIT_PLAYER_Y_TILES 0
 
-#define SPREADGUN_X 2600
+#define LEVEL_COMPLETE_X 95*64
+#define LEVEL_COMPLETE_Y 6*64 + 20
+
+#define SPREADGUN_X 13*64
+#define SPREADGUN_Y 5.25*64
+
+#define SNIPERGUN_X 35*64
+#define SNIPERGUN_Y 1.25*64
+
+#define PROB_HEART 0.25
 
 
 Scene::Scene()
@@ -33,50 +44,63 @@ Scene::~Scene()
 
 
 void Scene::spawnTurrets() {
-	enum Position {LEFT, RIGHT, UP, DOWN};
-	// generar torretas
-	Turret* t = new Turret();
-	t->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, LEFT);
-	t->setPosition(glm::vec2(11 * map->getTileSize(), 3 * map->getTileSize()));
-	t->setTileMap(map);
-	t->setPlayer(player);
-	turrets.push_back(t);
+	enum Position { LEFT, RIGHT, UP, DOWN };
+	vector<glm::ivec3> posTurrets = {glm::ivec3(14,3,LEFT), glm::ivec3(25,2,LEFT), glm::ivec3(35,3,LEFT), glm::ivec3(74,3,LEFT), glm::ivec3(84,5,UP), glm::ivec3(51,5,UP), glm::ivec3(41,5,UP)};
+	for (int i = 0; i < posTurrets.size(); ++i) {
+		Turret* t = new Turret();
+		t->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, posTurrets[i].z);
+		t->setPosition(glm::vec2(posTurrets[i].x * map->getTileSize(), posTurrets[i].y * map->getTileSize()));
+		t->setTileMap(map);
+		t->setPlayer(player);
+		t->setEntityManager(entityManager);
+		turrets.push_back(t);
+	}
 }
 
 void Scene::spawnSoldierAs() {
 	enum Position { STAND_LEFT, STAND_LEFT_DIAG_UP, STAND_LEFT_DAIG_DOWN, EXPLODE };
-	// generar torretas
-	SoldierA* s = new SoldierA();
-	s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT_DIAG_UP);
-	s->setPosition(glm::vec2(12 * map->getTileSize(), 3 * map->getTileSize()+12));
-	s->setTileMap(map);
-	s->setPlayer(player);
-	soldierAs.push_back(s);
-}
-
+	vector<glm::ivec3> posSoldierAs = { glm::ivec3(11,6,STAND_LEFT_DIAG_UP), glm::ivec3(21,0,STAND_LEFT_DAIG_DOWN), glm::ivec3(20,5,STAND_LEFT_DIAG_UP), glm::ivec3(44,3,STAND_LEFT), glm::ivec3(60,3,STAND_LEFT), glm::ivec3(67,1,STAND_LEFT_DAIG_DOWN), glm::ivec3(75,5,STAND_LEFT), glm::ivec3(81,1,STAND_LEFT), glm::ivec3(87,3,STAND_LEFT), glm::ivec3(93,6,STAND_LEFT) };
+	for (int i = 0; i < posSoldierAs.size(); ++i) {
+		SoldierA* s = new SoldierA();
+		s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, posSoldierAs[i].z);
+		s->setPosition(glm::vec2(posSoldierAs[i].x * map->getTileSize(), posSoldierAs[i].y * map->getTileSize() + 12));
+		s->setTileMap(map);
+		s->setPlayer(player);
+		s->setEntityManager(entityManager);
+		soldierAs.push_back(s);
+	}
+} 
+ 
 void Scene::spawnSoldierBs() {
 	enum Position { STAND_LEFT, EXPLODE };
-	// generar torretas
-	SoldierB* s = new SoldierB();
-	s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT);
-	s->setPosition(glm::vec2(10 * map->getTileSize(), 3 * map->getTileSize() + 12));
-	s->setTileMap(map);
-	s->setPlayer(player);
-	soldierBs.push_back(s);
+	vector<glm::ivec2> posSoldierBs = { glm::ivec2(13,1), glm::ivec2(20,3), glm::ivec2(34,2), glm::ivec2(52,1), glm::ivec2(78,0) };
+	for (int i = 0; i < posSoldierBs.size(); ++i) {
+		SoldierB* s = new SoldierB();
+		s->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, STAND_LEFT);
+		s->setPosition(glm::vec2(posSoldierBs[i].x * map->getTileSize(), posSoldierBs[i].y* map->getTileSize() + 12));
+		s->setTileMap(map);
+		s->setPlayer(player);
+		s->setEntityManager(entityManager);
+		soldierBs.push_back(s);
+	}
 }
 
 void Scene::init()
 {
-	AllocConsole();
-	freopen("CONOUT$", "w", stdout);
-	freopen("CONOUT$", "w", stderr);
+	srand(time(NULL));
 
+	SoundManager::getInstance()->removeAllSound();
+	SoundManager::getInstance()->playSound("sounds/level1.ogg", true, 0.5f);
+	waitTime = 2.5; //s
 	// For restart level correctly
 	if (turrets.size() != 0) turrets.clear();
 	if (soldierAs.size() != 0) soldierAs.clear();
+	if (soldierBs.size() != 0) soldierBs.clear();
+	if (hearts.size() != 0) hearts.clear();
+	
 
-	spreadgunHidden = false;
 	deadPlayer = false;
+	levelComplete = false;
 
 	initShaders();
 	map = TileMap::createTileMap("levels/level1.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
@@ -85,8 +109,14 @@ void Scene::init()
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
+
 	spreadgun = new SpreadGun();
-	spreadgun->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	spreadgun->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(SPREADGUN_X, SPREADGUN_Y));
+	spreadgun->setHidden(false);
+	snipergun = new SniperGun();
+	snipergun->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(SNIPERGUN_X, SNIPERGUN_Y));
+	snipergun->setHidden(false);
+
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
 	entityManager = new EntityManager();
@@ -95,36 +125,117 @@ void Scene::init()
 	spawnTurrets();
 	spawnSoldierAs();
 	spawnSoldierBs();
+
+	flag = new Flag();
+	flag->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(LEVEL_COMPLETE_X, LEVEL_COMPLETE_Y));
+	flag->setHidden(false);
+
 }
 
 void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
+	int tileSize = map->getTileSize();
 
-	player->update(deltaTime);
+	if (!levelComplete) player->update(deltaTime, texProgram);
 	entityManager->update(deltaTime);
-	if (!spreadgunHidden && player->getPosition().x > SPREADGUN_X) spreadgunHidden = true;
+
+	if (!spreadgun->is_Hidden() && int((player->getPosition().x - SPREADGUN_X) / tileSize) == 0
+		&& int((player->getPosition().y - SPREADGUN_Y) / tileSize) == 0) {
+		spreadgun->setHidden(true);
+		player->upgradeGun(2);
+	}
 	else spreadgun->update(deltaTime);
+
+	if (!snipergun->is_Hidden() && int((player->getPosition().x - SNIPERGUN_X) / tileSize) == 0
+		&& int((player->getPosition().y - SNIPERGUN_Y) / tileSize) == 0) {
+		snipergun->setHidden(true);
+		player->upgradeGun(3);
+	}
+	else snipergun->update(deltaTime);
 	
 	for (int i = 0; i < turrets.size(); i++) {
-		turrets[i]->update(deltaTime);
+		if (!turrets[i]->is_dead()) { 
+			turrets[i]->update(deltaTime); 
+			if (entityManager->checkCollisionEnemy(glm::vec2(turrets[i]->getPosition().x, turrets[i]->getPosition().y+8), 48, 40)) {
+				turrets[i]->reduceHP(player->getDMG());
+				if (turrets[i]->is_dead() || turrets[i]->is_dying()) {
+					float r = float(rand()%100)/100;
+					if (r <= PROB_HEART) {
+						Heart* h = new Heart();
+						h->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(turrets[i]->getPosition().x, turrets[i]->getPosition().y + 32));
+						hearts.push_back(h);
+					}
+				}
+			}
+		}
 	}
 	for (int i = 0; i < soldierAs.size(); i++) {
-		soldierAs[i]->update(deltaTime);
+		if (!soldierAs[i]->is_dead()) { 
+			soldierAs[i]->update(deltaTime); 
+			if (entityManager->checkCollisionEnemy(glm::vec2(soldierAs[i]->getPosition().x+16, soldierAs[i]->getPosition().y+16), 32, 32)) {
+				soldierAs[i]->reduceHP(player->getDMG());
+				if (soldierAs[i]->is_dead() || soldierAs[i]->is_dying()) {
+					float r = float(rand() % 100) / 100;
+					if (r <= PROB_HEART) {
+						Heart* h = new Heart();
+						h->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(soldierAs[i]->getPosition().x, soldierAs[i]->getPosition().y + 16));
+						hearts.push_back(h);
+					}
+				}
+			}
+		}
 	}
 	for (int i = 0; i < soldierBs.size(); i++) {
-		soldierBs[i]->update(deltaTime);
+		if (!soldierBs[i]->is_dead()) {
+			soldierBs[i]->update(deltaTime);
+			if (entityManager->checkCollisionEnemy(soldierBs[i]->getPosition(), 64, 64)) {
+				soldierBs[i]->reduceHP(player->getDMG());
+				if (soldierBs[i]->is_dead() || soldierBs[i]->is_dying()) {
+					float r = float(rand() % 100) / 100;
+					if (r <= PROB_HEART) {
+						Heart* h = new Heart();
+						h->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram, glm::vec2(soldierBs[i]->getPosition().x, soldierBs[i]->getPosition().y + 16));
+						hearts.push_back(h);
+					}
+				}
+			}
+		}
 	}
-	
+
+	//level completed
+	if (!levelComplete && int(player->getPosition().x / tileSize) == int(flag->getPosition().x/ tileSize) &&
+		int(player->getPosition().y / tileSize) == int(flag->getPosition().y / tileSize)) {
+		flag->setHidden(true);
+		levelComplete = true;
+		SoundManager::getInstance()->removeAllSound();
+		SoundManager::getInstance()->playSound("sounds/level1Complete.ogg", false);
+		completeTime = glutGet(GLUT_ELAPSED_TIME);
+	}
+
+	if (levelComplete && glutGet(GLUT_ELAPSED_TIME) - completeTime >= waitTime*1000) {
+		Game::instance().changeLevel(2);
+	}
+
+	for (int i = 0; i < hearts.size(); i++) {
+		int distX = player->getPosition().x - hearts[i]->getPosition().x;
+		int distY = player->getPosition().y - hearts[i]->getPosition().y;
+		if (abs(distX) <= 32 && abs(distY) <= 32) {
+				hearts.erase(hearts.begin() + i);
+				SoundManager::getInstance()->playSound("sounds/health.ogg", false);
+				player->addHP(1);
+		}
+	}
+
 	if (deadPlayer) gameOver->update();
 }
 
 void Scene::render()
-{
+{ 
 	glm::mat4 modelview;
 	float playerX = player->getPosition().x;
 	// Limitar camara por izquierda
-	if (playerX <= float(SCREEN_WIDTH - 1) / 2.0f) 
+	if (playerX <= float(SCREEN_WIDTH - 1) / 2.0f)
 		projection = glm::ortho(0.0f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	// Limitar por derecha
 	else if (playerX >= map->getMapSize().x * map->getTileSize() - float(SCREEN_WIDTH - 1) / 2.0f) 
@@ -139,27 +250,29 @@ void Scene::render()
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 
 	map->render();
-	if (!spreadgunHidden) spreadgun->render();
+	if (!spreadgun->is_Hidden()) spreadgun->render();
+	if (!snipergun->is_Hidden()) snipergun->render();
+	if (!flag->is_Hidden()) flag->render();
 	player->render();
 	entityManager->render();
-
 
 	for (int i = 0; i < turrets.size(); i++) {
-		turrets[i]->render();
+		if (!turrets[i]->is_dead()) turrets[i]->render();
 	}
 	for (int i = 0; i < soldierAs.size(); i++) {
-		soldierAs[i]->render();
+		if (!soldierAs[i]->is_dead()) soldierAs[i]->render();
 	}
-	player->render();
-	entityManager->render();
-
 	for (int i = 0; i < soldierBs.size(); i++) {
-		soldierBs[i]->render();
+		if (!soldierBs[i]->is_dead()) soldierBs[i]->render();
 	}
 	
+	for (int i = 0; i < hearts.size(); i++) hearts[i]->render();
+
 	// Death screen
 	if (player->isDead()) {
 		if (!deadPlayer) {
+			SoundManager::getInstance()->removeAllSound();
+			SoundManager::getInstance()->playSound("sounds/gameOver.ogg", false);
 			deadPlayer = true;
 			deathTime = glutGet(GLUT_ELAPSED_TIME);
 			gameOver = new GameOver();
@@ -174,6 +287,7 @@ void Scene::render()
 			//blackb->render(1);
 		}
 	}
+
 
 }
 
@@ -206,4 +320,3 @@ void Scene::initShaders()
 	vShader.free();
 	fShader.free();
 }
-
